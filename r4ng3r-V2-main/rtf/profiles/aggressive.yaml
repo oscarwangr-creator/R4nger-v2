@@ -1,0 +1,65 @@
+# RTF v2.0 — Aggressive Profile
+# Maximum coverage — all tools, brute force, active exploitation
+name: aggressive
+description: "Maximum tools. Active brute-force. Stages A-K including exploitation."
+warning: "HIGH NOISE — requires explicit authorization. Likely to trigger IDS/alerts."
+
+execution:
+  parallel_tools: 12
+  timeout_per_tool: 1200
+  max_concurrent_stages: 6
+  rate_limit_rps: 500
+  no_rate_limit_option: true
+
+tool_selection:
+  recon:            [all]
+  osint:            [all]
+  scanning:         [all]
+  web_exploitation: [all]
+  credential:       [all]
+  exploitation:     [metasploit, autosploit, owtf]
+  post_exploitation:[all]
+  ai:               [all]
+
+nuclei:
+  severity:    [critical, high, medium, low, info]
+  templates:   [all]
+  concurrency: 50
+  rate_limit:  500
+
+web_search:
+  engines:     [duckduckgo, bing, brave, yahoo, google, startpage]
+  results_per_engine: 20
+  fetch_pages: true
+  max_fetch:   20
+
+credential_attacks:
+  enable_brute_force: true
+  lockout_threshold:  3
+  delay_between_rounds: 30
+  methods:
+    - dictionary
+    - credential_stuffing
+    - kerberoast
+    - hash_crack
+
+active_exploitation:
+  enabled: true
+  requires_confirmation: true
+  auto_exploit_critical: false
+
+reporting:
+  formats:  [json, html, xlsx, pdf, csv, docx]
+  auto_save: true
+  mitre_mapping: true
+  attack_paths: true
+
+safety:
+  log_all_actions: true
+  avoid_destructive: true
+  require_operator_confirmation_for_exploitation: true
+
+notes:
+  - "Use only with explicit written authorization"
+  - "Will trigger IDS/SIEM alerts"
+  - "Best for full-scope, no-holds-barred red team"

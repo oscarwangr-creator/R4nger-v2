@@ -1,0 +1,55 @@
+# RTF v2.0 — AI Autonomous Profile
+# Claude AI selects tools and pivots dynamically based on findings
+name: ai_autonomous
+description: "AI-driven mode: Claude selects tools, interprets results, pivots dynamically."
+experimental: true
+
+execution:
+  parallel_tools: 6
+  timeout_per_tool: 600
+  max_concurrent_stages: 4
+  ai_decision_interval: 60   # seconds between AI reassessment
+
+ai:
+  enabled: true
+  model:   "claude-sonnet-4-20250514"
+  decisions:
+    - select_next_tool_based_on_findings
+    - prioritize_attack_paths
+    - skip_low_value_scans
+    - suggest_pivots
+    - generate_custom_payloads
+  confidence_threshold: 70    # min AI confidence to auto-proceed
+  human_in_loop_threshold: 40 # confidence below this → pause for operator
+
+tool_pool:
+  recon:            [subfinder, amass, naabu, httpx, gobuster, nuclei]
+  osint:            [sherlock, maigret, holehe, theharvester, gitfive, trufflehog]
+  scanning:         [nuclei, nikto, trivy]
+  web_exploitation: [sqlmap, dalfox, xsstrike, commix, ssrfmap]
+  credential:       [hashcat, john, hydra, kerbrute]
+  post_exploitation:[privesc_check, bloodhound_collect]
+
+ai_pivot_rules:
+  - condition: "found_subdomains > 50"
+    action:    "automatically_run_nuclei_on_all_live_hosts"
+  - condition: "found_spn_accounts"
+    action:    "immediately_kerberoast"
+  - condition: "found_s3_bucket"
+    action:    "run_aws_enum_on_bucket_owner"
+  - condition: "found_github_repo"
+    action:    "run_trufflehog_and_gitleaks"
+  - condition: "found_login_page"
+    action:    "run_dalfox_and_sqlmap"
+  - condition: "high_confidence_identity"
+    action:    "deep_dive_all_platforms"
+
+reporting:
+  formats:  [json, html, xlsx]
+  ai_narrative: true
+  auto_save: true
+
+notes:
+  - "Experimental — AI decisions require ANTHROPIC_API_KEY"
+  - "Human operator should monitor and can override at any time"
+  - "All AI decisions are logged for audit trail"

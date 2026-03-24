@@ -1,0 +1,44 @@
+# RTF v2.0 — Vulnerability Scanning Pipeline (Stages A-D-K)
+name: scanning_pipeline
+description: "Vulnerability discovery: nuclei templates + optional OpenVAS/Trivy/Kubescape"
+version: "2.0"
+warning: "AUTHORIZED ENGAGEMENTS ONLY"
+
+stages:
+  - id: A
+    name: "Target Initialization"
+    required: true
+
+  - id: D
+    name: "Vulnerability Discovery"
+    parallel: true
+    description: "Template-based and authenticated scanning"
+    tools:
+      core:       [nuclei, nikto]
+      full:       [nuclei, nikto, trivy, lynis]
+      aggressive: [nuclei, nikto, trivy, lynis, openvas, vuls, kubescape, scan4all]
+    nuclei_templates:
+      core:       ["cves", "exposures", "misconfiguration"]
+      full:       ["cves", "exposures", "misconfiguration", "default-logins", "technologies"]
+      aggressive: ["all"]
+    severity_filter:
+      core:       [critical, high]
+      full:       [critical, high, medium]
+      aggressive: [critical, high, medium, low]
+
+  - id: K
+    name: "Reporting"
+    formats: [json, html, csv]
+
+inputs:
+  required:
+    - one_of: [targets, targets_file, url]
+  optional:
+    - severity        # default: critical,high
+    - templates_dir
+    - rate_limit      # default: 150
+    - exclude_tags
+
+outputs:
+  vulns:  "data/vulns_{target}_{ts}.json"
+  report: "reports/scan_{target}_{ts}.html"

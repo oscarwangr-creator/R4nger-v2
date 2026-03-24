@@ -1,0 +1,29 @@
+from __future__ import annotations
+
+from intelligence_os.tooling.base import JsonEntityModule
+
+
+class GeneratedModule(JsonEntityModule):
+    name = "email_module"
+    category = "email_intelligence"
+    input_types = ['seed']
+    output_types = ['artifact']
+    command_template = 'emailrep {seed}'
+    entity_map = {'seed': 'Artifact'}
+
+    def run(self, input_data, context=None):
+        seed_value = next(iter(input_data.values()), 'seed')
+        return {
+            'input': input_data,
+            'command': self.build_command({'seed': seed_value}),
+            'artifacts': [
+                {
+                    'seed': seed_value,
+                    'module': self.name,
+                    'category': self.category,
+                    'toolchain': ['emailrep', 'dehashed-12', 'hunter-22', 'ghunt-32', 'emailrep-42', 'dehashed-52', 'hunter-62', 'ghunt-72', 'emailrep-82', 'dehashed-92', 'hunter-102', 'ghunt-112', 'emailrep-122', 'dehashed-132', 'hunter-142', 'ghunt-152', 'emailrep-162', 'dehashed-172', 'hunter-182', 'ghunt-192', 'emailrep-202', 'dehashed-212', 'hunter-222', 'ghunt-232', 'emailrep-242', 'dehashed-252', 'hunter-262', 'ghunt-272', 'emailrep-282', 'dehashed-292', 'hunter-302', 'ghunt-312', 'emailrep-322', 'dehashed-332', 'hunter-342', 'ghunt-352', 'emailrep-362', 'dehashed-372', 'hunter-382', 'ghunt-392', 'emailrep-402', 'dehashed-412', 'hunter-422', 'ghunt-432', 'emailrep-442', 'dehashed-452', 'hunter-462', 'ghunt-472', 'emailrep-482', 'dehashed-492', 'hunter-502', 'ghunt-512'],
+                    'pipelines': [],
+                    'confidence': 0.7,
+                }
+            ],
+        }

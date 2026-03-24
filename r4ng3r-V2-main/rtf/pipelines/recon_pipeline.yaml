@@ -1,0 +1,78 @@
+# RTF v2.0 — Reconnaissance Pipeline (Stages A-B-K)
+name: recon_pipeline
+description: "Passive + active reconnaissance: subdomains → ports → HTTP probing → vuln scan"
+version: "2.0"
+warning: "AUTHORIZED ENGAGEMENTS ONLY"
+
+stages:
+  - id: A
+    name: "Target Initialization"
+    description: "Normalize and validate all inputs"
+    tools: []
+    required: true
+
+  - id: B
+    name: "Passive Recon"
+    parallel: true
+    description: "Non-intrusive enumeration — no direct contact with target"
+    tools:
+      core:       [subfinder, assetfinder, amass_passive, dnsx]
+      full:       [subfinder, assetfinder, amass, altdns, dnstwist, spiderfoot]
+      aggressive: [subfinder, assetfinder, amass, altdns, dnstwist, spiderfoot, recon_ng, vhostscan]
+
+  - id: B2
+    name: "Active Scanning"
+    parallel: true
+    description: "Direct contact: port scan, HTTP probe, screenshot"
+    tools:
+      core:       [naabu, httprobe]
+      full:       [naabu, httprobe, httpx, gobuster, dirsearch]
+      aggressive: [naabu, httprobe, httpx, gobuster, dirsearch, ffuf, whatweb, photon, aquatone]
+    rate_limit:
+      core:       500
+      full:       1000
+      aggressive: 5000
+
+  - id: K
+    name: "Reporting"
+    description: "Generate structured report"
+    formats: [json, html, csv]
+
+inputs:
+  required:
+    - one_of: [domain, ip, cidr]
+  optional:
+    - ports       # default: top-1000
+    - rate        # requests/sec
+    - resolve_wildcard  # default: true
+
+outputs:
+  subdomains:   "data/subdomains_{target}_{ts}.txt"
+  live_hosts:   "data/live_hosts_{target}_{ts}.txt"
+  open_ports:   "data/ports_{target}_{ts}.json"
+  report:       "reports/recon_{target}_{ts}.html"
+
+entity_graph:
+  nodes: [domain, subdomain, ip, port, service]
+  edges:
+    - {from: domain, to: subdomain, relation: "has_subdomain"}
+    - {from: subdomain, to: ip,     relation: "resolves_to"}
+    - {from: ip,       to: port,    relation: "has_port"}
+
+profiles:
+  core:
+    tools: [subfinder, naabu, httprobe]
+    timeout_per_tool: 300
+    parallel_tools: 3
+
+  full:
+    tools: [subfinder, assetfinder, amass, naabu, httpx, gobuster, dirsearch, whatweb]
+    timeout_per_tool: 600
+    parallel_tools: 5
+
+  aggressive:
+    tools: [subfinder, assetfinder, amass, altdns, dnstwist, vhostscan, naabu, httpx,
+            gobuster, dirsearch, ffuf, whatweb, photon, aquatone]
+    timeout_per_tool: 900
+    parallel_tools: 8
+    notes: "Rate limiting recommended for stealth"

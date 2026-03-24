@@ -1,0 +1,71 @@
+name: asset_ownership_pipeline
+purpose: Expanded domain infrastructure intelligence workflow for asset ownership
+  pipeline.
+input:
+  types:
+  - keyword
+  - domain
+  - username
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: amass
+  tool: amass
+  input:
+    keyword: keyword
+  required: true
+- name: discovery
+  module: subfinder
+  tool: subfinder
+  input:
+    keyword: keyword
+  required: true
+- name: verification
+  module: assetfinder
+  tool: assetfinder
+  input:
+    keyword: keyword
+  required: false
+- name: pivot_expansion
+  module: dnsx
+  tool: dnsx
+  input:
+    keyword: keyword
+  required: false
+- name: correlation
+  module: httpx
+  tool: httpx
+  input:
+    keyword: keyword
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: keyword
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: keyword
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: keyword
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

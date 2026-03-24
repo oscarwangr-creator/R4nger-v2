@@ -1,0 +1,90 @@
+name: identity_mega_pipeline
+purpose: Correlate usernames, emails, phones, domains, breaches, code, and metadata
+  into a unified identity graph.
+input:
+  types:
+  - username
+  - email
+  - phone
+  - real_name
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: sherlock
+  tool: sherlock
+  input:
+    username: username
+  required: true
+- name: discovery
+  module: maigret
+  tool: maigret
+  input:
+    username: username
+  required: true
+- name: verification
+  module: holehe
+  tool: holehe
+  input:
+    username: username
+  required: false
+- name: pivot_expansion
+  module: phoneinfoga
+  tool: phoneinfoga
+  input:
+    username: username
+  required: false
+- name: correlation
+  module: amass
+  tool: amass
+  input:
+    username: username
+  required: false
+- name: reporting
+  module: gitfive
+  tool: gitfive
+  input:
+    username: username
+  required: false
+- name: next_steps
+  module: dehashed
+  tool: dehashed
+  input:
+    username: username
+  required: false
+- name: stage_8
+  module: exiftool
+  tool: exiftool
+  input:
+    username: username
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: username
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: username
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: username
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

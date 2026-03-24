@@ -1,0 +1,70 @@
+name: dark_web_intelligence_pipeline
+input:
+  type: keyword
+stages:
+- module: onionsearch
+  input:
+    query: keyword
+  required: false
+- module: ahmia
+  input:
+    query: keyword
+  required: false
+- name: entity_resolution
+  module: entity-resolution
+  tool: entity-resolution
+  input:
+    seed: keyword
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: keyword
+  required: false
+- name: risk_scoring
+  module: risk-scoring
+  tool: risk-scoring
+  input:
+    seed: keyword
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: keyword
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: keyword
+  required: false
+- name: evidence_normalization
+  module: evidence-normalization
+  tool: evidence-normalization
+  input:
+    seed: keyword
+  required: false
+output:
+  entities:
+  - onion_services
+  - mentions
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - triage extracted entities
+  - queue recursive pivots
+  - publish graph update
+  - generate analyst report
+graph:
+  relationships:
+  - keyword -> onion_service
+purpose: Autonomous intelligence pipeline for dark web intelligence pipeline.
+recursive_pivoting: true
+ai_assisted: true

@@ -1,0 +1,71 @@
+name: academic_research_pipeline
+purpose: Expanded metadata geolocation intelligence workflow for academic research
+  pipeline.
+input:
+  types:
+  - keyword
+  - domain
+  - username
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: exiftool
+  tool: exiftool
+  input:
+    keyword: keyword
+  required: true
+- name: discovery
+  module: mat2
+  tool: mat2
+  input:
+    keyword: keyword
+  required: true
+- name: verification
+  module: foca
+  tool: foca
+  input:
+    keyword: keyword
+  required: false
+- name: pivot_expansion
+  module: metagoofil
+  tool: metagoofil
+  input:
+    keyword: keyword
+  required: false
+- name: correlation
+  module: ghunt
+  tool: ghunt
+  input:
+    keyword: keyword
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: keyword
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: keyword
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: keyword
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

@@ -1,0 +1,69 @@
+name: infrastructure_exposure_pipeline
+purpose: Map open ports, WAF, technologies, screenshots, and severity findings.
+input:
+  types:
+  - domain
+  - ip
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: httpx
+  tool: httpx
+  input:
+    domain: domain
+  required: true
+- name: discovery
+  module: nmap
+  tool: nmap
+  input:
+    domain: domain
+  required: true
+- name: verification
+  module: nuclei
+  tool: nuclei
+  input:
+    domain: domain
+  required: false
+- name: pivot_expansion
+  module: whatweb
+  tool: whatweb
+  input:
+    domain: domain
+  required: false
+- name: correlation
+  module: wafw00f
+  tool: wafw00f
+  input:
+    domain: domain
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: domain
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: domain
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: domain
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

@@ -1,0 +1,70 @@
+name: brand_impersonation_pipeline
+purpose: Detect typosquats, rogue social handles, phishing infrastructure, and code
+  abuse.
+input:
+  types:
+  - brand
+  - domain
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: dnstwist
+  tool: dnstwist
+  input:
+    brand: brand
+  required: true
+- name: discovery
+  module: amass
+  tool: amass
+  input:
+    brand: brand
+  required: true
+- name: verification
+  module: sherlock
+  tool: sherlock
+  input:
+    brand: brand
+  required: false
+- name: pivot_expansion
+  module: httpx
+  tool: httpx
+  input:
+    brand: brand
+  required: false
+- name: correlation
+  module: nuclei
+  tool: nuclei
+  input:
+    brand: brand
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: brand
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: brand
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: brand
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

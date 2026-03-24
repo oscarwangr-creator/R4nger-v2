@@ -1,0 +1,28 @@
+name: shodan_module
+category: generated
+tools:
+- shodan
+pipelines:
+- organization_profiling_pipeline
+- supply_chain_risk_pipeline
+- threat_actor_profiling_pipeline
+- satellite_context_pipeline
+- vendor_attack_surface_pipeline
+- fraud_investigation_pipeline
+- marketing_asset_pipeline
+- disinformation_monitoring_pipeline
+- subsidiary_domain_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

@@ -1,0 +1,24 @@
+name: blackbird_module
+category: generated
+tools:
+- blackbird
+pipelines:
+- username_intelligence_pipeline
+- forum_monitoring_pipeline
+- package_registry_pipeline
+- video_intelligence_pipeline
+- startup_due_diligence_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

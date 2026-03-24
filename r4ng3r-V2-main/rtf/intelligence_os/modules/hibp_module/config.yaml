@@ -1,0 +1,31 @@
+name: hibp_module
+category: generated
+tools:
+- hibp
+pipelines:
+- email_intelligence_pipeline
+- phone_intelligence_pipeline
+- breach_correlation_pipeline
+- credential_reuse_pipeline
+- paste_monitoring_pipeline
+- typosquat_monitoring_pipeline
+- mobile_app_intelligence_pipeline
+- event_monitoring_pipeline
+- messaging_app_pipeline
+- ngo_network_pipeline
+- conference_exposure_pipeline
+- campaign_tracking_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

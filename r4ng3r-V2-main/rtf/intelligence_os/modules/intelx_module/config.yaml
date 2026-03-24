@@ -1,0 +1,26 @@
+name: intelx_module
+category: generated
+tools:
+- intelx
+pipelines:
+- dark_web_exposure_pipeline
+- breach_correlation_pipeline
+- threat_actor_profiling_pipeline
+- typosquat_monitoring_pipeline
+- event_monitoring_pipeline
+- ngo_network_pipeline
+- campaign_tracking_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

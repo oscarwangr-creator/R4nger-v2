@@ -1,0 +1,70 @@
+name: breach_correlation_pipeline
+purpose: Fuse breach records, password reuse, and exposed identities for escalation.
+input:
+  types:
+  - email
+  - username
+  - domain
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: hibp
+  tool: hibp
+  input:
+    email: email
+  required: true
+- name: discovery
+  module: dehashed
+  tool: dehashed
+  input:
+    email: email
+  required: true
+- name: verification
+  module: leaklookup
+  tool: leaklookup
+  input:
+    email: email
+  required: false
+- name: pivot_expansion
+  module: intelx
+  tool: intelx
+  input:
+    email: email
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: email
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: email
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: email
+  required: false
+- name: entity_resolution
+  module: entity-resolution
+  tool: entity-resolution
+  input:
+    seed: email
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

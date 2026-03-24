@@ -1,0 +1,25 @@
+name: gitleaks_module
+category: generated
+tools:
+- gitleaks
+pipelines:
+- github_secrets_pipeline
+- code_contributor_pipeline
+- recruitment_signal_pipeline
+- press_correlation_pipeline
+- influencer_mapping_pipeline
+- board_member_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

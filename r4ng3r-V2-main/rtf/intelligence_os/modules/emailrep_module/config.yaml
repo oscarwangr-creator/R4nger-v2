@@ -1,0 +1,24 @@
+name: emailrep_module
+category: generated
+tools:
+- emailrep
+pipelines:
+- email_intelligence_pipeline
+- paste_monitoring_pipeline
+- mobile_app_intelligence_pipeline
+- messaging_app_pipeline
+- conference_exposure_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

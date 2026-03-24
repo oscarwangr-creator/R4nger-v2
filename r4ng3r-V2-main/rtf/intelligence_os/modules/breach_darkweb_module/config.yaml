@@ -1,0 +1,70 @@
+name: breach_darkweb_module
+category: breach_darkweb_intelligence
+tools:
+- ahmia
+- breachdirectory-16
+- dehashed-26
+- intelx-36
+- ahmia-46
+- breachdirectory-56
+- dehashed-66
+- intelx-76
+- ahmia-86
+- breachdirectory-96
+- dehashed-106
+- intelx-116
+- ahmia-126
+- breachdirectory-136
+- dehashed-146
+- intelx-156
+- ahmia-166
+- breachdirectory-176
+- dehashed-186
+- intelx-196
+- ahmia-206
+- breachdirectory-216
+- dehashed-226
+- intelx-236
+- ahmia-246
+- breachdirectory-256
+- dehashed-266
+- intelx-276
+- ahmia-286
+- breachdirectory-296
+- dehashed-306
+- intelx-316
+- ahmia-326
+- breachdirectory-336
+- dehashed-346
+- intelx-356
+- ahmia-366
+- breachdirectory-376
+- dehashed-386
+- intelx-396
+- ahmia-406
+- breachdirectory-416
+- dehashed-426
+- intelx-436
+- ahmia-446
+- breachdirectory-456
+- dehashed-466
+- intelx-476
+- ahmia-486
+- breachdirectory-496
+- dehashed-506
+- intelx-516
+pipelines: []
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

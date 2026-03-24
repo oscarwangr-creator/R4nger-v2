@@ -1,0 +1,48 @@
+# RTF v2.0 — Full Red Team Pipeline
+# Complete A-K engagement pipeline
+
+name: redteam_full_pipeline
+description: "Complete A-K red team engagement: recon → OSINT → scan → exploit → AI → report"
+version: "2.0"
+warning: "AUTHORIZED ENGAGEMENTS ONLY"
+
+stages:
+  - {id: A, name: "Target Initialization"}
+  - {id: B, name: "Reconnaissance",       parallel: true}
+  - {id: C, name: "OSINT Correlation",    parallel: true}
+  - {id: D, name: "Vulnerability Discovery", parallel: true}
+  - {id: E, name: "Web Exploitation"}
+  - {id: F, name: "Credential Attacks",   interactive: true}
+  - {id: G, name: "Exploitation",         requires_confirmation: true}
+  - {id: H, name: "Post-Exploitation"}
+  - {id: I, name: "Threat Intelligence"}
+  - {id: J, name: "AI Correlation"}
+  - {id: K, name: "Reporting"}
+
+inputs:
+  required:
+    - one of: [domain, ip, username, email]
+  optional:
+    - domain
+    - ip
+    - email
+    - username
+    - phone
+    - full_name
+
+output:
+  formats: [json, html, pdf, csv, docx]
+  entity_graph: true
+  attack_paths: true
+  mitre_mapping: true
+
+profiles:
+  core:       {stages: [A, B, C, D, K]}
+  full:       {stages: [A, B, C, D, E, I, J, K]}
+  aggressive: {stages: [A, B, C, D, E, F, G, H, I, J, K]}
+  ai_autonomous: {stages: [A, B, C, D, E, I, J, K], ai_selects_tools: true}
+
+escalation:
+  on_critical_finding: continue   # continue | pause | notify | stop
+  notify_webhook: ""
+  max_findings_before_pause: 50

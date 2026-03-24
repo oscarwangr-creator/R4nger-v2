@@ -1,0 +1,23 @@
+name: naabu_module
+category: generated
+tools:
+- naabu
+pipelines:
+- crypto_wallet_pipeline
+- chat_server_pipeline
+- malware_repo_pipeline
+- dataset_leak_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

@@ -1,0 +1,14 @@
+# Httpx Module
+
+- **Category:** generated
+- **Tools:** httpx
+- **Pipelines:** domain_infrastructure_pipeline, infrastructure_exposure_pipeline, brand_impersonation_pipeline, vendor_attack_surface_pipeline, newsletter_leak_pipeline, crypto_wallet_pipeline, persona_correlation_pipeline, chat_server_pipeline, public_records_pipeline, malware_repo_pipeline, asset_ownership_pipeline, dataset_leak_pipeline
+
+## Purpose
+Standardized Intelligence OS module pack generated from the canonical framework manifest.
+
+## Accepted Seeds
+Arbitrary seed dictionaries; wrappers normalize them into the shared execution contract.
+
+## Output Schema
+Returns normalized artifacts, entities, relationships, and telemetry for downstream graph and reporting stages.

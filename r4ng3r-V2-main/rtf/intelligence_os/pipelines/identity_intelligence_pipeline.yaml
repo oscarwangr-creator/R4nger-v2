@@ -1,0 +1,70 @@
+name: identity_intelligence_pipeline
+input:
+  type: person
+stages:
+- module: sherlock
+  input:
+    username: username
+  transformations:
+  - extract_accounts
+- module: holehe
+  input:
+    email: email
+- module: amass
+  input:
+    domain: domain
+- name: entity_resolution
+  module: entity-resolution
+  tool: entity-resolution
+  input:
+    seed: person
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: person
+  required: false
+- name: risk_scoring
+  module: risk-scoring
+  tool: risk-scoring
+  input:
+    seed: person
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: person
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: person
+  required: false
+output:
+  entities:
+  - accounts
+  - emails
+  - domains
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - triage extracted entities
+  - queue recursive pivots
+  - publish graph update
+  - generate analyst report
+graph:
+  relationships:
+  - person -> account
+  - person -> email
+  - person -> domain
+purpose: Autonomous intelligence pipeline for identity intelligence pipeline.
+recursive_pivoting: true
+ai_assisted: true

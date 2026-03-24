@@ -1,0 +1,34 @@
+# RTF v2.0 — Core Profile
+# Minimal tool selection — fastest execution, lowest noise
+name: core
+description: "Essential tools only. Fastest execution, minimal footprint."
+
+execution:
+  parallel_tools: 3
+  timeout_per_tool: 300
+  max_concurrent_stages: 2
+  rate_limit_rps: 50
+
+tool_selection:
+  recon:            [subfinder, naabu, httprobe, dnsx]
+  osint:            [sherlock, maigret, holehe, h8mail]
+  scanning:         [nuclei, nikto]
+  web_exploitation: [sqlmap, dalfox]
+  credential:       [hydra, hashcat]
+  post_exploitation:[privesc_check, linenum]
+  ai:               [claude_integration]
+
+nuclei:
+  severity:    [critical, high]
+  templates:   [cves, exposures]
+  concurrency: 10
+  rate_limit:  50
+
+reporting:
+  formats:  [json, html]
+  auto_save: true
+
+notes:
+  - "Suitable for time-constrained engagements"
+  - "Lower detection risk"
+  - "No active brute-force by default"

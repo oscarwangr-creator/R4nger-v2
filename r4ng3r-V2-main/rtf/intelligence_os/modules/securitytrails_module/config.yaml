@@ -1,0 +1,22 @@
+name: securitytrails_module
+category: generated
+tools:
+- securitytrails
+pipelines:
+- organization_profiling_pipeline
+- supply_chain_risk_pipeline
+- vendor_attack_surface_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

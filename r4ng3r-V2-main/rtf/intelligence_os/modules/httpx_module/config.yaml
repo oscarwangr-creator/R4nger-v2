@@ -1,0 +1,31 @@
+name: httpx_module
+category: generated
+tools:
+- httpx
+pipelines:
+- domain_infrastructure_pipeline
+- infrastructure_exposure_pipeline
+- brand_impersonation_pipeline
+- vendor_attack_surface_pipeline
+- newsletter_leak_pipeline
+- crypto_wallet_pipeline
+- persona_correlation_pipeline
+- chat_server_pipeline
+- public_records_pipeline
+- malware_repo_pipeline
+- asset_ownership_pipeline
+- dataset_leak_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

@@ -1,0 +1,70 @@
+name: forum_monitoring_pipeline
+purpose: Expanded identity intelligence workflow for forum monitoring pipeline.
+input:
+  types:
+  - keyword
+  - domain
+  - username
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: sherlock
+  tool: sherlock
+  input:
+    keyword: keyword
+  required: true
+- name: discovery
+  module: maigret
+  tool: maigret
+  input:
+    keyword: keyword
+  required: true
+- name: verification
+  module: blackbird
+  tool: blackbird
+  input:
+    keyword: keyword
+  required: false
+- name: pivot_expansion
+  module: nexfil
+  tool: nexfil
+  input:
+    keyword: keyword
+  required: false
+- name: correlation
+  module: whatsmyname
+  tool: whatsmyname
+  input:
+    keyword: keyword
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: keyword
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: keyword
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: keyword
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

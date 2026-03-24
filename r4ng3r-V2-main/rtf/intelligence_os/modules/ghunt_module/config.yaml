@@ -1,0 +1,26 @@
+name: ghunt_module
+category: generated
+tools:
+- ghunt
+pipelines:
+- metadata_intelligence_pipeline
+- geolocation_pivot_pipeline
+- executive_watch_pipeline
+- subsidiary_mapping_pipeline
+- facility_mapping_pipeline
+- academic_research_pipeline
+- ngo_partnership_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

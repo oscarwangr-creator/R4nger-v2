@@ -1,0 +1,69 @@
+name: employee_enumeration_pipeline
+purpose: Enumerate employees, usernames, emails, and business applications.
+input:
+  types:
+  - organization
+  - domain
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: theharvester
+  tool: theharvester
+  input:
+    organization: organization
+  required: true
+- name: discovery
+  module: hunter
+  tool: hunter
+  input:
+    organization: organization
+  required: true
+- name: verification
+  module: linkedin-enricher
+  tool: linkedin-enricher
+  input:
+    organization: organization
+  required: false
+- name: pivot_expansion
+  module: holehe
+  tool: holehe
+  input:
+    organization: organization
+  required: false
+- name: correlation
+  module: sherlock
+  tool: sherlock
+  input:
+    organization: organization
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: organization
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: organization
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: organization
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

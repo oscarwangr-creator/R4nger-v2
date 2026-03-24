@@ -1,0 +1,70 @@
+name: typosquat_monitoring_pipeline
+purpose: Expanded breach darkweb intelligence workflow for typosquat monitoring pipeline.
+input:
+  types:
+  - keyword
+  - domain
+  - username
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: hibp
+  tool: hibp
+  input:
+    keyword: keyword
+  required: true
+- name: discovery
+  module: dehashed
+  tool: dehashed
+  input:
+    keyword: keyword
+  required: true
+- name: verification
+  module: leaklookup
+  tool: leaklookup
+  input:
+    keyword: keyword
+  required: false
+- name: pivot_expansion
+  module: intelx
+  tool: intelx
+  input:
+    keyword: keyword
+  required: false
+- name: correlation
+  module: onionsearch
+  tool: onionsearch
+  input:
+    keyword: keyword
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: keyword
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: keyword
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: keyword
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

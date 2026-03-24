@@ -1,0 +1,30 @@
+name: sherlock_module
+category: generated
+tools:
+- sherlock
+pipelines:
+- identity_mega_pipeline
+- username_intelligence_pipeline
+- account_verification_pipeline
+- executive_watch_pipeline
+- brand_impersonation_pipeline
+- threat_actor_profiling_pipeline
+- employee_enumeration_pipeline
+- forum_monitoring_pipeline
+- package_registry_pipeline
+- video_intelligence_pipeline
+- startup_due_diligence_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

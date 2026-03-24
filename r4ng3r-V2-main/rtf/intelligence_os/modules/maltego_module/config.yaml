@@ -1,0 +1,23 @@
+name: maltego_module
+category: generated
+tools:
+- maltego
+pipelines:
+- fraud_investigation_pipeline
+- marketing_asset_pipeline
+- disinformation_monitoring_pipeline
+- subsidiary_domain_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

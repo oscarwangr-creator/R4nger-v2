@@ -1,0 +1,24 @@
+name: truecaller_module
+category: generated
+tools:
+- truecaller
+pipelines:
+- phone_intelligence_pipeline
+- travel_pattern_pipeline
+- certificate_transparency_pipeline
+- legal_exposure_pipeline
+- api_surface_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

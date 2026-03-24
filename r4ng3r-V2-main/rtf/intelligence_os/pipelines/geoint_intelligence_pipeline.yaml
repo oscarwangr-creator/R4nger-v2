@@ -1,0 +1,70 @@
+name: geoint_intelligence_pipeline
+input:
+  type: location
+stages:
+- module: openstreetmap
+  input:
+    location: location
+  required: false
+- module: sentinel-hub
+  input:
+    location: location
+  required: false
+- name: entity_resolution
+  module: entity-resolution
+  tool: entity-resolution
+  input:
+    seed: location
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: location
+  required: false
+- name: risk_scoring
+  module: risk-scoring
+  tool: risk-scoring
+  input:
+    seed: location
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: location
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: location
+  required: false
+- name: evidence_normalization
+  module: evidence-normalization
+  tool: evidence-normalization
+  input:
+    seed: location
+  required: false
+output:
+  entities:
+  - locations
+  - imagery
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - triage extracted entities
+  - queue recursive pivots
+  - publish graph update
+  - generate analyst report
+graph:
+  relationships:
+  - location -> location
+purpose: Autonomous intelligence pipeline for geoint intelligence pipeline.
+recursive_pivoting: true
+ai_assisted: true

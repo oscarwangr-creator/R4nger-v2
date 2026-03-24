@@ -1,0 +1,70 @@
+name: influencer_mapping_pipeline
+purpose: Expanded code repository intelligence workflow for influencer mapping pipeline.
+input:
+  types:
+  - keyword
+  - domain
+  - username
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: gitfive
+  tool: gitfive
+  input:
+    keyword: keyword
+  required: true
+- name: discovery
+  module: trufflehog
+  tool: trufflehog
+  input:
+    keyword: keyword
+  required: true
+- name: verification
+  module: gitleaks
+  tool: gitleaks
+  input:
+    keyword: keyword
+  required: false
+- name: pivot_expansion
+  module: github-search
+  tool: github-search
+  input:
+    keyword: keyword
+  required: false
+- name: correlation
+  module: gitrob
+  tool: gitrob
+  input:
+    keyword: keyword
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: keyword
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: keyword
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: keyword
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

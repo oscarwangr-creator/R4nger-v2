@@ -1,0 +1,70 @@
+name: dark_web_exposure_pipeline
+purpose: Monitor leaks, mentions, onions, and breach reuse across dark web sources.
+input:
+  types:
+  - email
+  - keyword
+  - domain
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: intelx
+  tool: intelx
+  input:
+    email: email
+  required: true
+- name: discovery
+  module: onionsearch
+  tool: onionsearch
+  input:
+    email: email
+  required: true
+- name: verification
+  module: ahmia
+  tool: ahmia
+  input:
+    email: email
+  required: false
+- name: pivot_expansion
+  module: dehashed
+  tool: dehashed
+  input:
+    email: email
+  required: false
+- name: correlation
+  module: pwndb-cli
+  tool: pwndb-cli
+  input:
+    email: email
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: email
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: email
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: email
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

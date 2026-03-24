@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rtf-titan
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtf-core
+  namespace: rtf-titan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtf-core
+  template:
+    metadata:
+      labels:
+        app: rtf-core
+    spec:
+      containers:
+        - name: rtf-core
+          image: rtf-titan:latest
+          args: ["python", "rtf.py", "api", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rtf-core
+  namespace: rtf-titan
+spec:
+  selector:
+    app: rtf-core
+  ports:
+    - port: 8000
+      targetPort: 8000

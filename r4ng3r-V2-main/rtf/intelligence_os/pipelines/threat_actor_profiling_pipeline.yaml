@@ -1,0 +1,70 @@
+name: threat_actor_profiling_pipeline
+purpose: Profile aliases, infra, malware repos, chatter, and exposure history.
+input:
+  types:
+  - alias
+  - keyword
+  - domain
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: sherlock
+  tool: sherlock
+  input:
+    alias: alias
+  required: true
+- name: discovery
+  module: intelx
+  tool: intelx
+  input:
+    alias: alias
+  required: true
+- name: verification
+  module: onionsearch
+  tool: onionsearch
+  input:
+    alias: alias
+  required: false
+- name: pivot_expansion
+  module: gitfive
+  tool: gitfive
+  input:
+    alias: alias
+  required: false
+- name: correlation
+  module: shodan
+  tool: shodan
+  input:
+    alias: alias
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: alias
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: alias
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: alias
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

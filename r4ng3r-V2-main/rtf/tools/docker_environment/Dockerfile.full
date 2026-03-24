@@ -1,0 +1,82 @@
+FROM kalilinux/kali-rolling:latest
+
+LABEL maintainer="RTF v2.0" \
+      description="RedTeam Framework v2.0 — Full Tool Environment" \
+      warning="AUTHORIZED USE ONLY"
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONUNBUFFERED=1 \
+    GOPATH=/root/go \
+    PATH="/root/go/bin:/usr/local/go/bin:/root/.local/bin:${PATH}" \
+    RTF_ROOT=/opt/rtf
+
+# ── System packages ─────────────────────────────────────────
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    # Core
+    curl wget git python3 python3-pip python3-dev pipx \
+    build-essential libssl-dev libffi-dev nmap nikto \
+    ruby ruby-dev default-jre unzip p7zip-full \
+    # Network
+    libpcap-dev tcpdump aircrack-ng wireshark-common \
+    ncat netcat-traditional masscan \
+    # AD / Auth
+    ldap-utils smbclient \
+    # Recon
+    whatweb \
+    && rm -rf /var/lib/apt/lists/*
+
+# ── Go ───────────────────────────────────────────────────────
+RUN curl -fsSL https://golang.org/dl/go1.22.0.linux-amd64.tar.gz | \
+    tar -C /usr/local -xz
+
+# ── Go tools ────────────────────────────────────────────────
+RUN go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest && \
+    go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest         && \
+    go install github.com/projectdiscovery/httpx/cmd/httpx@latest            && \
+    go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest       && \
+    go install github.com/projectdiscovery/dnsx/cmd/dnsx@latest              && \
+    go install github.com/tomnomnom/assetfinder@latest                       && \
+    go install github.com/tomnomnom/httprobe@latest                          && \
+    go install github.com/OJ/gobuster/v3@latest                              && \
+    go install github.com/ffuf/ffuf/v2@latest                                && \
+    go install github.com/hahwul/dalfox/v2@latest                            && \
+    go install github.com/ropnop/kerbrute@latest                             && \
+    go install github.com/trufflesecurity/trufflehog/v3@latest               && \
+    go install github.com/gitleaks/gitleaks/v8@latest                        && \
+    go install github.com/owasp-amass/amass/v4/...@latest                   2>/dev/null || true
+
+# ── Nuclei templates ────────────────────────────────────────
+RUN nuclei -update-templates -silent 2>/dev/null || true
+
+# ── Python tools ────────────────────────────────────────────
+RUN pip install --break-system-packages --quiet \
+    httpx aiohttp fastapi uvicorn flask rich click \
+    jinja2 pyyaml openpyxl reportlab python-docx \
+    networkx requests beautifulsoup4 lxml \
+    anthropic sqlmap wfuzz droopescan arjun \
+    impacket holehe h8mail socialscan \
+    instaloader scrapling maigret paramspider \
+    pymisp OTXv2 pyintelowl threatingestor \
+    2>/dev/null || true
+
+RUN pipx install sherlock-project  2>/dev/null || true && \
+    pipx install holehe            2>/dev/null || true && \
+    pipx install maigret           2>/dev/null || true && \
+    pipx ensurepath
+
+# ── Ruby gems ────────────────────────────────────────────────
+RUN gem install wpscan evil-winrm 2>/dev/null || true
+
+# ── RTF framework ────────────────────────────────────────────
+COPY . ${RTF_ROOT}/
+WORKDIR ${RTF_ROOT}
+RUN pip install --break-system-packages -r requirements.txt 2>/dev/null || true
+
+# ── Wordlists ────────────────────────────────────────────────
+RUN mkdir -p /opt/wordlists && \
+    wget -q "https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt" \
+         -O /opt/wordlists/rockyou.txt 2>/dev/null || true
+
+# ── Entrypoint ───────────────────────────────────────────────
+EXPOSE 5000 8000
+CMD ["python3", "rtf.py", "--help"]

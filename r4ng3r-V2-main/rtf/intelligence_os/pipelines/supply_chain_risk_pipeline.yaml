@@ -1,0 +1,71 @@
+name: supply_chain_risk_pipeline
+purpose: Assess supplier repositories, breaches, exposed assets, and public trust
+  signals.
+input:
+  types:
+  - organization
+  - domain
+  - repository
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: securitytrails
+  tool: securitytrails
+  input:
+    organization: organization
+  required: true
+- name: discovery
+  module: gitfive
+  tool: gitfive
+  input:
+    organization: organization
+  required: true
+- name: verification
+  module: dehashed
+  tool: dehashed
+  input:
+    organization: organization
+  required: false
+- name: pivot_expansion
+  module: shodan
+  tool: shodan
+  input:
+    organization: organization
+  required: false
+- name: correlation
+  module: trufflehog
+  tool: trufflehog
+  input:
+    organization: organization
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: organization
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: organization
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: organization
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

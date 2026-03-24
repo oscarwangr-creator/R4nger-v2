@@ -1,0 +1,103 @@
+# RTF v2.0 — OSINT Intelligence Pipeline (Stages A-B-B2-B3-C-J-K)
+name: osint_pipeline
+description: "Person/entity OSINT: username sweep → account scraping → web search → AI correlation"
+version: "2.0"
+warning: "AUTHORIZED ENGAGEMENTS ONLY"
+
+stages:
+  - id: A
+    name: "Seed Normalization"
+    description: "Parse seeds: username, email, full_name, phone, domain"
+    required: true
+
+  - id: B
+    name: "Username Sweep"
+    parallel: true
+    description: "Multi-tool username search across 300+ platforms"
+    tools:
+      core:       [sherlock, maigret]
+      full:       [sherlock, maigret, nexfil, socialscan, social_analyzer, whatsmyname]
+      aggressive: [sherlock, maigret, nexfil, socialscan, social_analyzer, whatsmyname,
+                   snoop, osrframework, seekr, profil3r, namechk, checkusernames]
+
+  - id: B2
+    name: "Deep Account Scraping"
+    description: "Scrape every discovered profile URL for bio/followers/emails/linked accounts"
+    concurrency: 8
+    max_urls: 50
+    platforms:
+      cli_tools:  [twint, instaloader, gitfive, toutatis, snscrape]
+      api:        [github_api, reddit_api, mastodon_api, hackernews_api]
+      http_scraper: "generic httpx + BeautifulSoup4"
+
+  - id: B3
+    name: "Multi-Engine Web Search"
+    description: "Search 6 engines for name/email/username mentions + scrape result pages"
+    engines:
+      core:       [duckduckgo, bing]
+      full:       [duckduckgo, bing, brave, yahoo]
+      aggressive: [duckduckgo, bing, brave, yahoo, google, startpage]
+    queries_per_seed: 4
+    results_per_engine: 10
+    fetch_result_pages: true
+
+  - id: C
+    name: "Email Pivot & Breach Intelligence"
+    parallel: true
+    tools:
+      core:       [holehe, h8mail]
+      full:       [holehe, h8mail, emailrep, ignorant, socialscan]
+      aggressive: [holehe, h8mail, emailrep, ignorant, socialscan,
+                   dehashed, breach_parse, emailfinder]
+
+  - id: D
+    name: "Domain Intelligence"
+    parallel: true
+    tools:
+      core:       [theharvester, subfinder]
+      full:       [theharvester, subfinder, spiderfoot, metagoofil, dnstwist]
+      aggressive: [theharvester, subfinder, spiderfoot, metagoofil, dnstwist,
+                   linkedin2username, crosslinked, shodan, censys, urlscan]
+
+  - id: F
+    name: "Code & Secrets Forensics"
+    parallel: true
+    tools:
+      core:       [gitfive, trufflehog]
+      full:       [gitfive, trufflehog, gitleaks, octosuite]
+      aggressive: [gitfive, trufflehog, gitleaks, octosuite, gitrecon, gharchive]
+
+  - id: J
+    name: "AI Correlation"
+    description: "Claude AI-powered identity correlation and confidence scoring"
+    model: "claude-sonnet-4-20250514"
+    outputs:
+      - confidence_score
+      - identity_summary
+      - primary_aliases
+      - cross_platform_timeline
+      - location_indicators
+      - bio_consistency_score
+      - anomalies
+      - top_pivots
+      - mitre_techniques
+
+  - id: K
+    name: "Reporting"
+    formats: [json, html, xlsx, pdf, csv]
+
+inputs:
+  required:
+    - one_of: [username, email, full_name]
+  optional:
+    - phone
+    - domain
+    - image_url
+    - use_ai          # default: true
+    - tool_profile    # core|full|aggressive
+    - output_format   # json|html|xlsx|pdf|csv
+
+outputs:
+  profiles:   "data/profiles_{username}_{ts}.json"
+  report:     "reports/osint_{username}_{ts}.html"
+  graph:      "data/entity_graph_{username}_{ts}.json"

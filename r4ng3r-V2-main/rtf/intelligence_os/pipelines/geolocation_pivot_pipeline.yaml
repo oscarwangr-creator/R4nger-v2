@@ -1,0 +1,70 @@
+name: geolocation_pivot_pipeline
+purpose: Correlate places, GPS data, travel indicators, and imagery for a target.
+input:
+  types:
+  - location
+  - file
+  - username
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: creepy
+  tool: creepy
+  input:
+    location: location
+  required: true
+- name: discovery
+  module: exiftool
+  tool: exiftool
+  input:
+    location: location
+  required: true
+- name: verification
+  module: ghunt
+  tool: ghunt
+  input:
+    location: location
+  required: false
+- name: pivot_expansion
+  module: osmium
+  tool: osmium
+  input:
+    location: location
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: location
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: location
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: location
+  required: false
+- name: entity_resolution
+  module: entity-resolution
+  tool: entity-resolution
+  input:
+    seed: location
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

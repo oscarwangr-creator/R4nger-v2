@@ -1,0 +1,70 @@
+name: marketing_asset_pipeline
+purpose: Expanded organization intelligence workflow for marketing asset pipeline.
+input:
+  types:
+  - keyword
+  - domain
+  - username
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: spiderfoot
+  tool: spiderfoot
+  input:
+    keyword: keyword
+  required: true
+- name: discovery
+  module: maltego
+  tool: maltego
+  input:
+    keyword: keyword
+  required: true
+- name: verification
+  module: shodan
+  tool: shodan
+  input:
+    keyword: keyword
+  required: false
+- name: pivot_expansion
+  module: censys
+  tool: censys
+  input:
+    keyword: keyword
+  required: false
+- name: correlation
+  module: theharvester
+  tool: theharvester
+  input:
+    keyword: keyword
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: keyword
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: keyword
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: keyword
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

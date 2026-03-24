@@ -1,0 +1,68 @@
+name: phone_intelligence_pipeline
+purpose: Pivot from phone numbers to carriers, apps, usernames, and breach references.
+input:
+  types:
+  - phone
+recursive_pivoting: true
+ai_assisted: true
+stages:
+- name: seed_normalization
+  module: phoneinfoga
+  tool: phoneinfoga
+  input:
+    phone: phone
+  required: true
+- name: discovery
+  module: truecaller
+  tool: truecaller
+  input:
+    phone: phone
+  required: true
+- name: verification
+  module: numverify
+  tool: numverify
+  input:
+    phone: phone
+  required: false
+- name: pivot_expansion
+  module: hibp
+  tool: hibp
+  input:
+    phone: phone
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: phone
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: phone
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: phone
+  required: false
+- name: entity_resolution
+  module: entity-resolution
+  tool: entity-resolution
+  input:
+    seed: phone
+  required: false
+output:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

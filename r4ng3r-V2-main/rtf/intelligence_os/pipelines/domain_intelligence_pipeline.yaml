@@ -1,0 +1,70 @@
+name: domain_intelligence_pipeline
+input:
+  type: domain
+stages:
+- module: amass
+  input:
+    domain: domain
+  transformations:
+  - extract_domains
+- module: httpx
+  input:
+    domain: domain
+- module: shodan
+  input:
+    ip: ip
+  required: false
+- name: entity_resolution
+  module: entity-resolution
+  tool: entity-resolution
+  input:
+    seed: domain
+  required: false
+- name: graph_correlation
+  module: neo4j-analysis
+  tool: neo4j-analysis
+  input:
+    seed: domain
+  required: false
+- name: risk_scoring
+  module: risk-scoring
+  tool: risk-scoring
+  input:
+    seed: domain
+  required: false
+- name: multi_format_reporting
+  module: reporting-suite
+  tool: reporting-suite
+  input:
+    seed: domain
+  required: false
+- name: next_step_planning
+  module: investigation-planner
+  tool: investigation-planner
+  input:
+    seed: domain
+  required: false
+output:
+  entities:
+  - subdomains
+  - ips
+  - services
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl
+  next_steps:
+  - triage extracted entities
+  - queue recursive pivots
+  - publish graph update
+  - generate analyst report
+graph:
+  relationships:
+  - domain -> subdomain
+  - domain -> ip
+purpose: Autonomous intelligence pipeline for domain intelligence pipeline.
+recursive_pivoting: true
+ai_assisted: true

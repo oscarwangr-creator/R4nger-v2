@@ -1,0 +1,51 @@
+# RTF v2.0 — Full Profile
+# Complete recon and scanning — production red team baseline
+name: full
+description: "All recon + vuln scanning + OSINT. Production red team baseline."
+
+execution:
+  parallel_tools: 6
+  timeout_per_tool: 600
+  max_concurrent_stages: 4
+  rate_limit_rps: 150
+
+tool_selection:
+  recon:
+    - subfinder, assetfinder, amass, altdns, dnstwist
+    - naabu, httpx, gobuster, dirsearch, whatweb
+    - spiderfoot, vhostscan, aquatone
+  osint:
+    - sherlock, maigret, nexfil, socialscan, social_analyzer
+    - holehe, h8mail, emailrep, theharvester
+    - instaloader, gitfive, trufflehog, gitleaks
+  scanning:
+    - nuclei, nikto, trivy, lynis, vuls
+  web_exploitation:
+    - sqlmap, dalfox, xsstrike, commix, wpscan
+    - droopescan, ssrfmap, arjun, paramspider
+  credential:
+    - hydra, kerbrute, hashcat, john, brutespray
+  post_exploitation:
+    - privesc_check, linenum, bloodhound_collect, pwncat
+  ai:
+    - claude_integration, anomaly_detection, attack_path_generator
+
+nuclei:
+  severity:    [critical, high, medium]
+  templates:   [cves, exposures, misconfiguration, default-logins, technologies]
+  concurrency: 25
+  rate_limit:  150
+
+web_search:
+  engines:     [duckduckgo, bing, brave, yahoo]
+  results_per_engine: 10
+  fetch_pages: true
+
+reporting:
+  formats:  [json, html, xlsx, pdf]
+  auto_save: true
+  mitre_mapping: true
+
+notes:
+  - "Recommended default for full-scope engagements"
+  - "Takes 30-120 min depending on scope"

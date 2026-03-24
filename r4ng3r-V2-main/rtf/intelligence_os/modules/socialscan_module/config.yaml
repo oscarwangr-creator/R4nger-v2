@@ -1,0 +1,20 @@
+name: socialscan_module
+category: generated
+tools:
+- socialscan
+pipelines:
+- account_verification_pipeline
+timeouts:
+  execution_seconds: 120
+  api_seconds: 30
+rate_limits:
+  requests_per_minute: 30
+  burst: 5
+reporting:
+  formats:
+  - json
+  - csv
+  - xlsx
+  - pdf
+  - html
+  - mtgl

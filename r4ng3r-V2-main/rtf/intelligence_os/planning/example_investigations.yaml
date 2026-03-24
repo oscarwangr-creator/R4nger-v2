@@ -1,0 +1,1737 @@
+example_investigations:
+- pipeline: academic_research_pipeline
+  path: pipelines/academic_research_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/academic_research_pipeline.json
+  - reports/academic_research_pipeline.csv
+  - reports/academic_research_pipeline.xlsx
+  - reports/academic_research_pipeline.pdf
+  - reports/academic_research_pipeline.html
+  - reports/academic_research_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: academic_research_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: account_verification_pipeline
+  path: pipelines/account_verification_pipeline.yaml
+  sample_input:
+    username: analyst_seed
+    email: contact@example.org
+  expected_artifacts:
+  - reports/account_verification_pipeline.json
+  - reports/account_verification_pipeline.csv
+  - reports/account_verification_pipeline.xlsx
+  - reports/account_verification_pipeline.pdf
+  - reports/account_verification_pipeline.html
+  - reports/account_verification_pipeline.mtgl
+  entity_graph_nodes:
+  - type: username
+    value: analyst_seed
+  - type: email
+    value: contact@example.org
+  analyst_summary: account_verification_pipeline starts from username, email and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: api_surface_pipeline
+  path: pipelines/api_surface_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/api_surface_pipeline.json
+  - reports/api_surface_pipeline.csv
+  - reports/api_surface_pipeline.xlsx
+  - reports/api_surface_pipeline.pdf
+  - reports/api_surface_pipeline.html
+  - reports/api_surface_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: api_surface_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: asset_ownership_pipeline
+  path: pipelines/asset_ownership_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/asset_ownership_pipeline.json
+  - reports/asset_ownership_pipeline.csv
+  - reports/asset_ownership_pipeline.xlsx
+  - reports/asset_ownership_pipeline.pdf
+  - reports/asset_ownership_pipeline.html
+  - reports/asset_ownership_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: asset_ownership_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: attack_surface_intelligence_pipeline
+  path: pipelines/attack_surface_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/attack_surface_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: attack_surface_intelligence_pipeline starts from seed data and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: board_member_pipeline
+  path: pipelines/board_member_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/board_member_pipeline.json
+  - reports/board_member_pipeline.csv
+  - reports/board_member_pipeline.xlsx
+  - reports/board_member_pipeline.pdf
+  - reports/board_member_pipeline.html
+  - reports/board_member_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: board_member_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: brand_impersonation_pipeline
+  path: pipelines/brand_impersonation_pipeline.yaml
+  sample_input:
+    brand: sample_brand
+    domain: example.org
+  expected_artifacts:
+  - reports/brand_impersonation_pipeline.json
+  - reports/brand_impersonation_pipeline.csv
+  - reports/brand_impersonation_pipeline.xlsx
+  - reports/brand_impersonation_pipeline.pdf
+  - reports/brand_impersonation_pipeline.html
+  - reports/brand_impersonation_pipeline.mtgl
+  entity_graph_nodes:
+  - type: brand
+    value: sample_brand
+  - type: domain
+    value: example.org
+  analyst_summary: brand_impersonation_pipeline starts from brand, domain and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: breach_correlation_pipeline
+  path: pipelines/breach_correlation_pipeline.yaml
+  sample_input:
+    email: contact@example.org
+    username: analyst_seed
+    domain: example.org
+  expected_artifacts:
+  - reports/breach_correlation_pipeline.json
+  - reports/breach_correlation_pipeline.csv
+  - reports/breach_correlation_pipeline.xlsx
+  - reports/breach_correlation_pipeline.pdf
+  - reports/breach_correlation_pipeline.html
+  - reports/breach_correlation_pipeline.mtgl
+  entity_graph_nodes:
+  - type: email
+    value: contact@example.org
+  - type: username
+    value: analyst_seed
+  - type: domain
+    value: example.org
+  analyst_summary: breach_correlation_pipeline starts from email, username, domain
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: breach_intelligence_pipeline
+  path: pipelines/breach_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/breach_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: breach_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: campaign_tracking_pipeline
+  path: pipelines/campaign_tracking_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/campaign_tracking_pipeline.json
+  - reports/campaign_tracking_pipeline.csv
+  - reports/campaign_tracking_pipeline.xlsx
+  - reports/campaign_tracking_pipeline.pdf
+  - reports/campaign_tracking_pipeline.html
+  - reports/campaign_tracking_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: campaign_tracking_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: certificate_transparency_pipeline
+  path: pipelines/certificate_transparency_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/certificate_transparency_pipeline.json
+  - reports/certificate_transparency_pipeline.csv
+  - reports/certificate_transparency_pipeline.xlsx
+  - reports/certificate_transparency_pipeline.pdf
+  - reports/certificate_transparency_pipeline.html
+  - reports/certificate_transparency_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: certificate_transparency_pipeline starts from keyword, domain,
+    username and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: chat_server_pipeline
+  path: pipelines/chat_server_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/chat_server_pipeline.json
+  - reports/chat_server_pipeline.csv
+  - reports/chat_server_pipeline.xlsx
+  - reports/chat_server_pipeline.pdf
+  - reports/chat_server_pipeline.html
+  - reports/chat_server_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: chat_server_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: code_contributor_pipeline
+  path: pipelines/code_contributor_pipeline.yaml
+  sample_input:
+    repository: https://github.com/example/project
+    username: analyst_seed
+  expected_artifacts:
+  - reports/code_contributor_pipeline.json
+  - reports/code_contributor_pipeline.csv
+  - reports/code_contributor_pipeline.xlsx
+  - reports/code_contributor_pipeline.pdf
+  - reports/code_contributor_pipeline.html
+  - reports/code_contributor_pipeline.mtgl
+  entity_graph_nodes:
+  - type: repository
+    value: https://github.com/example/project
+  - type: username
+    value: analyst_seed
+  analyst_summary: code_contributor_pipeline starts from repository, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: conference_exposure_pipeline
+  path: pipelines/conference_exposure_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/conference_exposure_pipeline.json
+  - reports/conference_exposure_pipeline.csv
+  - reports/conference_exposure_pipeline.xlsx
+  - reports/conference_exposure_pipeline.pdf
+  - reports/conference_exposure_pipeline.html
+  - reports/conference_exposure_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: conference_exposure_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: credential_intelligence_pipeline
+  path: pipelines/credential_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/credential_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: credential_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: credential_reuse_pipeline
+  path: pipelines/credential_reuse_pipeline.yaml
+  sample_input:
+    email: contact@example.org
+    domain: example.org
+  expected_artifacts:
+  - reports/credential_reuse_pipeline.json
+  - reports/credential_reuse_pipeline.csv
+  - reports/credential_reuse_pipeline.xlsx
+  - reports/credential_reuse_pipeline.pdf
+  - reports/credential_reuse_pipeline.html
+  - reports/credential_reuse_pipeline.mtgl
+  entity_graph_nodes:
+  - type: email
+    value: contact@example.org
+  - type: domain
+    value: example.org
+  analyst_summary: credential_reuse_pipeline starts from email, domain and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: crypto_wallet_pipeline
+  path: pipelines/crypto_wallet_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/crypto_wallet_pipeline.json
+  - reports/crypto_wallet_pipeline.csv
+  - reports/crypto_wallet_pipeline.xlsx
+  - reports/crypto_wallet_pipeline.pdf
+  - reports/crypto_wallet_pipeline.html
+  - reports/crypto_wallet_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: crypto_wallet_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: dark_web_exposure_pipeline
+  path: pipelines/dark_web_exposure_pipeline.yaml
+  sample_input:
+    email: contact@example.org
+    keyword: example initiative
+    domain: example.org
+  expected_artifacts:
+  - reports/dark_web_exposure_pipeline.json
+  - reports/dark_web_exposure_pipeline.csv
+  - reports/dark_web_exposure_pipeline.xlsx
+  - reports/dark_web_exposure_pipeline.pdf
+  - reports/dark_web_exposure_pipeline.html
+  - reports/dark_web_exposure_pipeline.mtgl
+  entity_graph_nodes:
+  - type: email
+    value: contact@example.org
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  analyst_summary: dark_web_exposure_pipeline starts from email, keyword, domain and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: dark_web_intelligence_pipeline
+  path: pipelines/dark_web_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/dark_web_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: dark_web_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: dataset_leak_pipeline
+  path: pipelines/dataset_leak_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/dataset_leak_pipeline.json
+  - reports/dataset_leak_pipeline.csv
+  - reports/dataset_leak_pipeline.xlsx
+  - reports/dataset_leak_pipeline.pdf
+  - reports/dataset_leak_pipeline.html
+  - reports/dataset_leak_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: dataset_leak_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: disinformation_monitoring_pipeline
+  path: pipelines/disinformation_monitoring_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/disinformation_monitoring_pipeline.json
+  - reports/disinformation_monitoring_pipeline.csv
+  - reports/disinformation_monitoring_pipeline.xlsx
+  - reports/disinformation_monitoring_pipeline.pdf
+  - reports/disinformation_monitoring_pipeline.html
+  - reports/disinformation_monitoring_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: disinformation_monitoring_pipeline starts from keyword, domain,
+    username and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: document_exploitation_pipeline
+  path: pipelines/document_exploitation_pipeline.yaml
+  sample_input:
+    file: sample_file
+    domain: example.org
+  expected_artifacts:
+  - reports/document_exploitation_pipeline.json
+  - reports/document_exploitation_pipeline.csv
+  - reports/document_exploitation_pipeline.xlsx
+  - reports/document_exploitation_pipeline.pdf
+  - reports/document_exploitation_pipeline.html
+  - reports/document_exploitation_pipeline.mtgl
+  entity_graph_nodes:
+  - type: file
+    value: sample_file
+  - type: domain
+    value: example.org
+  analyst_summary: document_exploitation_pipeline starts from file, domain and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: document_intelligence_pipeline
+  path: pipelines/document_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/document_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: document_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: domain_infrastructure_pipeline
+  path: pipelines/domain_infrastructure_pipeline.yaml
+  sample_input:
+    domain: example.org
+  expected_artifacts:
+  - reports/domain_infrastructure_pipeline.json
+  - reports/domain_infrastructure_pipeline.csv
+  - reports/domain_infrastructure_pipeline.xlsx
+  - reports/domain_infrastructure_pipeline.pdf
+  - reports/domain_infrastructure_pipeline.html
+  - reports/domain_infrastructure_pipeline.mtgl
+  entity_graph_nodes:
+  - type: domain
+    value: example.org
+  analyst_summary: domain_infrastructure_pipeline starts from domain and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: domain_intelligence_pipeline
+  path: pipelines/domain_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/domain_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: domain_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: email_intelligence_pipeline
+  path: pipelines/email_intelligence_pipeline.yaml
+  sample_input:
+    email: contact@example.org
+  expected_artifacts:
+  - reports/email_intelligence_pipeline.json
+  - reports/email_intelligence_pipeline.csv
+  - reports/email_intelligence_pipeline.xlsx
+  - reports/email_intelligence_pipeline.pdf
+  - reports/email_intelligence_pipeline.html
+  - reports/email_intelligence_pipeline.mtgl
+  entity_graph_nodes:
+  - type: email
+    value: contact@example.org
+  analyst_summary: email_intelligence_pipeline starts from email and produces pivot-ready
+    evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: employee_enumeration_pipeline
+  path: pipelines/employee_enumeration_pipeline.yaml
+  sample_input:
+    organization: Example Org
+    domain: example.org
+  expected_artifacts:
+  - reports/employee_enumeration_pipeline.json
+  - reports/employee_enumeration_pipeline.csv
+  - reports/employee_enumeration_pipeline.xlsx
+  - reports/employee_enumeration_pipeline.pdf
+  - reports/employee_enumeration_pipeline.html
+  - reports/employee_enumeration_pipeline.mtgl
+  entity_graph_nodes:
+  - type: organization
+    value: Example Org
+  - type: domain
+    value: example.org
+  analyst_summary: employee_enumeration_pipeline starts from organization, domain
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: event_monitoring_pipeline
+  path: pipelines/event_monitoring_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/event_monitoring_pipeline.json
+  - reports/event_monitoring_pipeline.csv
+  - reports/event_monitoring_pipeline.xlsx
+  - reports/event_monitoring_pipeline.pdf
+  - reports/event_monitoring_pipeline.html
+  - reports/event_monitoring_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: event_monitoring_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: executive_watch_pipeline
+  path: pipelines/executive_watch_pipeline.yaml
+  sample_input:
+    real_name: Jordan Example
+    username: analyst_seed
+    email: contact@example.org
+  expected_artifacts:
+  - reports/executive_watch_pipeline.json
+  - reports/executive_watch_pipeline.csv
+  - reports/executive_watch_pipeline.xlsx
+  - reports/executive_watch_pipeline.pdf
+  - reports/executive_watch_pipeline.html
+  - reports/executive_watch_pipeline.mtgl
+  entity_graph_nodes:
+  - type: real_name
+    value: Jordan Example
+  - type: username
+    value: analyst_seed
+  - type: email
+    value: contact@example.org
+  analyst_summary: executive_watch_pipeline starts from real_name, username, email
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: facility_mapping_pipeline
+  path: pipelines/facility_mapping_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/facility_mapping_pipeline.json
+  - reports/facility_mapping_pipeline.csv
+  - reports/facility_mapping_pipeline.xlsx
+  - reports/facility_mapping_pipeline.pdf
+  - reports/facility_mapping_pipeline.html
+  - reports/facility_mapping_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: facility_mapping_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: forum_monitoring_pipeline
+  path: pipelines/forum_monitoring_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/forum_monitoring_pipeline.json
+  - reports/forum_monitoring_pipeline.csv
+  - reports/forum_monitoring_pipeline.xlsx
+  - reports/forum_monitoring_pipeline.pdf
+  - reports/forum_monitoring_pipeline.html
+  - reports/forum_monitoring_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: forum_monitoring_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: fraud_investigation_pipeline
+  path: pipelines/fraud_investigation_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/fraud_investigation_pipeline.json
+  - reports/fraud_investigation_pipeline.csv
+  - reports/fraud_investigation_pipeline.xlsx
+  - reports/fraud_investigation_pipeline.pdf
+  - reports/fraud_investigation_pipeline.html
+  - reports/fraud_investigation_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: fraud_investigation_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: geoint_intelligence_pipeline
+  path: pipelines/geoint_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/geoint_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: geoint_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: geolocation_pivot_pipeline
+  path: pipelines/geolocation_pivot_pipeline.yaml
+  sample_input:
+    location: Washington, DC
+    file: sample_file
+    username: analyst_seed
+  expected_artifacts:
+  - reports/geolocation_pivot_pipeline.json
+  - reports/geolocation_pivot_pipeline.csv
+  - reports/geolocation_pivot_pipeline.xlsx
+  - reports/geolocation_pivot_pipeline.pdf
+  - reports/geolocation_pivot_pipeline.html
+  - reports/geolocation_pivot_pipeline.mtgl
+  entity_graph_nodes:
+  - type: location
+    value: Washington, DC
+  - type: file
+    value: sample_file
+  - type: username
+    value: analyst_seed
+  analyst_summary: geolocation_pivot_pipeline starts from location, file, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: github_intelligence_pipeline
+  path: pipelines/github_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/github_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: github_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: github_secrets_pipeline
+  path: pipelines/github_secrets_pipeline.yaml
+  sample_input:
+    username: analyst_seed
+    organization: Example Org
+  expected_artifacts:
+  - reports/github_secrets_pipeline.json
+  - reports/github_secrets_pipeline.csv
+  - reports/github_secrets_pipeline.xlsx
+  - reports/github_secrets_pipeline.pdf
+  - reports/github_secrets_pipeline.html
+  - reports/github_secrets_pipeline.mtgl
+  entity_graph_nodes:
+  - type: username
+    value: analyst_seed
+  - type: organization
+    value: Example Org
+  analyst_summary: github_secrets_pipeline starts from username, organization and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: identity_intelligence_pipeline
+  path: pipelines/identity_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/identity_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: identity_intelligence_pipeline starts from seed data and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: identity_mega_pipeline
+  path: pipelines/identity_mega_pipeline.yaml
+  sample_input:
+    username: analyst_seed
+    email: contact@example.org
+    phone: +1-202-555-0199
+    real_name: Jordan Example
+  expected_artifacts:
+  - reports/identity_mega_pipeline.json
+  - reports/identity_mega_pipeline.csv
+  - reports/identity_mega_pipeline.xlsx
+  - reports/identity_mega_pipeline.pdf
+  - reports/identity_mega_pipeline.html
+  - reports/identity_mega_pipeline.mtgl
+  entity_graph_nodes:
+  - type: username
+    value: analyst_seed
+  - type: email
+    value: contact@example.org
+  - type: phone
+    value: +1-202-555-0199
+  - type: real_name
+    value: Jordan Example
+  analyst_summary: identity_mega_pipeline starts from username, email, phone, real_name
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: image_recon_pipeline
+  path: pipelines/image_recon_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/image_recon_pipeline.json
+  - reports/image_recon_pipeline.csv
+  - reports/image_recon_pipeline.xlsx
+  - reports/image_recon_pipeline.pdf
+  - reports/image_recon_pipeline.html
+  - reports/image_recon_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: image_recon_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: influencer_mapping_pipeline
+  path: pipelines/influencer_mapping_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/influencer_mapping_pipeline.json
+  - reports/influencer_mapping_pipeline.csv
+  - reports/influencer_mapping_pipeline.xlsx
+  - reports/influencer_mapping_pipeline.pdf
+  - reports/influencer_mapping_pipeline.html
+  - reports/influencer_mapping_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: influencer_mapping_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: infrastructure_exposure_pipeline
+  path: pipelines/infrastructure_exposure_pipeline.yaml
+  sample_input:
+    domain: example.org
+    ip: 203.0.113.10
+  expected_artifacts:
+  - reports/infrastructure_exposure_pipeline.json
+  - reports/infrastructure_exposure_pipeline.csv
+  - reports/infrastructure_exposure_pipeline.xlsx
+  - reports/infrastructure_exposure_pipeline.pdf
+  - reports/infrastructure_exposure_pipeline.html
+  - reports/infrastructure_exposure_pipeline.mtgl
+  entity_graph_nodes:
+  - type: domain
+    value: example.org
+  - type: ip
+    value: 203.0.113.10
+  analyst_summary: infrastructure_exposure_pipeline starts from domain, ip and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: infrastructure_intelligence_pipeline
+  path: pipelines/infrastructure_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/infrastructure_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: infrastructure_intelligence_pipeline starts from seed data and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: legal_exposure_pipeline
+  path: pipelines/legal_exposure_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/legal_exposure_pipeline.json
+  - reports/legal_exposure_pipeline.csv
+  - reports/legal_exposure_pipeline.xlsx
+  - reports/legal_exposure_pipeline.pdf
+  - reports/legal_exposure_pipeline.html
+  - reports/legal_exposure_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: legal_exposure_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: malware_repo_pipeline
+  path: pipelines/malware_repo_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/malware_repo_pipeline.json
+  - reports/malware_repo_pipeline.csv
+  - reports/malware_repo_pipeline.xlsx
+  - reports/malware_repo_pipeline.pdf
+  - reports/malware_repo_pipeline.html
+  - reports/malware_repo_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: malware_repo_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: marketing_asset_pipeline
+  path: pipelines/marketing_asset_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/marketing_asset_pipeline.json
+  - reports/marketing_asset_pipeline.csv
+  - reports/marketing_asset_pipeline.xlsx
+  - reports/marketing_asset_pipeline.pdf
+  - reports/marketing_asset_pipeline.html
+  - reports/marketing_asset_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: marketing_asset_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: messaging_app_pipeline
+  path: pipelines/messaging_app_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/messaging_app_pipeline.json
+  - reports/messaging_app_pipeline.csv
+  - reports/messaging_app_pipeline.xlsx
+  - reports/messaging_app_pipeline.pdf
+  - reports/messaging_app_pipeline.html
+  - reports/messaging_app_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: messaging_app_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: metadata_intelligence_pipeline
+  path: pipelines/metadata_intelligence_pipeline.yaml
+  sample_input:
+    file: sample_file
+    image_url: sample_image_url
+  expected_artifacts:
+  - reports/metadata_intelligence_pipeline.json
+  - reports/metadata_intelligence_pipeline.csv
+  - reports/metadata_intelligence_pipeline.xlsx
+  - reports/metadata_intelligence_pipeline.pdf
+  - reports/metadata_intelligence_pipeline.html
+  - reports/metadata_intelligence_pipeline.mtgl
+  entity_graph_nodes:
+  - type: file
+    value: sample_file
+  - type: image_url
+    value: sample_image_url
+  analyst_summary: metadata_intelligence_pipeline starts from file, image_url and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: mobile_app_intelligence_pipeline
+  path: pipelines/mobile_app_intelligence_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/mobile_app_intelligence_pipeline.json
+  - reports/mobile_app_intelligence_pipeline.csv
+  - reports/mobile_app_intelligence_pipeline.xlsx
+  - reports/mobile_app_intelligence_pipeline.pdf
+  - reports/mobile_app_intelligence_pipeline.html
+  - reports/mobile_app_intelligence_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: mobile_app_intelligence_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: newsletter_leak_pipeline
+  path: pipelines/newsletter_leak_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/newsletter_leak_pipeline.json
+  - reports/newsletter_leak_pipeline.csv
+  - reports/newsletter_leak_pipeline.xlsx
+  - reports/newsletter_leak_pipeline.pdf
+  - reports/newsletter_leak_pipeline.html
+  - reports/newsletter_leak_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: newsletter_leak_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: ngo_network_pipeline
+  path: pipelines/ngo_network_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/ngo_network_pipeline.json
+  - reports/ngo_network_pipeline.csv
+  - reports/ngo_network_pipeline.xlsx
+  - reports/ngo_network_pipeline.pdf
+  - reports/ngo_network_pipeline.html
+  - reports/ngo_network_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: ngo_network_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: ngo_partnership_pipeline
+  path: pipelines/ngo_partnership_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/ngo_partnership_pipeline.json
+  - reports/ngo_partnership_pipeline.csv
+  - reports/ngo_partnership_pipeline.xlsx
+  - reports/ngo_partnership_pipeline.pdf
+  - reports/ngo_partnership_pipeline.html
+  - reports/ngo_partnership_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: ngo_partnership_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: organization_profiling_pipeline
+  path: pipelines/organization_profiling_pipeline.yaml
+  sample_input:
+    organization: Example Org
+    domain: example.org
+  expected_artifacts:
+  - reports/organization_profiling_pipeline.json
+  - reports/organization_profiling_pipeline.csv
+  - reports/organization_profiling_pipeline.xlsx
+  - reports/organization_profiling_pipeline.pdf
+  - reports/organization_profiling_pipeline.html
+  - reports/organization_profiling_pipeline.mtgl
+  entity_graph_nodes:
+  - type: organization
+    value: Example Org
+  - type: domain
+    value: example.org
+  analyst_summary: organization_profiling_pipeline starts from organization, domain
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: package_registry_pipeline
+  path: pipelines/package_registry_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/package_registry_pipeline.json
+  - reports/package_registry_pipeline.csv
+  - reports/package_registry_pipeline.xlsx
+  - reports/package_registry_pipeline.pdf
+  - reports/package_registry_pipeline.html
+  - reports/package_registry_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: package_registry_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: paste_monitoring_pipeline
+  path: pipelines/paste_monitoring_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/paste_monitoring_pipeline.json
+  - reports/paste_monitoring_pipeline.csv
+  - reports/paste_monitoring_pipeline.xlsx
+  - reports/paste_monitoring_pipeline.pdf
+  - reports/paste_monitoring_pipeline.html
+  - reports/paste_monitoring_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: paste_monitoring_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: pastebin_identity_pipeline
+  path: pipelines/pastebin_identity_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/pastebin_identity_pipeline.json
+  - reports/pastebin_identity_pipeline.csv
+  - reports/pastebin_identity_pipeline.xlsx
+  - reports/pastebin_identity_pipeline.pdf
+  - reports/pastebin_identity_pipeline.html
+  - reports/pastebin_identity_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: pastebin_identity_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: persona_correlation_pipeline
+  path: pipelines/persona_correlation_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/persona_correlation_pipeline.json
+  - reports/persona_correlation_pipeline.csv
+  - reports/persona_correlation_pipeline.xlsx
+  - reports/persona_correlation_pipeline.pdf
+  - reports/persona_correlation_pipeline.html
+  - reports/persona_correlation_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: persona_correlation_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: phone_intelligence_pipeline
+  path: pipelines/phone_intelligence_pipeline.yaml
+  sample_input:
+    phone: +1-202-555-0199
+  expected_artifacts:
+  - reports/phone_intelligence_pipeline.json
+  - reports/phone_intelligence_pipeline.csv
+  - reports/phone_intelligence_pipeline.xlsx
+  - reports/phone_intelligence_pipeline.pdf
+  - reports/phone_intelligence_pipeline.html
+  - reports/phone_intelligence_pipeline.mtgl
+  entity_graph_nodes:
+  - type: phone
+    value: +1-202-555-0199
+  analyst_summary: phone_intelligence_pipeline starts from phone and produces pivot-ready
+    evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: press_correlation_pipeline
+  path: pipelines/press_correlation_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/press_correlation_pipeline.json
+  - reports/press_correlation_pipeline.csv
+  - reports/press_correlation_pipeline.xlsx
+  - reports/press_correlation_pipeline.pdf
+  - reports/press_correlation_pipeline.html
+  - reports/press_correlation_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: press_correlation_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: public_records_pipeline
+  path: pipelines/public_records_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/public_records_pipeline.json
+  - reports/public_records_pipeline.csv
+  - reports/public_records_pipeline.xlsx
+  - reports/public_records_pipeline.pdf
+  - reports/public_records_pipeline.html
+  - reports/public_records_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: public_records_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: ransomware_exposure_pipeline
+  path: pipelines/ransomware_exposure_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/ransomware_exposure_pipeline.json
+  - reports/ransomware_exposure_pipeline.csv
+  - reports/ransomware_exposure_pipeline.xlsx
+  - reports/ransomware_exposure_pipeline.pdf
+  - reports/ransomware_exposure_pipeline.html
+  - reports/ransomware_exposure_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: ransomware_exposure_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: recruitment_signal_pipeline
+  path: pipelines/recruitment_signal_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/recruitment_signal_pipeline.json
+  - reports/recruitment_signal_pipeline.csv
+  - reports/recruitment_signal_pipeline.xlsx
+  - reports/recruitment_signal_pipeline.pdf
+  - reports/recruitment_signal_pipeline.html
+  - reports/recruitment_signal_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: recruitment_signal_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: satellite_context_pipeline
+  path: pipelines/satellite_context_pipeline.yaml
+  sample_input:
+    location: Washington, DC
+    organization: Example Org
+  expected_artifacts:
+  - reports/satellite_context_pipeline.json
+  - reports/satellite_context_pipeline.csv
+  - reports/satellite_context_pipeline.xlsx
+  - reports/satellite_context_pipeline.pdf
+  - reports/satellite_context_pipeline.html
+  - reports/satellite_context_pipeline.mtgl
+  entity_graph_nodes:
+  - type: location
+    value: Washington, DC
+  - type: organization
+    value: Example Org
+  analyst_summary: satellite_context_pipeline starts from location, organization and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: social_graph_pipeline
+  path: pipelines/social_graph_pipeline.yaml
+  sample_input:
+    username: analyst_seed
+    keyword: example initiative
+  expected_artifacts:
+  - reports/social_graph_pipeline.json
+  - reports/social_graph_pipeline.csv
+  - reports/social_graph_pipeline.xlsx
+  - reports/social_graph_pipeline.pdf
+  - reports/social_graph_pipeline.html
+  - reports/social_graph_pipeline.mtgl
+  entity_graph_nodes:
+  - type: username
+    value: analyst_seed
+  - type: keyword
+    value: example initiative
+  analyst_summary: social_graph_pipeline starts from username, keyword and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: social_network_intelligence_pipeline
+  path: pipelines/social_network_intelligence_pipeline.yaml
+  sample_input: {}
+  expected_artifacts:
+  - reports/social_network_intelligence_pipeline.json
+  entity_graph_nodes: []
+  analyst_summary: social_network_intelligence_pipeline starts from seed data and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - review correlations
+  - queue follow-on pivots
+  - publish report
+- pipeline: startup_due_diligence_pipeline
+  path: pipelines/startup_due_diligence_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/startup_due_diligence_pipeline.json
+  - reports/startup_due_diligence_pipeline.csv
+  - reports/startup_due_diligence_pipeline.xlsx
+  - reports/startup_due_diligence_pipeline.pdf
+  - reports/startup_due_diligence_pipeline.html
+  - reports/startup_due_diligence_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: startup_due_diligence_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: subsidiary_domain_pipeline
+  path: pipelines/subsidiary_domain_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/subsidiary_domain_pipeline.json
+  - reports/subsidiary_domain_pipeline.csv
+  - reports/subsidiary_domain_pipeline.xlsx
+  - reports/subsidiary_domain_pipeline.pdf
+  - reports/subsidiary_domain_pipeline.html
+  - reports/subsidiary_domain_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: subsidiary_domain_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: subsidiary_mapping_pipeline
+  path: pipelines/subsidiary_mapping_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/subsidiary_mapping_pipeline.json
+  - reports/subsidiary_mapping_pipeline.csv
+  - reports/subsidiary_mapping_pipeline.xlsx
+  - reports/subsidiary_mapping_pipeline.pdf
+  - reports/subsidiary_mapping_pipeline.html
+  - reports/subsidiary_mapping_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: subsidiary_mapping_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: supply_chain_risk_pipeline
+  path: pipelines/supply_chain_risk_pipeline.yaml
+  sample_input:
+    organization: Example Org
+    domain: example.org
+    repository: https://github.com/example/project
+  expected_artifacts:
+  - reports/supply_chain_risk_pipeline.json
+  - reports/supply_chain_risk_pipeline.csv
+  - reports/supply_chain_risk_pipeline.xlsx
+  - reports/supply_chain_risk_pipeline.pdf
+  - reports/supply_chain_risk_pipeline.html
+  - reports/supply_chain_risk_pipeline.mtgl
+  entity_graph_nodes:
+  - type: organization
+    value: Example Org
+  - type: domain
+    value: example.org
+  - type: repository
+    value: https://github.com/example/project
+  analyst_summary: supply_chain_risk_pipeline starts from organization, domain, repository
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: threat_actor_profiling_pipeline
+  path: pipelines/threat_actor_profiling_pipeline.yaml
+  sample_input:
+    alias: sample_alias
+    keyword: example initiative
+    domain: example.org
+  expected_artifacts:
+  - reports/threat_actor_profiling_pipeline.json
+  - reports/threat_actor_profiling_pipeline.csv
+  - reports/threat_actor_profiling_pipeline.xlsx
+  - reports/threat_actor_profiling_pipeline.pdf
+  - reports/threat_actor_profiling_pipeline.html
+  - reports/threat_actor_profiling_pipeline.mtgl
+  entity_graph_nodes:
+  - type: alias
+    value: sample_alias
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  analyst_summary: threat_actor_profiling_pipeline starts from alias, keyword, domain
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: travel_pattern_pipeline
+  path: pipelines/travel_pattern_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/travel_pattern_pipeline.json
+  - reports/travel_pattern_pipeline.csv
+  - reports/travel_pattern_pipeline.xlsx
+  - reports/travel_pattern_pipeline.pdf
+  - reports/travel_pattern_pipeline.html
+  - reports/travel_pattern_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: travel_pattern_pipeline starts from keyword, domain, username and
+    produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: typosquat_monitoring_pipeline
+  path: pipelines/typosquat_monitoring_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/typosquat_monitoring_pipeline.json
+  - reports/typosquat_monitoring_pipeline.csv
+  - reports/typosquat_monitoring_pipeline.xlsx
+  - reports/typosquat_monitoring_pipeline.pdf
+  - reports/typosquat_monitoring_pipeline.html
+  - reports/typosquat_monitoring_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: typosquat_monitoring_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: username_intelligence_pipeline
+  path: pipelines/username_intelligence_pipeline.yaml
+  sample_input:
+    username: analyst_seed
+  expected_artifacts:
+  - reports/username_intelligence_pipeline.json
+  - reports/username_intelligence_pipeline.csv
+  - reports/username_intelligence_pipeline.xlsx
+  - reports/username_intelligence_pipeline.pdf
+  - reports/username_intelligence_pipeline.html
+  - reports/username_intelligence_pipeline.mtgl
+  entity_graph_nodes:
+  - type: username
+    value: analyst_seed
+  analyst_summary: username_intelligence_pipeline starts from username and produces
+    pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: vendor_attack_surface_pipeline
+  path: pipelines/vendor_attack_surface_pipeline.yaml
+  sample_input:
+    organization: Example Org
+    domain: example.org
+  expected_artifacts:
+  - reports/vendor_attack_surface_pipeline.json
+  - reports/vendor_attack_surface_pipeline.csv
+  - reports/vendor_attack_surface_pipeline.xlsx
+  - reports/vendor_attack_surface_pipeline.pdf
+  - reports/vendor_attack_surface_pipeline.html
+  - reports/vendor_attack_surface_pipeline.mtgl
+  entity_graph_nodes:
+  - type: organization
+    value: Example Org
+  - type: domain
+    value: example.org
+  analyst_summary: vendor_attack_surface_pipeline starts from organization, domain
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: video_intelligence_pipeline
+  path: pipelines/video_intelligence_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/video_intelligence_pipeline.json
+  - reports/video_intelligence_pipeline.csv
+  - reports/video_intelligence_pipeline.xlsx
+  - reports/video_intelligence_pipeline.pdf
+  - reports/video_intelligence_pipeline.html
+  - reports/video_intelligence_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: video_intelligence_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report
+- pipeline: vulnerability_trend_pipeline
+  path: pipelines/vulnerability_trend_pipeline.yaml
+  sample_input:
+    keyword: example initiative
+    domain: example.org
+    username: analyst_seed
+  expected_artifacts:
+  - reports/vulnerability_trend_pipeline.json
+  - reports/vulnerability_trend_pipeline.csv
+  - reports/vulnerability_trend_pipeline.xlsx
+  - reports/vulnerability_trend_pipeline.pdf
+  - reports/vulnerability_trend_pipeline.html
+  - reports/vulnerability_trend_pipeline.mtgl
+  entity_graph_nodes:
+  - type: keyword
+    value: example initiative
+  - type: domain
+    value: example.org
+  - type: username
+    value: analyst_seed
+  analyst_summary: vulnerability_trend_pipeline starts from keyword, domain, username
+    and produces pivot-ready evidence, graph updates, and multi-format reports.
+  next_steps:
+  - expand linked entities
+  - queue recursive pivots
+  - generate analyst report

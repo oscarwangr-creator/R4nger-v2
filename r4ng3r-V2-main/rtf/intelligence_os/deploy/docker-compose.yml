@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  intelligence-api:
+    build:
+      context: ../..
+      dockerfile: rtf/intelligence_os/deploy/Dockerfile.api
+    ports:
+      - '8080:8080'
+    environment:
+      PYTHONPATH: /app/rtf
+      NEO4J_URI: bolt://neo4j:7687
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - neo4j
+      - redis
+  neo4j:
+    image: neo4j:5.20
+    environment:
+      NEO4J_AUTH: neo4j/intelligenceos
+    ports:
+      - '7474:7474'
+      - '7687:7687'
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
