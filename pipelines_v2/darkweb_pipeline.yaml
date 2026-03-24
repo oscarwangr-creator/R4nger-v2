@@ -1,0 +1,24 @@
+name: darkweb_pipeline
+description: darkweb_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - tor_index_lookup
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - tor_index_lookup
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

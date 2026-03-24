@@ -1,0 +1,25 @@
+name: threat_actor_profiling_pipeline
+description: threat_actor_profiling_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - cve_lookup
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - tor_index_lookup
+  - leak_corpus_search
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

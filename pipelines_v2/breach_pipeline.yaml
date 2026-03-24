@@ -1,0 +1,24 @@
+name: breach_pipeline
+description: breach_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - paste_monitor
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - leak_corpus_search
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

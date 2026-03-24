@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-agent
+  namespace: intelligence-os
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloud-agent
+  template:
+    metadata:
+      labels:
+        app: cloud-agent
+    spec:
+      containers:
+      - name: agent
+        image: intelligence-os-agent:latest
+        env:
+        - name: INTEL_API_URL
+          value: http://intelligence-api:8000

@@ -1,0 +1,26 @@
+name: username_pipeline
+description: username_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - username_search
+  - github_username_intel
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - twitter_mentions
+  - reddit_profile
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

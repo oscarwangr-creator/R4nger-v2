@@ -1,0 +1,24 @@
+name: email_identity_pipeline
+description: email_identity_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - email_validate
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - full_contact_lookup
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

@@ -1,0 +1,24 @@
+name: identity_pipeline
+description: identity_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - full_contact_lookup
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - national_id_enrich
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

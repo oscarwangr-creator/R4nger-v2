@@ -1,0 +1,26 @@
+name: osint_fusion_pipeline
+description: osint_fusion_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - username_search
+  - email_validate
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - domain_whois
+  - ip_geolocation
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO
