@@ -58,6 +58,20 @@ python r4ng3r.py pipelines run osint_intelligence_pipeline --target example.com
 python r4ng3r.py pipelines run full_pentest_pipeline --target 10.0.0.0/24 --parallel --max-workers 6
 ```
 
+## 4.5) Run workflows from CLI
+
+List workflows:
+
+```bash
+python r4ng3r.py workflows list
+```
+
+Execute:
+
+```bash
+python r4ng3r.py workflows run full_assessment_workflow --target example.com
+```
+
 ## 5) API workflow
 
 ### Auth simulation
@@ -86,6 +100,15 @@ curl -s -X POST http://localhost:5000/api/pipelines/network_recon_pipeline/execu
   -d '{"target":"192.168.1.0/24","parallel":true,"max_workers":4}'
 ```
 
+### Workflows
+
+```bash
+curl -s http://localhost:5000/api/workflows -H 'X-Role: admin'
+curl -s -X POST http://localhost:5000/api/workflows/full_assessment_workflow/execute \
+  -H 'X-Role: admin' -H 'Content-Type: application/json' \
+  -d '{"target":"example.com"}'
+```
+
 ### Jobs and reports
 
 ```bash
@@ -106,6 +129,7 @@ curl -s -X POST http://localhost:5000/api/reports/generate \
 ```bash
 curl -s http://localhost:5000/api/security/rbac -H 'X-Role: admin'
 curl -s http://localhost:5000/api/security/tls -H 'X-Role: admin'
+curl -s http://localhost:5000/api/config -H 'X-Role: admin'
 ```
 
 - Read recent audit entries:
@@ -134,3 +158,6 @@ curl -s -X POST http://localhost:5000/api/workers/parallel-test \
 - `Pipeline not found`: verify pipeline name with `python r4ng3r.py pipelines list`
 - `missing required input 'target'`: include `--target` or `{"target":"..."}`
 - Empty dashboard: confirm API process is running on port `5000`
+
+
+Note: Job history is persisted in SQLite at `data/r4nger.db` by default.

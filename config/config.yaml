@@ -1,0 +1,22 @@
+framework:
+  name: R4nger-V3
+  version: 3.1.0
+  environment: development
+
+api:
+  host: 0.0.0.0
+  port: 5000
+  require_api_key: false
+  default_role: viewer
+
+pipeline:
+  parallel_execution: true
+  max_workers: 6
+  fail_fast: true
+
+database:
+  path: data/r4nger.db
+
+security:
+  tls_min_version: TLSv1.3
+  audit_log_path: logs/audit.log
