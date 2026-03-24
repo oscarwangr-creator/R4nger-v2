@@ -6,6 +6,7 @@ from typing import Any, Dict, List
 
 import yaml
 
+from intelligence_os.analysis.repository_audit import RepositoryAuditor
 from intelligence_os.tooling.catalog import load_framework_manifest
 from intelligence_os.tooling.registry import registry
 
@@ -109,7 +110,7 @@ class FrameworkValidator:
                 complete += 1
         return issues, {'module_packs': discovered, 'complete_module_packs': complete}
 
-    def validate(self) -> ValidationReport:
+    def validate(self, include_repository_audit: bool = True) -> ValidationReport:
         issues: List[ValidationIssue] = []
         pipeline_issues, pipeline_metrics = self._validate_pipelines()
         manifest_issues, manifest_metrics = self._validate_manifest_alignment()
@@ -117,13 +118,15 @@ class FrameworkValidator:
         issues.extend(pipeline_issues)
         issues.extend(manifest_issues)
         issues.extend(module_issues)
+        if include_repository_audit:
+            repo_report = RepositoryAuditor(self.root).run()
+            metrics = {**pipeline_metrics, **manifest_metrics, **module_metrics, **repo_report.metrics}
+            issues.extend(ValidationIssue(issue.severity, f"[{issue.category}] {issue.message}", issue.location) for issue in repo_report.issues)
+        else:
+            metrics = {**pipeline_metrics, **manifest_metrics, **module_metrics}
         status = 'ok' if not any(issue.severity == 'error' for issue in issues) else 'degraded'
         return ValidationReport(
             status=status,
-            metrics={
-                **pipeline_metrics,
-                **manifest_metrics,
-                **module_metrics,
-            },
+            metrics=metrics,
             issues=issues,
         )

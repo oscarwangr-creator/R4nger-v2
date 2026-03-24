@@ -75,10 +75,11 @@ class PipelineEngine:
             stage_meta['error'] = execution.error
             context['stage_results'].append(stage_meta)
             if not execution.success:
-                result.success = False
                 result.errors.append(execution.error or f'{module_name} failed')
                 if stage.get('required', True):
+                    result.success = False
                     break
+                context.setdefault('optional_stage_failures', []).append(module_name)
                 continue
             entities.extend(execution.entities)
             relationships.extend(execution.relationships)
@@ -101,4 +102,8 @@ class PipelineEngine:
         context['patterns'] = self.correlation.detect_patterns(entities)
         context['entity_summary'] = self.correlation.entity_summary(entities)
         context['recommended_next_steps'] = definition.get('output', {}).get('next_steps', [])
+        context['resilience_mode'] = {
+            'optional_failures': context.get('optional_stage_failures', []),
+            'continued_after_optional_failures': bool(context.get('optional_stage_failures')),
+        }
         return result

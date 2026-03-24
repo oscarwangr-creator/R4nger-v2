@@ -1,0 +1,42 @@
+R4NG3R V2 – Integration, Validation, and Optimization Addendum
+Date: 2026-03-24 (UTC)
+
+Scope covered in this addendum:
+1) Repository-wide recursive static audit capability added.
+2) Non-destructive resilience update for pipeline execution.
+3) API surfaced with repository audit telemetry.
+4) Validation pipeline now includes filesystem-wide integrity checks.
+
+What was implemented (additive only):
+- Added intelligence_os.analysis.repository_audit module.
+  - Recursively scans project files.
+  - Parses Python AST to identify syntax/integration blockers and broad Exception handlers.
+  - Validates YAML and pipeline schema minimums.
+  - Validates JSON parseability.
+  - Produces structured severity-based issue list + metrics.
+
+- Extended FrameworkValidator:
+  - Added optional repository audit execution (enabled by default).
+  - Merges pipeline/manifest/module-pack metrics with repository-scan metrics.
+  - Emits repository-originated issues through existing ValidationIssue model.
+
+- Enhanced PipelineEngine failure tolerance:
+  - Optional-stage failures no longer hard-fail the full pipeline.
+  - Required-stage failures still stop execution and mark pipeline failed.
+  - Adds resilience telemetry under context.resilience_mode:
+    - optional_failures
+    - continued_after_optional_failures
+
+- API enhancements:
+  - /intelligence-os/health now returns repository scan metrics.
+  - New endpoint: /intelligence-os/repository-audit
+
+Quality gates added:
+- New tests for:
+  - repository scan metrics availability
+  - optional-stage failure continuation semantics
+
+Compatibility guarantees:
+- No removal of existing modules, workflows, or tool registry components.
+- Existing endpoint contracts remain valid.
+- Existing required-stage semantics preserved.

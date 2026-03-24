@@ -32,6 +32,8 @@ def create_app() -> FastAPI:
             'tools': summary['total_tools'],
             'module_packs': validation.metrics['module_packs'],
             'validation_status': validation.status,
+            'repository_files_scanned': validation.metrics.get('total_files', 0),
+            'repository_errors': validation.metrics.get('error_count', 0),
         }
 
     @app.get('/intelligence-os/architecture')
@@ -45,6 +47,11 @@ def create_app() -> FastAPI:
     @app.get('/intelligence-os/validation')
     def validation():
         return validator.validate().to_dict()
+
+
+    @app.get('/intelligence-os/repository-audit')
+    def repository_audit():
+        return validator.validate(include_repository_audit=True).to_dict()
 
     @app.get('/intelligence-os/tools')
     def tools():
