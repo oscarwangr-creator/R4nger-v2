@@ -1,0 +1,24 @@
+name: network_recon_pipeline
+version: 3.0.0
+description: Network Recon Pipeline workflow
+stages:
+- name: Nmap Service Discovery
+  module: nmap_recon
+  required: true
+  args: {}
+- name: DNS Enumeration
+  module: dns_enum_recon
+  required: true
+  args: {}
+- name: Subdomain Discovery
+  module: subdomain_discovery_recon
+  required: true
+  args: {}
+- name: HTTP Fingerprinting
+  module: http_fingerprint_recon
+  required: true
+  args: {}
+- name: Recon HTML Report
+  module: html_reporting
+  required: true
+  args: {}

@@ -1,0 +1,24 @@
+name: osint_intelligence_pipeline
+version: 3.0.0
+description: Osint Intelligence Pipeline workflow
+stages:
+- name: SpiderFoot Intelligence Sweep
+  module: spiderfoot_osint
+  required: true
+  args: {}
+- name: Recon-ng Correlation
+  module: recon_ng_osint
+  required: true
+  args: {}
+- name: Harvester Contact Discovery
+  module: theharvester_osint
+  required: true
+  args: {}
+- name: Amass Surface Mapping
+  module: amass_osint
+  required: true
+  args: {}
+- name: OSINT JSON Report
+  module: json_reporting
+  required: true
+  args: {}

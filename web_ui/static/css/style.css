@@ -1,0 +1,1 @@
+body{font-family:Arial,sans-serif;background:#0e1116;color:#e7e9ee;margin:0}header{padding:1rem;background:#171b22}main.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding:1rem}section{background:#171b22;padding:1rem;border-radius:8px}h1,h2{margin:.2rem 0}ul{padding-left:1rem}

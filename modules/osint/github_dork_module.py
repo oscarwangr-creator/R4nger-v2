@@ -5,14 +5,14 @@ from typing import Any, Dict
 from core.base_module import BaseModule, ModuleMetadata
 
 
-class SpiderFootModule(BaseModule):
+class GitHubDorkModule(BaseModule):
     def __init__(self) -> None:
         super().__init__()
         self.metadata = ModuleMetadata(
-            name="spiderfoot_osint",
+            name="github_dork_osint",
             category="OSINT",
-            description="SpiderFoot-driven multi-source OSINT collection",
-            tags=['osint', 'spiderfoot'],
+            description="Repository leak discovery",
+            tags=['osint', 'code'],
         )
         self.add_fallback(self._fallback)
 
@@ -21,7 +21,7 @@ class SpiderFootModule(BaseModule):
         return {
             "target": target,
             "module": self.metadata.name,
-            "summary": "Aggregated open-source intelligence artifacts",
+            "summary": "Detected sensitive artifact patterns in repositories",
             "evidence": [
                 {"key": "simulated", "value": True},
                 {"key": "timestamp", "value": payload.get("timestamp", "runtime")},

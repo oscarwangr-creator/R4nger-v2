@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>R4nger V3 Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>R4nger V3 Security Operations Dashboard</h1>
+    <p>Real-time module, pipeline, and worker monitoring.</p>
+  </header>
+
+  <main class="grid">
+    <section>
+      <h2>System Health</h2>
+      <pre id="health"></pre>
+    </section>
+    <section>
+      <h2>Modules</h2>
+      <ul id="modules"></ul>
+    </section>
+    <section>
+      <h2>Pipelines</h2>
+      <ul id="pipelines"></ul>
+    </section>
+    <section>
+      <h2>Recent Jobs</h2>
+      <ul id="jobs"></ul>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
