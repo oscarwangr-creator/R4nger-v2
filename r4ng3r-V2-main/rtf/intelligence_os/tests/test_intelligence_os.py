@@ -65,3 +65,32 @@ def test_api_endpoints_expose_analysis_and_pipeline_inventory():
     pipeline_resp = client.post('/intelligence-os/pipelines/email_intelligence_pipeline/run', json={'email': 'target@example.com'})
     assert pipeline_resp.status_code == 200
     assert pipeline_resp.json()['stage_results']
+
+
+def test_repository_audit_metrics_are_exposed():
+    report = FrameworkValidator().validate(include_repository_audit=True)
+    assert report.metrics['total_files'] > 0
+    assert report.metrics['python_files'] > 0
+
+
+def test_pipeline_continues_when_optional_stage_fails(monkeypatch):
+    class ExplodingModule:
+        def execute(self, *_args, **_kwargs):
+            raise RuntimeError('simulated failure')
+
+    from intelligence_os.pipeline import engine as pipeline_engine_module
+
+    monkeypatch.setattr(pipeline_engine_module.registry, 'resolve_module', lambda _name: ExplodingModule)
+    engine = PipelineEngine()
+    definition = {
+        'name': 'resilience_test_pipeline',
+        'stages': [
+            {'name': 'optional failing', 'module': 'missing_optional', 'required': False},
+        ],
+        'output': {'next_steps': []},
+    }
+
+    result = engine.execute_pipeline(definition, {'email': 'ops@example.com'})
+    assert result.success is True
+    assert result.context['resilience_mode']['continued_after_optional_failures'] is True
+    assert 'missing_optional' in result.context['resilience_mode']['optional_failures']
