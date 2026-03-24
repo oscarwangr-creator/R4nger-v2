@@ -2,17 +2,28 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from itertools import count
+from pathlib import Path
 from typing import Any, Dict
 
+import yaml
 from flask import Flask, Response, jsonify, render_template, request
 from flask_cors import CORS
 
+from core.database import JobDatabase
 from core.distributed import DistributedExecutor
 from core.pipeline_engine import PipelineEngine
 from core.security import SecurityManager, require_permission
 from core.tool_registry import ToolRegistry
-from modules import build_module_registry
+from core.workflow_engine import WorkflowEngine
+from modules import build_discovered_module_registry
 from utils.logger import configure_logging
+
+
+def _load_app_config(config_path: str = "config/config.yaml") -> Dict[str, Any]:
+    path = Path(config_path)
+    if not path.exists():
+        return {}
+    return yaml.safe_load(path.read_text()) or {}
 
 
 def create_app() -> Flask:
@@ -20,15 +31,21 @@ def create_app() -> Flask:
     CORS(app)
     configure_logging()
 
+    framework_config = _load_app_config()
+
     security = SecurityManager()
-    module_registry = build_module_registry()
+    module_registry = build_discovered_module_registry()
     tool_registry = ToolRegistry()
     tool_registry.register_defaults()
     pipeline_engine = PipelineEngine(module_registry=module_registry)
+    workflow_engine = WorkflowEngine(pipeline_engine=pipeline_engine)
     distributed = DistributedExecutor()
 
-    jobs: Dict[int, Dict[str, Any]] = {}
-    job_counter = count(start=1)
+    db_path = framework_config.get("database", {}).get("path", "data/r4nger.db")
+    job_db = JobDatabase(db_path=db_path)
+
+    jobs: Dict[int, Dict[str, Any]] = {j["job_id"]: j for j in job_db.list_jobs(limit=500)}
+    job_counter = count(start=max(jobs.keys(), default=0) + 1)
 
     @app.get("/")
     def dashboard():
@@ -36,12 +53,21 @@ def create_app() -> Flask:
 
     @app.get("/api/health")
     def health():
-        return jsonify({"status": "ok", "version": "3.0.0", "tls_min_version": security.tls_min_version})
+        return jsonify(
+            {
+                "status": "ok",
+                "version": framework_config.get("framework", {}).get("version", "3.0.0"),
+                "tls_min_version": security.tls_min_version,
+                "module_count": len(module_registry),
+                "pipeline_count": len(pipeline_engine.list_pipelines()),
+                "workflow_count": len(workflow_engine.list_workflows()),
+            }
+        )
 
     @app.post("/api/auth/login")
     def login():
         data = request.get_json(silent=True) or {}
-        role = data.get("role", "viewer")
+        role = data.get("role", framework_config.get("api", {}).get("default_role", "viewer"))
         return jsonify({"token": f"dev-token-{role}", "role": role})
 
     @app.get("/api/modules")
@@ -77,8 +103,17 @@ def create_app() -> Flask:
         payload = request.get_json(silent=True) or {}
         job_id = next(job_counter)
         result = m.run(payload)
-        jobs[job_id] = {"job_id": job_id, "type": "module", "name": name, "result": result, "created_at": datetime.now(timezone.utc).isoformat()}
-        return jsonify(jobs[job_id]), 201
+        job = {
+            "job_id": job_id,
+            "type": "module",
+            "name": name,
+            "payload": payload,
+            "result": result,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        jobs[job_id] = job
+        job_db.save_job(job)
+        return jsonify(job), 201
 
     @app.get("/api/pipelines")
     @require_permission(security, "read")
@@ -94,12 +129,21 @@ def create_app() -> Flask:
     @require_permission(security, "execute")
     def execute_pipeline(name: str):
         payload = request.get_json(silent=True) or {}
-        parallel = bool(payload.get("parallel", False))
-        max_workers = int(payload.get("max_workers", 4))
+        parallel = bool(payload.get("parallel", framework_config.get("pipeline", {}).get("parallel_execution", False)))
+        max_workers = int(payload.get("max_workers", framework_config.get("pipeline", {}).get("max_workers", 4)))
         job_id = next(job_counter)
         result = pipeline_engine.execute(name=name, payload=payload, parallel=parallel, max_workers=max_workers)
-        jobs[job_id] = {"job_id": job_id, "type": "pipeline", "name": name, "result": result, "created_at": datetime.now(timezone.utc).isoformat()}
-        return jsonify(jobs[job_id]), 201
+        job = {
+            "job_id": job_id,
+            "type": "pipeline",
+            "name": name,
+            "payload": payload,
+            "result": result,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        jobs[job_id] = job
+        job_db.save_job(job)
+        return jsonify(job), 201
 
     @app.post("/api/pipelines/<name>/validate")
     @require_permission(security, "read")
@@ -107,6 +151,34 @@ def create_app() -> Flask:
         data = pipeline_engine.load_pipeline(name)
         missing = [s["module"] for s in data.get("stages", []) if s["module"] not in module_registry]
         return jsonify({"pipeline": name, "valid": not missing, "missing_modules": missing})
+
+    @app.get("/api/workflows")
+    @require_permission(security, "read")
+    def list_workflows():
+        return jsonify(workflow_engine.list_workflows())
+
+    @app.get("/api/workflows/<name>")
+    @require_permission(security, "read")
+    def workflow_info(name: str):
+        return jsonify(workflow_engine.load_workflow(name))
+
+    @app.post("/api/workflows/<name>/execute")
+    @require_permission(security, "execute")
+    def execute_workflow(name: str):
+        payload = request.get_json(silent=True) or {}
+        job_id = next(job_counter)
+        result = workflow_engine.execute(name=name, payload=payload)
+        job = {
+            "job_id": job_id,
+            "type": "workflow",
+            "name": name,
+            "payload": payload,
+            "result": result,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        jobs[job_id] = job
+        job_db.save_job(job)
+        return jsonify(job), 201
 
     @app.get("/api/jobs")
     @require_permission(security, "read")
@@ -191,6 +263,11 @@ def create_app() -> Flask:
         }
         return jsonify(summary), 201
 
+    @app.get("/api/config")
+    @require_permission(security, "audit")
+    def get_runtime_config():
+        return jsonify(framework_config)
+
     @app.get("/api/security/rbac")
     @require_permission(security, "audit")
     def rbac_matrix():
@@ -205,7 +282,6 @@ def create_app() -> Flask:
     @app.get("/api/audit/logs")
     @require_permission(security, "audit")
     def audit_logs():
-        from pathlib import Path
         p = Path(security.audit_log_path)
         lines = p.read_text().splitlines()[-200:] if p.exists() else []
         return jsonify({"entries": lines})

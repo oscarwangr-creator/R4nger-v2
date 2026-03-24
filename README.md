@@ -6,7 +6,7 @@ R4nger-V3 is a modular security orchestration framework for **authorized** OSINT
 
 - Clean V3 structure: `core`, `modules`, `pipelines`, `api`, `web_ui`, `tools`, `utils`
 - 24 built-in modules across OSINT, Recon, Exploit, Post-Exploit, and Reporting
-- 6 production pipelines:
+- 6 production pipelines and 4 orchestrated workflows:
   - `osint_intelligence_pipeline`
   - `network_recon_pipeline`
   - `vuln_scan_pipeline`
@@ -47,6 +47,12 @@ python r4ng3r.py pipelines list
 
 # Run a pipeline
 python r4ng3r.py pipelines run full_pentest_pipeline --target 10.10.10.0/24
+
+# List workflows
+python r4ng3r.py workflows list
+
+# Run a workflow
+python r4ng3r.py workflows run full_assessment_workflow --target example.com
 ```
 
 ## Security defaults
@@ -58,3 +64,12 @@ python r4ng3r.py pipelines run full_pentest_pipeline --target 10.10.10.0/24
 ## Authorized use only
 
 Run this framework only with written authorization and a defined testing scope.
+
+
+## What was completed from changes.txt
+
+- Added dynamic module discovery (`core/module_loader.py`) for cleaner extensibility.
+- Added workflow orchestration engine and workflow YAMLs in `workflows/`.
+- Added persistent job storage with SQLite (`core/database.py`) to improve usability across restarts.
+- Expanded API with workflow endpoints and runtime config endpoint.
+- Refreshed dashboard UX with quick execution forms and workflow visibility.

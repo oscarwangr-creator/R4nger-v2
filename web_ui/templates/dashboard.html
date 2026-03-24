@@ -7,25 +7,63 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
-  <header>
-    <h1>R4nger V3 Security Operations Dashboard</h1>
-    <p>Real-time module, pipeline, and worker monitoring.</p>
+  <header class="hero">
+    <div>
+      <h1>R4nger V3 Security Operations Dashboard</h1>
+      <p>Operational view for modules, pipelines, workflows, jobs, and worker infrastructure.</p>
+    </div>
+    <div class="status-pill" id="health-inline">Loading health…</div>
   </header>
 
-  <main class="grid">
-    <section>
+  <main class="layout">
+    <section class="card card-wide">
+      <h2>Quick Execute</h2>
+      <div class="actions-grid">
+        <form id="module-form" class="action-form">
+          <h3>Run Module</h3>
+          <label>Module Name <input id="module-name" required placeholder="spiderfoot_osint" /></label>
+          <label>Target <input id="module-target" required placeholder="example.com" /></label>
+          <button type="submit">Execute Module</button>
+        </form>
+
+        <form id="pipeline-form" class="action-form">
+          <h3>Run Pipeline</h3>
+          <label>Pipeline Name <input id="pipeline-name" required placeholder="full_pentest_pipeline" /></label>
+          <label>Target <input id="pipeline-target" required placeholder="10.10.10.0/24" /></label>
+          <button type="submit">Execute Pipeline</button>
+        </form>
+
+        <form id="workflow-form" class="action-form">
+          <h3>Run Workflow</h3>
+          <label>Workflow Name <input id="workflow-name" required placeholder="full_assessment_workflow" /></label>
+          <label>Target <input id="workflow-target" required placeholder="example.com" /></label>
+          <button type="submit">Execute Workflow</button>
+        </form>
+      </div>
+      <pre id="quick-output">No executions yet.</pre>
+    </section>
+
+    <section class="card">
       <h2>System Health</h2>
       <pre id="health"></pre>
     </section>
-    <section>
+
+    <section class="card">
       <h2>Modules</h2>
       <ul id="modules"></ul>
     </section>
-    <section>
+
+    <section class="card">
       <h2>Pipelines</h2>
       <ul id="pipelines"></ul>
     </section>
-    <section>
+
+    <section class="card">
+      <h2>Workflows</h2>
+      <ul id="workflows"></ul>
+    </section>
+
+    <section class="card card-wide">
       <h2>Recent Jobs</h2>
       <ul id="jobs"></ul>
     </section>

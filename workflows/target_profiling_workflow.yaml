@@ -1,0 +1,9 @@
+name: target_profiling_workflow
+description: Profile a target using intelligence and recon collection.
+steps:
+  - name: osint_intelligence
+    pipeline: osint_intelligence_pipeline
+    required: true
+  - name: network_recon
+    pipeline: network_recon_pipeline
+    required: true

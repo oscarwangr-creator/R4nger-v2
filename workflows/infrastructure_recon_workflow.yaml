@@ -1,0 +1,9 @@
+name: infrastructure_recon_workflow
+description: Recon plus vulnerability scanning on network targets.
+steps:
+  - name: network_recon
+    pipeline: network_recon_pipeline
+    required: true
+  - name: vulnerability_survey
+    pipeline: vuln_scan_pipeline
+    required: true

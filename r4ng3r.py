@@ -8,13 +8,15 @@ from typing import Any, Dict
 
 from api.app import create_app
 from core.pipeline_engine import PipelineEngine
-from modules import build_module_registry
+from core.workflow_engine import WorkflowEngine
+from modules import build_discovered_module_registry
 
 
-def _build_runtime() -> tuple[Dict[str, Any], PipelineEngine]:
-    module_registry = build_module_registry()
+def _build_runtime() -> tuple[Dict[str, Any], PipelineEngine, WorkflowEngine]:
+    module_registry = build_discovered_module_registry()
     pipeline_engine = PipelineEngine(module_registry=module_registry)
-    return module_registry, pipeline_engine
+    workflow_engine = WorkflowEngine(pipeline_engine=pipeline_engine)
+    return module_registry, pipeline_engine, workflow_engine
 
 
 def _print_json(data: Any) -> None:
@@ -22,7 +24,7 @@ def _print_json(data: Any) -> None:
 
 
 def cmd_modules(args: argparse.Namespace) -> int:
-    module_registry, _ = _build_runtime()
+    module_registry, _, _ = _build_runtime()
     if args.action == "list":
         _print_json([
             {
@@ -48,7 +50,7 @@ def cmd_modules(args: argparse.Namespace) -> int:
 
 
 def cmd_pipelines(args: argparse.Namespace) -> int:
-    _, pipeline_engine = _build_runtime()
+    _, pipeline_engine, _ = _build_runtime()
     if args.action == "list":
         _print_json(pipeline_engine.list_pipelines())
         return 0
@@ -67,6 +69,20 @@ def cmd_pipelines(args: argparse.Namespace) -> int:
     )
     return 0
 
+
+
+def cmd_workflows(args: argparse.Namespace) -> int:
+    _, _, workflow_engine = _build_runtime()
+    if args.action == "list":
+        _print_json(workflow_engine.list_workflows())
+        return 0
+
+    payload = {"target": args.target}
+    if args.payload:
+        payload.update(json.loads(args.payload))
+
+    _print_json(workflow_engine.execute(name=args.name, payload=payload))
+    return 0
 
 def cmd_api(args: argparse.Namespace) -> int:
     app = create_app()
@@ -106,6 +122,17 @@ def build_parser() -> argparse.ArgumentParser:
     pipeline_run.add_argument("--max-workers", type=int, default=4)
     pipeline_run.add_argument("--payload", help="JSON object with additional payload")
     pipelines.set_defaults(func=cmd_pipelines)
+
+    workflows = subparsers.add_parser("workflows", help="List or execute workflows")
+    workflows_sub = workflows.add_subparsers(dest="action", required=True)
+
+    workflows_sub.add_parser("list", help="List workflows")
+
+    workflow_run = workflows_sub.add_parser("run", help="Run a workflow")
+    workflow_run.add_argument("name")
+    workflow_run.add_argument("--target", required=True)
+    workflow_run.add_argument("--payload", help="JSON object with additional payload")
+    workflows.set_defaults(func=cmd_workflows)
 
     return parser
 

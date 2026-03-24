@@ -1,0 +1,18 @@
+name: full_assessment_workflow
+description: End-to-end orchestration across all major pipelines.
+steps:
+  - name: intelligence
+    pipeline: osint_intelligence_pipeline
+    required: true
+  - name: recon
+    pipeline: network_recon_pipeline
+    required: true
+  - name: vulnerability
+    pipeline: vuln_scan_pipeline
+    required: true
+  - name: exploitation
+    pipeline: exploit_pipeline
+    required: false
+  - name: post_exploitation
+    pipeline: post_exploit_pipeline
+    required: false

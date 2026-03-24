@@ -1,0 +1,10 @@
+name: web_app_testing_workflow
+description: Recon and exploitation simulation for web app targets.
+steps:
+  - name: recon
+    pipeline: network_recon_pipeline
+    required: true
+    condition: payload.scope != internal
+  - name: exploit
+    pipeline: exploit_pipeline
+    required: false
