@@ -1,0 +1,24 @@
+name: document_pipeline
+description: document_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - pdf_text_extract
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - document_metadata_extract
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

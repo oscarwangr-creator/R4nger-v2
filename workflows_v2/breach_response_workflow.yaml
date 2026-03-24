@@ -1,0 +1,16 @@
+name: breach_response_workflow
+trigger: event:breach_detected
+steps:
+- name: collect_breach
+  pipeline: breach_pipeline
+  on_success: credential_analysis
+  on_failure: null
+- name: credential_analysis
+  pipeline: credential_breach_pipeline
+  condition: 'True'
+  on_success: socmint_followup
+  on_failure: null
+- name: socmint_followup
+  pipeline: socmint_pipeline
+  on_success: null
+  on_failure: null

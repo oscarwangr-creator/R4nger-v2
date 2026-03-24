@@ -1,0 +1,24 @@
+name: infrastructure_pipeline
+description: infrastructure_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - subdomain_enum
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - port_scan
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

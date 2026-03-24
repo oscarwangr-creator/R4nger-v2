@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intelligence-ui
+  namespace: intelligence-os
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: intelligence-ui
+  template:
+    metadata:
+      labels:
+        app: intelligence-ui
+    spec:
+      containers:
+      - name: ui
+        image: intelligence-os-ui:latest
+        ports:
+        - containerPort: 5173
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: intelligence-ui
+  namespace: intelligence-os
+spec:
+  selector:
+    app: intelligence-ui
+  ports:
+  - port: 80
+    targetPort: 5173

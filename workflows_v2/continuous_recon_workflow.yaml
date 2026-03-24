@@ -1,0 +1,15 @@
+name: continuous_recon_workflow
+trigger: cron:*/30 * * * *
+steps:
+- name: seed_identity
+  pipeline: identity_pipeline
+  on_success: expand_attack_surface
+  on_failure: null
+- name: expand_attack_surface
+  pipeline: attack_surface_pipeline
+  on_success: threat_profile
+  on_failure: threat_profile
+- name: threat_profile
+  pipeline: threat_actor_profiling_pipeline
+  on_success: null
+  on_failure: null

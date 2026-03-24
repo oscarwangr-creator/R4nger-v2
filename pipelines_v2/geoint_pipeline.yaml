@@ -1,0 +1,24 @@
+name: geoint_pipeline
+description: geoint_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - ip_geolocation
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - satellite_context
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

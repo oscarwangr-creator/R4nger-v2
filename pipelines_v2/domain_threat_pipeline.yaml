@@ -1,0 +1,25 @@
+name: domain_threat_pipeline
+description: domain_threat_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - domain_whois
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - cve_lookup
+  - exposed_service_discovery
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

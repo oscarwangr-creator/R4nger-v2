@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intelligence-worker
+  namespace: intelligence-os
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: intelligence-worker
+  template:
+    metadata:
+      labels:
+        app: intelligence-worker
+    spec:
+      containers:
+      - name: worker
+        image: intelligence-os-worker:latest

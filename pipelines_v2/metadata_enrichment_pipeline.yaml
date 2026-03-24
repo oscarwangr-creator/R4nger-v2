@@ -1,0 +1,24 @@
+name: metadata_enrichment_pipeline
+description: metadata_enrichment_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - document_metadata_extract
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - image_exif_extract
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO

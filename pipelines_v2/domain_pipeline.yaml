@@ -1,0 +1,24 @@
+name: domain_pipeline
+description: domain_pipeline pipeline for Intelligence OS v2
+entrypoint: value
+stages:
+- name: collection
+  tools:
+  - domain_whois
+  parallel: true
+  transforms:
+  - flatten_result
+- name: enrichment
+  tools:
+  - dns_resolver
+  parallel: true
+  transforms:
+  - deduplicate_entities
+outputs:
+- entities
+- relationships
+- evidence
+graph_relationships:
+- source: entity
+  target: entity
+  relation: RELATED_TO
