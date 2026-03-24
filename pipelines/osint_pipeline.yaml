@@ -1,0 +1,3 @@
+# OSINT pipeline configuration
+pipeline:
+  name: osint_pipeline
