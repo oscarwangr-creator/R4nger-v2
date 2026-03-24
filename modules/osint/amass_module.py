@@ -5,14 +5,14 @@ from typing import Any, Dict
 from core.base_module import BaseModule, ModuleMetadata
 
 
-class SpiderFootModule(BaseModule):
+class AmassModule(BaseModule):
     def __init__(self) -> None:
         super().__init__()
         self.metadata = ModuleMetadata(
-            name="spiderfoot_osint",
+            name="amass_osint",
             category="OSINT",
-            description="SpiderFoot-driven multi-source OSINT collection",
-            tags=['osint', 'spiderfoot'],
+            description="Subdomain and asset mapping",
+            tags=['osint', 'dns'],
         )
         self.add_fallback(self._fallback)
 
@@ -21,7 +21,7 @@ class SpiderFootModule(BaseModule):
         return {
             "target": target,
             "module": self.metadata.name,
-            "summary": "Aggregated open-source intelligence artifacts",
+            "summary": "Built organization attack surface map",
             "evidence": [
                 {"key": "simulated", "value": True},
                 {"key": "timestamp", "value": payload.get("timestamp", "runtime")},

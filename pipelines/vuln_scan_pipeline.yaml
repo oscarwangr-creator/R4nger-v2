@@ -1,0 +1,24 @@
+name: vuln_scan_pipeline
+version: 3.0.0
+description: Vuln Scan Pipeline workflow
+stages:
+- name: Nuclei Recon Sweep
+  module: nuclei_recon
+  required: true
+  args: {}
+- name: SSL Posture Validation
+  module: ssl_scan_recon
+  required: true
+  args: {}
+- name: Nuclei Exploitation Validation
+  module: nuclei_exploitation
+  required: true
+  args: {}
+- name: SQLMap Probe
+  module: sqlmap_exploit
+  required: true
+  args: {}
+- name: Vulnerability JSON Report
+  module: json_reporting
+  required: true
+  args: {}
