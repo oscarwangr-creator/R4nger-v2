@@ -1,0 +1,5675 @@
+Directory structure:
+└── sleuthkit-sleuthkit/
+    ├── API-CHANGES.txt
+    ├── bootstrap
+    ├── ChangeLog.txt
+    ├── .codecov.yml
+    ├── bindings/
+    │   └── java/
+    │       ├── ivysettings.xml
+    │       ├── doxygen/
+    │       │   ├── footer.html
+    │       │   └── schema/
+    │       │       ├── db_schema_9_0.dox
+    │       │       └── schema_list.dox
+    │       ├── jni/
+    │       │   └── .indent.pro
+    │       ├── nbproject/
+    │       │   └── project.properties
+    │       ├── src/
+    │       │   ├── overview.html
+    │       │   └── org/
+    │       │       └── sleuthkit/
+    │       │           └── datamodel/
+    │       │               ├── DefaultAddDataSourceCallbacks.java
+    │       │               ├── SleuthkitVisitableItem.java
+    │       │               └── localization/
+    │       │                   └── lastupdated.properties
+    │       └── test/
+    │           ├── README.txt
+    │           ├── org/
+    │           │   └── sleuthkit/
+    │           │       └── datamodel/
+    │           │           ├── PublicTagName.java
+    │           │           └── timeline/
+    │           │               └── TimelineTestSuite.java
+    │           └── output/
+    │               └── gold/
+    │                   ├── nps-2009-canon2-gen6_CPP_Exc.txt
+    │                   ├── nps-2009-canon2-gen6_Seq_Exc.txt
+    │                   ├── nps-2009-canon2-gen6_TD_Exc.txt
+    │                   ├── ntfs1-gen2_CPP_Exc.txt
+    │                   ├── ntfs1-gen2_Seq_Exc.txt
+    │                   └── ntfs1-gen2_TD_Exc.txt
+    ├── case-uco/
+    │   └── java/
+    │       ├── ivy.xml
+    │       ├── ivysettings.xml
+    │       ├── manifest.mf
+    │       ├── nbproject/
+    │       │   └── project.xml
+    │       ├── src/
+    │       │   └── org/
+    │       │       └── sleuthkit/
+    │       │           └── caseuco/
+    │       │               ├── BlankAssertionNode.java
+    │       │               ├── BlankIdentityNode.java
+    │       │               ├── BlankLocationNode.java
+    │       │               ├── BlankOrganizationNode.java
+    │       │               ├── BlankPersonNode.java
+    │       │               ├── BlankRelationshipNode.java
+    │       │               ├── BlankTraceNode.java
+    │       │               ├── ContentNotExportableException.java
+    │       │               ├── CyberItem.java
+    │       │               ├── Facet.java
+    │       │               ├── Identity.java
+    │       │               ├── IdentityFacet.java
+    │       │               ├── Location.java
+    │       │               ├── Organization.java
+    │       │               ├── Person.java
+    │       │               ├── SimpleAddress.java
+    │       │               └── Software.java
+    │       └── test/
+    │           └── org/
+    │               └── sleuthkit/
+    │                   └── caseuco/
+    │                       └── TestSuite.java
+    ├── debian/
+    │   ├── README.source
+    │   ├── changelog
+    │   ├── compat
+    │   ├── copyright
+    │   ├── rules
+    │   ├── sleuthkit-java-docs.docs
+    │   ├── sleuthkit-java.install
+    │   └── source/
+    │       ├── format
+    │       └── options
+    ├── docs/
+    │   ├── README.txt
+    │   ├── mac_java.bash
+    │   ├── README_debian_package.md
+    │   └── README_Java.md
+    ├── rejistry++/
+    │   ├── README.txt
+    │   ├── msvcpp/
+    │   │   └── Rejistry/
+    │   │       └── Rejistry.vcxproj.filters
+    │   └── src/
+    │       └── RegistryParseException.h
+    ├── release/
+    │   ├── Makefile
+    │   ├── VS2015_cygwin.bat
+    │   └── VS2019_cygwin.bat
+    ├── samples/
+    │   └── .indent.pro
+    ├── scripts/
+    │   ├── test_runner.sh
+    │   └── wine_wrapper.sh
+    ├── test/
+    │   ├── catch_runner.cpp
+    │   ├── check_static.sh
+    │   ├── coverage_local.sh
+    │   ├── test_static_tools.sh
+    │   ├── data/
+    │   │   ├── README.md
+    │   │   ├── a_file.0
+    │   │   ├── bogus.E01
+    │   │   ├── bogus.E02
+    │   │   ├── a_file.1/
+    │   │   │   └── dummy
+    │   │   └── image/
+    │   │       └── README.md
+    │   ├── fiwalk/
+    │   │   └── README.md
+    │   ├── img_dump/
+    │   │   ├── img_differ.sh
+    │   │   ├── test_imgs.sh
+    │   │   └── test_imgs_E01.sh
+    │   ├── legacy/
+    │   │   ├── tsk_thread.cpp
+    │   │   └── tsk_thread.h
+    │   └── tools/
+    │       ├── tsk_cli_runner.cpp
+    │       ├── tsk_tempfile.h
+    │       ├── autotools/
+    │       │   └── test_loaddb.sh
+    │       ├── fstools/
+    │       │   ├── test_fls.sh
+    │       │   ├── test_ils.sh
+    │       │   ├── fls_output/
+    │       │   │   └── 2
+    │       │   └── ils_output/
+    │       │       ├── 1
+    │       │       └── 2
+    │       ├── output/
+    │       │   ├── fls/
+    │       │   │   └── fls_0.stdout
+    │       │   └── mmls/
+    │       │       ├── mmls_0.stderr
+    │       │       ├── mmls_0.stdout
+    │       │       ├── mmls_1.stdout
+    │       │       ├── mmls_10.stdout
+    │       │       ├── mmls_11.stdout
+    │       │       ├── mmls_12.stdout
+    │       │       ├── mmls_13.stdout
+    │       │       ├── mmls_14.stdout
+    │       │       ├── mmls_2.stdout
+    │       │       ├── mmls_3.stdout
+    │       │       ├── mmls_4.stdout
+    │       │       ├── mmls_5.stdout
+    │       │       ├── mmls_6.stdout
+    │       │       ├── mmls_7.stdout
+    │       │       ├── mmls_8.stdout
+    │       │       └── mmls_9.stdout
+    │       └── vstools/
+    │           ├── test_mmls.sh
+    │           ├── test_mmls_E01.sh
+    │           └── mmls_output/
+    │               ├── 1
+    │               ├── 10
+    │               ├── 11
+    │               └── 2
+    ├── tools/
+    │   ├── util.cpp
+    │   ├── util.h
+    │   ├── autotools/
+    │   │   ├── tsk_comparedir.h
+    │   │   └── .indent.pro
+    │   ├── fiwalk/
+    │   │   ├── plugins/
+    │   │   │   ├── clamconfig.txt
+    │   │   │   └── ficonfig.txt
+    │   │   └── src/
+    │   │       ├── base64.h
+    │   │       ├── config-simple.txt
+    │   │       ├── ficonfig.txt
+    │   │       ├── hexbuf.c
+    │   │       ├── hexbuf.h
+    │   │       ├── plugin.h
+    │   │       ├── run.sh
+    │   │       ├── test_fiwalk.sh
+    │   │       ├── ttd
+    │   │       ├── unicode_escape.h
+    │   │       └── word-count-plugin.sh
+    │   ├── fstools/
+    │   │   └── .indent.pro
+    │   ├── hashtools/
+    │   │   └── .indent.pro
+    │   ├── imgtools/
+    │   │   └── .indent.pro
+    │   ├── logicalimager/
+    │   │   ├── DriveUtil.h
+    │   │   ├── LogicalImagerDateRule.h
+    │   │   ├── LogicalImagerExtensionRule.h
+    │   │   ├── LogicalImagerFilenameRule.h
+    │   │   ├── LogicalImagerPathRule.h
+    │   │   ├── LogicalImagerRuleBase.cpp
+    │   │   ├── LogicalImagerSizeRule.h
+    │   │   ├── MatchedRuleInfo.cpp
+    │   │   ├── RegHiveType.h
+    │   │   ├── TskFindFiles.h
+    │   │   └── logical_imager_configs/
+    │   │       ├── config-with-bad-syntax.json
+    │   │       └── invalid-config.json
+    │   ├── pooltools/
+    │   │   └── .indent.pro
+    │   ├── sorter/
+    │   │   └── .perltidyrc
+    │   ├── srchtools/
+    │   │   └── .indent.pro
+    │   ├── timeline/
+    │   │   └── .perltidyrc
+    │   └── vstools/
+    │       └── .indent.pro
+    ├── tsk/
+    │   ├── libtsk.h
+    │   ├── tsk.pc.in
+    │   ├── tsk_tools_i.h
+    │   ├── auto/
+    │   │   ├── tsk_auto_i.h
+    │   │   └── .indent.pro
+    │   ├── base/
+    │   │   ├── tsk_base_i.c
+    │   │   ├── tsk_os_cpp.h
+    │   │   ├── tsk_version.c
+    │   │   └── .indent.pro
+    │   ├── docs/
+    │   │   ├── footer.html
+    │   │   └── pool.dox
+    │   ├── fs/
+    │   │   ├── btrfs_csum.cpp
+    │   │   ├── encryptionHelper.h
+    │   │   ├── hfs_journal.cpp
+    │   │   ├── lzvn.h
+    │   │   └── .indent.pro
+    │   ├── hashdb/
+    │   │   ├── tsk_hash_info.h
+    │   │   └── .indent.pro
+    │   ├── img/
+    │   │   ├── aff4.h
+    │   │   ├── img_open.h
+    │   │   ├── img_types_i.h
+    │   │   ├── legacy_cache.cpp
+    │   │   ├── legacy_cache.h
+    │   │   ├── mult_files.h
+    │   │   ├── pool.hpp
+    │   │   ├── qcow.h
+    │   │   ├── unsupported_types.h
+    │   │   ├── vhd.h
+    │   │   ├── vmdk.h
+    │   │   └── .indent.pro
+    │   ├── pool/
+    │   │   ├── apfs_pool_compat.hpp
+    │   │   ├── lvm_pool_compat.hpp
+    │   │   ├── tsk_apfs.h
+    │   │   └── .indent.pro
+    │   ├── sorter/
+    │   │   └── images.sort
+    │   ├── util/
+    │   │   ├── detect_encryption.h
+    │   │   ├── file_system_utils.h
+    │   │   ├── .indent.pro
+    │   │   └── Bitlocker/
+    │   │       ├── BitlockerUtils.h
+    │   │       ├── MetadataValueKey.h
+    │   │       ├── MetadataValueOffsetAndSize.cpp
+    │   │       ├── MetadataValueOffsetAndSize.h
+    │   │       ├── MetadataValueUnicode.cpp
+    │   │       ├── MetadataValueUnicode.h
+    │   │       └── .indent.pro
+    │   └── vs/
+    │       └── .indent.pro
+    ├── win32/
+    │   ├── blkcalc/
+    │   │   └── blkcalc.vcxproj.filters
+    │   ├── blkcat/
+    │   │   └── blkcat.vcxproj.filters
+    │   ├── blkls/
+    │   │   └── blkls.vcxproj.filters
+    │   ├── blkstat/
+    │   │   └── blkstat.vcxproj.filters
+    │   ├── callback-cpp-sample/
+    │   │   └── callback-cpp-sample.vcxproj.filters
+    │   ├── callback-sample/
+    │   │   └── callback-sample.vcxproj.filters
+    │   ├── ffind/
+    │   │   └── ffind.vcxproj.filters
+    │   ├── fls/
+    │   │   └── fls.vcxproj.filters
+    │   ├── fsstat/
+    │   │   └── fsstat.vcxproj.filters
+    │   ├── hfind/
+    │   │   └── hfind.vcxproj.filters
+    │   ├── icat/
+    │   │   └── icat.vcxproj.filters
+    │   ├── ifind/
+    │   │   └── ifind.vcxproj.filters
+    │   ├── ils/
+    │   │   └── ils.vcxproj.filters
+    │   ├── img_cat/
+    │   │   └── img_cat.vcxproj.filters
+    │   ├── img_stat/
+    │   │   └── img_stat.vcxproj.filters
+    │   ├── istat/
+    │   │   └── istat.vcxproj.filters
+    │   ├── jcat/
+    │   │   └── jcat.vcxproj.filters
+    │   ├── jls/
+    │   │   └── jls.vcxproj.filters
+    │   ├── libtsk/
+    │   │   └── packages.config
+    │   ├── mmcat/
+    │   │   └── mmcat.vcxproj.filters
+    │   ├── mmls/
+    │   │   └── mmls.vcxproj.filters
+    │   ├── mmstat/
+    │   │   └── mmstat.vcxproj.filters
+    │   ├── posix-cpp-sample/
+    │   │   └── posix-cpp-sample.vcxproj.filters
+    │   ├── posix-sample/
+    │   │   └── posix-sample.vcxproj.filters
+    │   ├── pstat/
+    │   │   └── pstat.vcxproj.filters
+    │   ├── tsk_comparedir/
+    │   │   └── tsk_compare.vcxproj.filters
+    │   ├── tsk_gettimes/
+    │   │   └── tsk_gettimes.vcxproj.filters
+    │   ├── tsk_loaddb/
+    │   │   └── tsk_loaddb.vcxproj.filters
+    │   └── tsk_recover/
+    │       └── tsk_recover.vcxproj.filters
+    └── .github/
+        └── ISSUE_TEMPLATE/
+            ├── bug-or-problem-report.md
+            ├── custom.md
+            └── feature_request.md
+
+================================================
+FILE: API-CHANGES.txt
+================================================
+Changes to make once we are ready to do a backwards incompatible change.
+- TSK_SERVICE_ACCOUNT to TSK_ACCOUNT
+- HashDB to use new TSK_BASE_HASHDB enum instead of its own ENUM
+- Java SleuthkitCase.addArtifactType should return different if artifact already exists or getArtifactId should....
+- Java SleuthkitCase.findFilesWhere should return AbstractFile like findFiles
+- getUniquePath() should not throw exception. 
+- findFilesInImage should return an enum like TskDB methods differentiating if any data was found or not.
+- remove addImageInfo in db_Sqlite that does not take MD5, and/or make it take IMG_INFO as argument
+
+
+================================================
+FILE: bootstrap
+================================================
+#!/bin/sh
+
+autoreconf -fi
+
+
+
+================================================
+FILE: ChangeLog.txt
+================================================
+This program does not distribute an official ChangeLog file. You
+can generate one from the subversion repository though using the
+following command:
+
+    svn log http://svn.sleuthkit.org/repos/sleuthkit/
+
+For a specific release, try something like:
+
+    svn log http://svn.sleuthkit.org/repos/sleuthkit/tags/sleuthkit-3.0.0
+
+and replace 3.0.0 with the version you are interested in.
+
+
+
+
+================================================
+FILE: .codecov.yml
+================================================
+# validate this with:
+# curl -X POST --data-binary @codecov.yml https://codecov.io/validate
+
+coverage:
+  range: 40..60
+  round: nearest
+  precision: 2
+
+codecov:
+  branch: develop
+
+ignore:
+  - "m4"
+  - "vendors"
+
+# It turns out that we need to check to see if our tests are being called!
+#  - "test"
+
+# Code for updating pull request comment on GitHub
+# See https://docs.codecov.com/docs/pull-request-comments
+comment:
+  layout: "diff, flags, files"
+  behavior: default
+  require_changes: false     # post comment even if no required change
+  require_base: false        # [true :: must have a base report to post]
+  require_head: false        # [true :: must have a head report to post]
+  hide_project_coverage: false # [true :: only show coverage on the git diff]
+
+
+
+================================================
+FILE: bindings/java/ivysettings.xml
+================================================
+<ivysettings>
+  <settings defaultResolver="default"/>
+  <resolvers>
+    <chain name="default">
+    <ibiblio name="central" root="https://repo1.maven.org/maven2" m2compatible="true"/>
+    <ibiblio name="ibiblio" m2compatible="true"/>
+    </chain>
+  </resolvers>
+</ivysettings>
+
+
+
+================================================
+FILE: bindings/java/doxygen/footer.html
+================================================
+<hr/>
+<p><i>Copyright &#169; 2011-2024 Brian Carrier.  (carrier -at- sleuthkit -dot- org)<br/> 
+This work is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.
+</i></p>
+</body>
+</html>
+
+
+
+================================================
+FILE: bindings/java/doxygen/schema/db_schema_9_0.dox
+================================================
+/*! \page db_schema_9_0_page TSK & Autopsy Database Schema (Schema version 9.0)
+
+Schema 9.0 is not associated with a released version of Autopsy and is almost the same as schema 9.1. 
+
+Please see the \ref db_schema_9_1_page page for all changes from schema 8.6 to schema 9.0.
+
+*/
+
+
+
+================================================
+FILE: bindings/java/doxygen/schema/schema_list.dox
+================================================
+/*! \page db_schema_page TSK & Autopsy Database Schemas
+
+This page contians links to the documention for selected versions of the TSK & Autopsy database schema.
+
+- Current Schema
+- \subpage db_schema_9_4_page 
+ 
+- Older Schemas
+ - \subpage db_schema_9_1_page 
+ - \subpage db_schema_9_0_page 
+ - \subpage db_schema_8_6_page 
+ - <a href="https://wiki.sleuthkit.org/index.php?title=Database_v7.2_Schema">Schema version 7.2</a>
+ - <a href="https://wiki.sleuthkit.org/index.php?title=SQLite_Database_v6_Schema">Schema version 6</a>
+ - <a href="https://wiki.sleuthkit.org/index.php?title=SQLite_Database_v3_Schema">Schema version 3</a>
+ - <a href="https://wiki.sleuthkit.org/index.php?title=SQLite_Database_v2_Schema">Schema version 2</a>
+
+*/
+
+
+================================================
+FILE: bindings/java/jni/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: bindings/java/nbproject/project.properties
+================================================
+auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.alignJavadocExceptionDescriptions=true
+auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.alignJavadocParameterDescriptions=true
+auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.alignJavadocReturnDescription=true
+auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.blankLineAfterJavadocParameterDescriptions=true
+auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.blankLineAfterJavadocReturnTag=true
+auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.enableBlockCommentFormatting=true
+
+
+
+================================================
+FILE: bindings/java/src/overview.html
+================================================
+<body>
+<p>These classes allow Java programs to access data extracted by The Sleuth Kit.</p>
+<p>The Sleuth Kit is primarily a C/C++ library and set of command line tools. These classes allow programs to obtain the data that TSK can produce.   The typical steps would be to use JNI to cause the TSK library to create and populate a SQLite database.  The Java classes then directly open the SQLite database and perform queries on it. </p>
+</body>
+
+
+
+================================================
+FILE: bindings/java/src/org/sleuthkit/datamodel/DefaultAddDataSourceCallbacks.java
+================================================
+/*
+ * SleuthKit Java Bindings
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.datamodel;
+
+import java.util.List;
+
+/**
+ * Do-nothing version of AddDataSourceCallbacks
+ */
+public class DefaultAddDataSourceCallbacks implements AddDataSourceCallbacks {
+    @Override
+    public void onFilesAdded(List<Long> fileObjectIds) {
+        // Do nothing
+    }	
+}
+
+
+
+================================================
+FILE: bindings/java/src/org/sleuthkit/datamodel/SleuthkitVisitableItem.java
+================================================
+/*
+ * Sleuth Kit Data Model
+ * 
+ * Copyright 2011 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.datamodel;
+
+/**
+ * Interface for all visitable datatypes that can be found in the tsk database
+ */
+public interface SleuthkitVisitableItem {
+
+	/**
+	 * visitor pattern support
+	 *
+	 * @param v visitor
+	 *
+	 * @return visitor return value
+	 */
+	public <T> T accept(SleuthkitItemVisitor<T> v);
+
+}
+
+
+
+================================================
+FILE: bindings/java/src/org/sleuthkit/datamodel/localization/lastupdated.properties
+================================================
+#Thu Sep 30 10:23:46 UTC 2021
+bundles.ja.lastupdated=751fd41efbf6b9f6f9188615ab78a4cc999c4cbf
+
+
+
+================================================
+FILE: bindings/java/test/README.txt
+================================================
+This file describes the tests. There are several test that are run, including:
+- TopDown that tests getChildren() on each object.
+- BottomUp that tests getParent() on each object.
+- Sequentail that tests accessing random objects.
+- CPPvsJava that verifies that the C++ output is the same as Java.
+
+Not all test compare with a gold standard. Refer to each class for details. The following names are used in the output folder though:
+- _TD: TopDown data that contains metadata about each file reached from getChildren(). This is checked in.
+- _Seq: Sequentail test data that contains metadata about each file. This is checked in. 
+- _CPP: Body file format of files. This is not checked in.
+- _BU: BottomUp data that contains paths to root from leaf nodes (i.e. files). This is not checked in. 
+
+
+
+================================================
+FILE: bindings/java/test/org/sleuthkit/datamodel/PublicTagName.java
+================================================
+package org.sleuthkit.datamodel;
+
+import org.sleuthkit.datamodel.TagName.HTML_COLOR;
+
+/**
+ * Extends TagName with a public constructor for use in test code.
+ */
+public class PublicTagName extends TagName {
+
+	private static final long serialVersionUID = 1L;
+	
+	public PublicTagName(long id, String displayName, String description, HTML_COLOR color, TskData.TagType tagType, long tagSetId, int rank) {
+		super(id, displayName, description, color, tagType, tagSetId, rank);
+	}
+
+	@Override
+	public String toString() {
+		return "PublicTagName{" + this.getDisplayName() + '}';
+	}
+
+}
+
+
+
+================================================
+FILE: bindings/java/test/org/sleuthkit/datamodel/timeline/TimelineTestSuite.java
+================================================
+/*
+ * Sleuth Kit Data Model
+ *
+ * Copyright 2019 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.datamodel.timeline;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+/**
+ * Test Suite for Timeline classes
+ */
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+	RootFilterTest.class,
+	EventTypeFilterTest.class
+})
+public class TimelineTestSuite {
+
+}
+
+
+
+================================================
+FILE: bindings/java/test/output/gold/nps-2009-canon2-gen6_CPP_Exc.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: bindings/java/test/output/gold/nps-2009-canon2-gen6_Seq_Exc.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: bindings/java/test/output/gold/nps-2009-canon2-gen6_TD_Exc.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: bindings/java/test/output/gold/ntfs1-gen2_CPP_Exc.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: bindings/java/test/output/gold/ntfs1-gen2_Seq_Exc.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: bindings/java/test/output/gold/ntfs1-gen2_TD_Exc.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: case-uco/java/ivy.xml
+================================================
+<ivy-module version="2.0">
+    <info organisation="org.sleuthkit" module="SleuthkitCaseUco"/>
+    <dependencies>		
+        <dependency org="com.google.code.gson" name="gson" rev="2.8.5"/>
+        <dependency org="junit" name="junit" rev="4.12"/>
+    </dependencies>
+</ivy-module>
+
+
+
+
+================================================
+FILE: case-uco/java/ivysettings.xml
+================================================
+<ivysettings>
+    <settings defaultResolver="default"/>
+    <resolvers>
+        <chain name="default">
+            <ibiblio name="central" root="https://repo1.maven.org/maven2" m2compatible="true"/>
+            <ibiblio name="ibiblio" m2compatible="true"/>
+        </chain>
+    </resolvers>
+</ivysettings>
+
+
+
+================================================
+FILE: case-uco/java/manifest.mf
+================================================
+Manifest-Version: 1.0
+
+
+
+================================================
+FILE: case-uco/java/nbproject/project.xml
+================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.java.j2seproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
+            <name>SleuthkitCaseUco</name>
+            <source-roots>
+                <root id="src.dir"/>
+            </source-roots>
+            <test-roots>
+                <root id="test.src.dir"/>
+            </test-roots>
+        </data>
+    </configuration>
+</project>
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/BlankAssertionNode.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import java.util.UUID;
+
+/**
+ * Represents a blank node version of an assertion.
+ */
+class BlankAssertionNode extends Assertion {
+    
+    BlankAssertionNode() {
+        super("_:" + UUID.randomUUID().toString());
+    }
+    
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/BlankIdentityNode.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import java.util.UUID;
+
+/**
+ * Represents a blank node version of an identity.
+ */
+class BlankIdentityNode extends Identity {
+    
+    BlankIdentityNode() {
+        super("_:" + UUID.randomUUID().toString());
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/BlankLocationNode.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import java.util.UUID;
+
+/**
+ * Represents a blank node version of a location object.
+ */
+class BlankLocationNode extends Location {
+    
+    BlankLocationNode() {
+        super("_:" + UUID.randomUUID().toString());
+    }
+    
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/BlankOrganizationNode.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import java.util.UUID;
+
+/**
+ * Represents a blank node version of an organization.
+ */
+class BlankOrganizationNode extends Organization {
+    
+    BlankOrganizationNode() {
+        super("_:" + UUID.randomUUID().toString());
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/BlankPersonNode.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import java.util.UUID;
+
+/**
+ * Represents a blank node version of a person.
+ */
+class BlankPersonNode extends Person {
+    
+    BlankPersonNode() {
+        super("_:" + UUID.randomUUID().toString());
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/BlankRelationshipNode.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import java.util.UUID;
+
+/**
+ * Represents a blank node version of a relationship.
+ */
+class BlankRelationshipNode extends Relationship {
+    
+    BlankRelationshipNode() {
+        super("_:" + UUID.randomUUID().toString());
+    }
+    
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/BlankTraceNode.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import java.util.UUID;
+
+/**
+ * Represents a blank node version of a Trace.
+ */
+class BlankTraceNode extends Trace {
+    
+    BlankTraceNode() {
+        super("_:" + UUID.randomUUID().toString());
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/ContentNotExportableException.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * Indicates that the content could not be exported, even in part, to CASE.
+ */
+public class ContentNotExportableException extends Exception {
+    private static final long serialVersionUID = 1L;
+    
+    ContentNotExportableException(String msg) {
+        super(msg);
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/CyberItem.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the core CyberItem object described in the UCO
+ * ontology.
+ */
+class CyberItem extends UcoObject {
+
+    CyberItem(String id, String type) {
+        super(id, type);
+    }
+
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/Facet.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the core Facet object described in the UCO
+ * ontology.
+ */
+abstract class Facet extends UcoObject {
+
+    Facet(String type) {
+        super(null, type);
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/Identity.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the Core Identity object described in the UCO
+ * ontology.
+ */
+class Identity extends UcoObject {
+
+    Identity(String id) {
+        super(id, Identity.class.getSimpleName());
+    }
+
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/IdentityFacet.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the IdentityFacet observable described in the
+ * UCO ontology.
+ */
+class IdentityFacet extends Facet {
+
+    IdentityFacet() {
+        super(IdentityFacet.class.getSimpleName());
+    }
+
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/Location.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the core Location object described in the UCO
+ * ontology.
+ */
+class Location extends UcoObject {
+
+    Location(String id) {
+        super(id, Location.class.getSimpleName());
+    }
+
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/Organization.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the Organization object described in the UCO
+ * ontology.
+ */
+class Organization extends UcoObject {
+
+    Organization(String id) {
+        super(id, Organization.class.getSimpleName());
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/Person.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the Person object described in the UCO
+ * ontology.
+ */
+class Person extends UcoObject {
+
+    Person(String id) {
+        super(id, Person.class.getSimpleName());
+    }
+
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/SimpleAddress.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the SimpleAddress observable described in the
+ * UCO ontology.
+ */
+class SimpleAddress extends Facet {
+
+    SimpleAddress() {
+        super(SimpleAddress.class.getSimpleName());
+    }
+
+}
+
+
+
+================================================
+FILE: case-uco/java/src/org/sleuthkit/caseuco/Software.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2020 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+/**
+ * This class definition mirrors the Software observable described in the UCO
+ * ontology.
+ */
+class Software extends Facet {
+
+    Software() {
+        super(Software.class.getSimpleName());
+    }
+}
+
+
+
+================================================
+FILE: case-uco/java/test/org/sleuthkit/caseuco/TestSuite.java
+================================================
+/*
+ * Sleuth Kit CASE JSON LD Support
+ *
+ * Copyright 2021 Basis Technology Corp.
+ * Contact: carrier <at> sleuthkit <dot> org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.sleuthkit.caseuco;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+/**
+ * Runs all case uco unit tests.
+ */
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+    FacetDeserializerTests.class
+})
+public class TestSuite {
+
+}
+
+
+
+================================================
+FILE: debian/README.source
+================================================
+sleuthkit for Debian
+-------------------
+
+These debian files are not for the official debian packaging and it does not meet all of the Debian rules because it depends on SQLITE JDBC jar file that is not available as a Debian package.
+
+We will be using this .deb file for our own distribution to support Autopsy. 
+
+
+ -- Rishwanth Senthilkumar <rishwanth@basistech.com>  Tue, 30 Jan 2018 15:34:02 -0500
+
+
+
+
+================================================
+FILE: debian/changelog
+================================================
+sleuthkit-java (4.14.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Rishwanth Senthilkumar <rishwanth@basistech.com>  Tue, 30 Jan 2018 15:34:02 -0500
+
+
+
+================================================
+FILE: debian/compat
+================================================
+9
+
+
+
+================================================
+FILE: debian/copyright
+================================================
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: The Sleuth Kit (TSK)
+Upstream-Contact: Brian Carrier <carrier@sleuthkit.org>
+Source: https://github.com/sleuthkit/sleuthkit
+
+Files: *
+Copyright: 2001-2016 Brian Carrier <carrier@sleuthkit.org>
+           2002      @stake Inc.
+           2005      Naysawn Naderi <ndn@xiphos.ca>
+           2006-2011 Joachim Metz <jbmetz@users.sourceforge.net>
+           2006-2025 Basis Technology <carrier@sleuthkit.org>
+License: CPL-1.0
+
+
+
+
+================================================
+FILE: debian/rules
+================================================
+#!/usr/bin/make -f
+
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+
+#export DH_VERBOSE = 1
+
+# see ENVIRONMENT in dpkg-buildflags(1) for other variables
+
+# Enable all security hardening options:
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_LDFLAGS_MAINT_APPEND = -lsqlite3 -lsupc++ -Wl,--as-needed
+
+
+%:
+	dh $@  --with autotools_dev
+
+
+
+# Ensure Java is enabled during configuration
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-java
+
+# Run the standard build process
+override_dh_auto_bill:
+	dh_auto_build
+
+# Install everything into the package directory:
+	dh_auto_install
+
+
+
+================================================
+FILE: debian/sleuthkit-java-docs.docs
+================================================
+README.Debian
+README.source
+
+
+
+================================================
+FILE: debian/sleuthkit-java.install
+================================================
+bindings/java/lib/sqlite-jdbc-3.49.1.0.jar /usr/share/java
+bindings/java/dist/sleuthkit-4.14.0.jar /usr/share/java
+case-uco/java/dist/sleuthkit-caseuco-4.14.0.jar /usr/share/java
+
+
+
+================================================
+FILE: debian/source/format
+================================================
+3.0 (quilt)
+
+
+
+================================================
+FILE: debian/source/options
+================================================
+tar-ignore = "test"
+tar-ignore = "tests"
+--include-removal
+--extend-diff-ignore='^(bindings/java/jni/.libs|samples/.*)$'
+
+
+
+================================================
+FILE: docs/README.txt
+================================================
+Docs are being revised.
+
+Legacy wiki: https://wiki.sleuthkit.org/
+
+Other docs: https://sleuthkit.org/
+
+
+Release process: [Release_Process](../release/Release_Process.md)
+
+
+
+================================================
+FILE: docs/mac_java.bash
+================================================
+# Source this script on a Mac to properly set up Java environment variables
+# Set JAVA_HOME dynamically using Homebrew
+export JAVA_HOME="$(brew --prefix openjdk)"
+
+# Use JAVA_HOME consistently for PATH
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Use JAVA_HOME for include paths
+export CPPFLAGS="-I$JAVA_HOME/include"
+export JNI_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/darwin"
+
+
+
+================================================
+FILE: docs/README_debian_package.md
+================================================
+This document provides information on building the debing package.
+
+
+
+
+References
+==========
+We found these guides helpful in assembling this document:
+
+* https://askubuntu.com/questions/1345/what-is-the-simplest-debian-packaging-guide
+* https://ubuntuforums.org/showthread.php?t=910717 (2006)
+* (https://www.debian.org/doc/manuals/maint-guide/)[Debian New Maintainer's Guide]
+* (https://www.debian.org/doc/manuals/debian-faq/pkg-basics.en.html)[Chatper 7. Basics of the Debian package management system]
+
+
+
+================================================
+FILE: docs/README_Java.md
+================================================
+Autopsy requres that SleuthKit be compiled with Java OpenJDK 17 support.
+
+
+    bash configure --enable-java
+
+
+## MacOS
+To install Java support on MacOS, use:
+
+
+     brew install openjdk@19
+     brew install ant
+
+Then:
+
+    # Set JAVA_HOME dynamically using Homebrew
+    export JAVA_HOME="$(brew --prefix openjdk)"
+
+    # Use JAVA_HOME consistently for PATH
+    export PATH="$JAVA_HOME/bin:$PATH"
+
+    # Use JAVA_HOME for include paths
+    export CPPFLAGS="-I$JAVA_HOME/include"
+    export JNI_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/darwin"
+
+## Ubuntu
+To install Java support on Ubuntu, use:
+
+   apt install -y openjdk-17-jdk-headless
+
+Verify installation with:
+
+   update-java-alternatives --list
+
+Then:
+
+   export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+   export CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
+   export JNI_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
+
+
+
+================================================
+FILE: rejistry++/README.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: rejistry++/msvcpp/Rejistry/Rejistry.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Rejistry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: rejistry++/src/RegistryParseException.h
+================================================
+[Empty file]
+
+
+================================================
+FILE: release/Makefile
+================================================
+.ONESHELL:
+build_deb:
+	export USER=ubuntu
+	export EMAIL=info@sleuthkit.org
+	cd ..
+	/bin/rm configure
+	echo First pass on bootstrap so we can distclean
+	bash bootstrap
+	./configure --enable-java
+	make distclean
+	rm -rf autom4te.cache config.log config.status 
+	echo Second pass on bootstrap so we can build
+	bash bootstrap
+	./configure --enable-java
+	make -j4
+	debuild -us -uc 
+
+
+
+
+================================================
+FILE: release/VS2015_cygwin.bat
+================================================
+@echo off
+REM Double click on this file to use it. 
+REM It will launch a Cygwin shell with the needed Visual Studio 2015 environment variables set
+REM Used to run the automated build / release scripts that are written in Perl/Python
+
+CALL "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+
+C:
+chdir C:\cygwin64\bin
+bash --login -i
+
+
+
+================================================
+FILE: release/VS2019_cygwin.bat
+================================================
+@echo off
+
+REM Launch a Cygwin shell with the needed Visual Studio 2019 environment variables set.
+REM Used to run the automated build / release scripts that are written in Perl/Python.
+
+CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+
+C:
+chdir C:\cygwin64\bin
+bash --login -i
+
+
+
+================================================
+FILE: samples/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: scripts/test_runner.sh
+================================================
+#!/bin/bash -e
+
+"$@"
+
+
+
+================================================
+FILE: scripts/wine_wrapper.sh
+================================================
+#!/bin/bash -ex
+
+if [ $1 = './tests/fiwalk_test.exe' ]; then
+    echo WINE testing of fiwalk_text.exe is currently disabled > /dev/stderr
+    exit 0;
+fi
+
+case $1 in
+*.exe)
+  #SLG removed -d yes. Not sure what it was doing
+  #wine $1 -d yes
+  wine $1
+  ;;
+*)
+  $1
+  ;;
+esac
+
+
+
+================================================
+FILE: test/catch_runner.cpp
+================================================
+/*
+ * The Sleuth Kit
+ *
+ *
+ * Copyright (c) 2010, 2025 Basis Technology Corp.  All Rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+
+#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_CONSOLE_WIDTH 80
+
+#include "catch.hpp"
+
+/* This program runs the catch2 test */
+
+
+
+================================================
+FILE: test/check_static.sh
+================================================
+#!/bin/bash -e
+
+# check that the objects on the command line have no dependencies (or, in
+# the case of Windows, no dependencies other than Windows system ones)
+
+RET=0
+
+while [[ $# -gt 0 ]]
+do
+  if [[ "$1" == *.dll || "$1" == *.exe ]]; then
+    LIBS=$(objdump -x $1 | grep -Po 'DLL Name: \K.*' | (grep -Piv '(ADVAPI32|api-ms-win-core-path-l1-1-0|GDI32|KERNEL32|msvcrt|MSWSOCK|ole32|PSAPI|RPCRT4|SHELL32|SHLWAPI|USER32|WS2_32)\.dll' || [ $? -eq 1 ]))
+  else
+    LIBS=$(objdump -x $1 | grep -Po 'NEEDED\s+\K.*')
+  fi
+  if [[ "$LIBS" ]]; then
+    LIBS=$(echo "$LIBS" | sed ':a;N;s/\n/, /;ba')
+    echo "$1 is not static: depends on $LIBS"
+    RET=1
+  fi
+  shift
+done
+
+exit $RET
+
+
+
+================================================
+FILE: test/coverage_local.sh
+================================================
+#!/bin/bash
+set -e
+
+GCOV=$(which gcov)
+
+# Determine script location
+script_home=$(cd "$(dirname "$0")" && pwd)
+cd "$script_home/.."
+
+# Clean old coverage data (optional)
+find . -name '*.gcda' -o -name '*.gcno' -delete
+
+# Bootstrap and build
+sh bootstrap
+./configure CFLAGS='-g -O0 -fprofile-arcs -ftest-coverage' CXXFLAGS='-g -O0 -fprofile-arcs -ftest-coverage' -q
+make -j V=0
+make check V=0
+
+# Set gcov tool (optional but safer)
+export GCOV=$(which gcov)
+
+# Run gcov (safely by directory)
+find . -name '*.gcno' -exec dirname {} \; | sort -u | while read dir; do
+  gcov -o "$dir" "$dir"/*.cpp "$dir"/*.c 2>/dev/null || true
+done
+
+# Generate lcov report
+lcov --gcov-tool "$GCOV" \
+     --capture \
+     --directory . \
+     --output-file coverage.info \
+     --ignore-errors gcov,missing,path,inconsistent,format
+genhtml coverage.info --output-directory coverage_html  --ignore-errors inconsistent,corrupt,category
+
+echo "Coverage report available in coverage_html/index.html"
+
+
+
+================================================
+FILE: test/test_static_tools.sh
+================================================
+#!/bin/bash -e
+
+./test/check_static.sh $(find tools -type f -perm -a+x | grep .libs)
+
+
+
+
+================================================
+FILE: test/data/README.md
+================================================
+Small and legacy disk images are located here to provide for minimal out-of-the-box testing.
+For comprehensive tests, please:
+
+    export SLEUTHKIT_TEST_DATA_DIR=<your test data dir location)
+    git clone https://github.com/sleuthkit/sleuthkit_test_data $SLEUTHKIT_TEST_DATA_DIR
+
+
+
+================================================
+FILE: test/data/a_file.0
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/data/bogus.E01
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/data/bogus.E02
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/data/a_file.1/dummy
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/data/image/README.md
+================================================
+This directory contains multiple disk images in different formats and a JSON dump of each disk image
+created by the `test/img_dump/img_dump.cpp` program.
+
+
+
+================================================
+FILE: test/fiwalk/README.md
+================================================
+Disk Images
+-----------
+Testing is done with the following disk images:
+
+
+All different images:
+```
+data/imageformat_mmls_1.E01 - 405k file
+data/imageformat_mmls_1.vhd - 18M VHD file
+data/imageformat_mmls_1.vmdk - 5.6M VMDK file
+data/image/image.dd  - 100k file
+data/image/image.E01 -
+data/image/image.iso - 358k file
+data/image/image.qcow - 36k
+data/image/image.vhd -  2M file
+data/image/image.vmdk - 128k
+
+data/image/image_dd.xml - DFXML output of running fiwalk on data/image/image.dd
+
+```
+Setup:
+
+`get_test_images.py` - Script that gets disk images from digitalcorpora and stores them in `from_brian` (which is the legacy location where disk images are stored.
+
+
+
+================================================
+FILE: test/img_dump/img_differ.sh
+================================================
+#!/bin/bash -e
+
+# img_differ program:
+# $1 = image to test
+#    - $DATA_DIR being replaced with ${srcdir}/test/data
+#    - $SLEUTHKIT_TEST_DATA_DIR being replaced with $SLEUTHKIT_TEST_DATA_DIR
+# $2 - expected output
+
+
+if [[ -z "$2" ]]; then
+    echo usage: img_differ.sh image image.json
+    exit 1
+fi
+
+if [ -n "$WINE" ]; then
+  EXEEXT=.exe
+fi
+
+# This program uses the img_dump executable which is assumped to be installed in:
+IMG_DUMP=test/img_dump/img_dump$EXEEXT
+
+if [ ! -e $IMG_DUMP ]; then
+    echo $IMG_DUMP not found
+    exit 1
+fi
+
+IMG="$1"
+IMG="${IMG/\$DATA_DIR/$srcdir/test/data}"
+IMG="${IMG/\$SLEUTHKIT_TEST_DATA_DIR/$SLEUTHKIT_TEST_DATA_DIR}"
+EXPECTED="$2"
+EXPECTED="${EXPECTED/\$DATA_DIR/$srcdir/test/data}"
+EXPECTED="${EXPECTED/\$SLEUTHKIT_TEST_DATA_DIR/$SLEUTHKIT_TEST_DATA_DIR}"
+
+if [ ! -e $IMG ]; then
+   echo $IMG does not exist
+   exit 77
+fi
+
+diff -b "$EXPECTED" <(TZ=America/New_York $WINE $IMG_DUMP "$IMG") \
+    && echo "SUCCESS: img_dump $IMG" || { echo "FAILED: img_dump $IMG" ; exit 1 ; }
+
+
+
+================================================
+FILE: test/img_dump/test_imgs.sh
+================================================
+#!/bin/bash -e
+
+ID=${srcdir}/test/img_dump/img_differ.sh
+
+$ID '$DATA_DIR/image/image.dd' '$DATA_DIR/image/image.dd.json'
+$ID '$DATA_DIR/image/fat_dst_test.dd' '$DATA_DIR/image/fat_dst_test.dd.json'
+
+
+
+================================================
+FILE: test/img_dump/test_imgs_E01.sh
+================================================
+#!/bin/bash -e
+
+ID=${srcdir}/test/img_dump/img_differ.sh
+
+$ID '$DATA_DIR/image/image.E01' '$DATA_DIR/image/image.E01.json'
+
+
+
+================================================
+FILE: test/legacy/tsk_thread.cpp
+================================================
+#include "tsk_thread.h"
+
+// mingw's pthread.h will try to read a config.h if HAVE_CONFIG_H
+#undef HAVE_CONFIG_H
+
+#include <pthread.h>
+#include <assert.h>
+
+TskThread::~TskThread()
+{
+    // empty
+}
+
+static void *x_thread_top(void *ta)
+{
+    TskThread *thread = (TskThread *)ta;
+    (*thread)();
+    return 0;
+}
+
+void TskThread::run(TskThread** threads, size_t nthreads)
+{
+    pthread_t* the_threads = new pthread_t[nthreads];
+    pthread_attr_t pat;
+    pthread_attr_init(&pat);
+    for(size_t p = 0; p < nthreads; p++) {
+        pthread_t tid;
+        int pt = pthread_create(&tid, 0, x_thread_top, threads[p]);
+        assert(0 == pt);
+        the_threads[p] = tid;
+    }
+    /* It's quite annoying, you can't wait for more than one in pthreads. */
+    for(size_t p = 0; p < nthreads; p++) {
+        void *thread_return;
+        int pt;
+        pt = pthread_join(the_threads[p], &thread_return);
+        assert(0 == pt);
+        assert(0 == thread_return);
+    }
+    pthread_attr_destroy(&pat);
+    delete[] the_threads;
+}
+
+
+
+================================================
+FILE: test/legacy/tsk_thread.h
+================================================
+#ifndef _TSK_THREAD_H
+#define _TSK_THREAD_H
+
+#include <stddef.h>
+
+// If we ever want to run on Windows too, this interface will do.
+// Just fill out a win32 version.
+class TskThread {
+public:
+    virtual ~TskThread();
+    virtual void operator()() = 0;
+    static void run(TskThread** threads, size_t nthreads);
+};
+
+#endif
+
+
+
+================================================
+FILE: test/tools/tsk_cli_runner.cpp
+================================================
+#include "test_utils.h"
+
+// Entry point
+int main() {
+    return run_all_tests();
+}
+
+
+
+================================================
+FILE: test/tools/tsk_tempfile.h
+================================================
+/* 
+* Author: Taha Ebrahim @Taha-Ebrahim
+* Header file for tsk_tempfile.
+*/
+#ifndef _TSK_TEMPFILE_H
+#define _TSK_TEMPFILE_H
+
+#include <stdio.h>
+#include <string>
+
+// Creates a temporary file for use in testing.
+FILE* tsk_make_tempfile();
+
+// Creates a named temporary file for use in testing, and stores the path in `out_path`.
+FILE* tsk_make_named_tempfile(std::string* out_path);
+
+#endif // _TSK_TEMPFILE_H
+
+
+================================================
+FILE: test/tools/autotools/test_loaddb.sh
+================================================
+#!/bin/bash -e
+
+if [ ! "${SLEUTHKIT_TEST_DATA_DIR+x}" ]; then
+    echo SLEUTHKIT_TEST_DATA_DIR is not set
+    exit 77                     # autoconf 'SKIP'
+fi
+if [ ! -d ${SLEUTHKIT_TEST_DATA_DIR} ]; then
+    echo  $SLEUTHKIT_TEST_DATA_DIR does not exist
+    exit 77
+fi
+
+if [ -n "$WINE" ]; then
+  EXEEXT=.exe
+fi
+
+doit () {
+    echo scan $1
+    /bin/rm -f testdb.db
+    $WINE "tools/autotools/tsk_loaddb$EXEEXT" -d testdb.db $1
+    echo scan $1 done
+}
+
+doit $SLEUTHKIT_TEST_DATA_DIR/from_brian/1-extend-part/ext-part-test-2.dd
+doit $SLEUTHKIT_TEST_DATA_DIR/apfs/apfs_pool.E01
+doit $SLEUTHKIT_TEST_DATA_DIR/fuzzing/lvm_test_issue_3235.E01
+
+
+
+================================================
+FILE: test/tools/fstools/test_fls.sh
+================================================
+#!/bin/bash -e
+
+if [ ! "${srcdir+x}" ]; then
+    echo srcdir is not set
+    exit 77                     # autoconf 'SKIP'
+fi
+
+IMAGE_DATA=${srcdir}/test/data/image_ext2.dd
+
+if [ ! -r $IMAGE_DATA ]; then
+    echo cannot read $IMAGE_DATA
+    exit 77
+fi
+
+TD=${srcdir}/test/tools/tool_differ.sh
+
+$TD 'tools/fstools/fls$EXEEXT'                          ${srcdir}/test/tools/fstools/fls_output/1
+$TD 'tools/fstools/fls$EXEEXT $DATA_DIR/image/image.dd' ${srcdir}/test/tools/fstools/fls_output/2
+
+
+
+================================================
+FILE: test/tools/fstools/test_ils.sh
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/tools/fstools/fls_output/2
+================================================
+d/d 11:	lost+found
+d/d 12:	a_directory
+r/r 15:	passwords.txt
+l/l 13:	a_link
+V/V 17:	$OrphanFiles
+
+
+
+================================================
+FILE: test/tools/fstools/ils_output/1
+================================================
+
+
+
+
+================================================
+FILE: test/tools/fstools/ils_output/2
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/tools/output/fls/fls_0.stdout
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_0.stderr
+================================================
+Missing image name
+usage: mmls [-i imgtype] [-b dev_sector_size] [-o imgoffset] [-BcrvVh] [-aAmM] [-t vstype] image [images]
+	-t vstype: The type of volume system (use '-t list' for list of supported types)
+	-i imgtype: The format of the image file (use '-i list' for list supported types)
+	-b dev_sector_size: The size (in bytes) of the device sectors
+	-o imgoffset: Offset to the start of the volume that contains the partition system (in sectors)
+	-B: print the rounded length in bytes
+	-r: recurse and look for other partition tables in partitions (DOS Only)
+	-c: print CSV output
+	-v: verbose output
+	-V: print the version
+	-h: help. print this message
+Unless any of these are specified, all volume types are shown
+	-a: Show allocated volumes
+	-A: Show unallocated volumes
+	-m: Show metadata volumes
+	-M: Hide metadata volumes
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_0.stdout
+================================================
+[Empty file]
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_1.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_10.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_11.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_12.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_13.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_14.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_2.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Size    Description
+000:  Meta      0000000000   0000000000   0000000001   0512B   Primary Table (#0)
+001:  -------   0000000000   0000000062   0000000063   0031K   Unallocated
+002:  000:000   0000000063   0000096389   0000096327   0047M   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   0047M   NTFS / exFAT (0x07)
+004:  -------   0000192780   0000192783   0000000004   0002K   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_3.stdout
+================================================
+ID,Slot,Start,End,Length,Description
+000,Meta,0000000000,0000000000,0000000001,Primary Table (#0)
+001,,0000000000,0000000062,0000000063,Unallocated
+002,000:000,0000000063,0000096389,0000096327,NTFS / exFAT (0x07)
+003,000:001,0000096390,0000192779,0000096390,NTFS / exFAT (0x07)
+004,,0000192780,0000192783,0000000004,Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_4.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_5.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_6.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_7.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_8.stdout
+================================================
+ID,Slot,Start,End,Length,Size,Description
+000,Meta,0000000000,0000000000,0000000001,0512B,Primary Table (#0)
+001,,0000000000,0000000062,0000000063,0031K,Unallocated
+002,000:000,0000000063,0000096389,0000096327,0047M,NTFS / exFAT (0x07)
+003,000:001,0000096390,0000192779,0000096390,0047M,NTFS / exFAT (0x07)
+004,,0000192780,0000192783,0000000004,0002K,Unallocated
+
+
+
+================================================
+FILE: test/tools/output/mmls/mmls_9.stdout
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+001:  -------   0000000000   0000000062   0000000063   Unallocated
+002:  000:000   0000000063   0000096389   0000096327   NTFS / exFAT (0x07)
+003:  000:001   0000096390   0000192779   0000096390   NTFS / exFAT (0x07)
+004:  -------   0000192780   0000192783   0000000004   Unallocated
+
+
+
+================================================
+FILE: test/tools/vstools/test_mmls.sh
+================================================
+#!/bin/bash -e
+
+if [ ! "${srcdir+x}" ]; then
+    echo srcdir is not set
+    exit 77                     # autoconf 'SKIP'
+fi
+
+TD=${srcdir}/test/tools/tool_differ.sh
+$TD 'tools/vstools/mmls$EXEEXT -h' ${srcdir}/test/tools/vstools/mmls_output/1
+$TD 'tools/vstools/mmls$EXEEXT $DATA_DIR/image-mbr.dd' ${srcdir}/test/tools/vstools/mmls_output/2
+
+
+
+================================================
+FILE: test/tools/vstools/test_mmls_E01.sh
+================================================
+#!/bin/bash -e
+
+if [ ! "${srcdir+x}" ]; then
+    echo srcdir is not set
+    exit 77                     # autoconf 'SKIP'
+fi
+
+TD=${srcdir}/test/tools/tool_differ.sh
+
+$TD 'tools/vstools/mmls$EXEEXT -r $DATA_DIR/image_exfat1.E01'       ${srcdir}/test/tools/vstools/mmls_output/10
+$TD 'tools/vstools/mmls$EXEEXT -c $DATA_DIR/image_exfat1.E01'       ${srcdir}/test/tools/vstools/mmls_output/11
+$TD 'tools/vstools/mmls$EXEEXT    $DATA_DIR/gpt_130_partitions.E01' ${srcdir}/test/tools/vstools/mmls_output/12
+
+
+
+================================================
+FILE: test/tools/vstools/mmls_output/1
+================================================
+usage: mmls [-i imgtype] [-b dev_sector_size] [-o imgoffset] [-BcrvVh] [-aAmM] [-t vstype] image [images]
+	-t vstype: The type of volume system (use '-t list' for list of supported types)
+	-i imgtype: The format of the image file (use '-i list' for list supported types)
+	-b dev_sector_size: The size (in bytes) of the device sectors
+	-o imgoffset: Offset to the start of the volume that contains the partition system (in sectors)
+	-B: print the rounded length in bytes
+	-r: recurse and look for other partition tables in partitions (DOS Only)
+	-c: print CSV output
+	-v: verbose output
+	-V: print the version
+	-h: help. print this message
+Unless any of these are specified, all volume types are shown
+	-a: Show allocated volumes
+	-A: Show unallocated volumes
+	-m: Show metadata volumes
+	-M: Hide metadata volumes
+
+
+
+================================================
+FILE: test/tools/vstools/mmls_output/10
+================================================
+GUID Partition Table (EFI)
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Safety Table
+001:  -------   0000000000   0000002047   0000002048   Unallocated
+002:  Meta      0000000001   0000000001   0000000001   GPT Header
+003:  Meta      0000000002   0000000033   0000000032   Partition Table
+004:  000       0000002048   0000194559   0000192512   Basic data partition
+005:  -------   0000194560   0000195352   0000000793   Unallocated
+
+
+
+================================================
+FILE: test/tools/vstools/mmls_output/11
+================================================
+ID,Slot,Start,End,Length,Description
+000,Meta,0000000000,0000000000,0000000001,Safety Table
+001,,0000000000,0000002047,0000002048,Unallocated
+002,Meta,0000000001,0000000001,0000000001,GPT Header
+003,Meta,0000000002,0000000033,0000000032,Partition Table
+004,000,0000002048,0000194559,0000192512,Basic data partition
+005,,0000194560,0000195352,0000000793,Unallocated
+
+
+
+================================================
+FILE: test/tools/vstools/mmls_output/2
+================================================
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+001:  -------   0000000000   0000000000   0000000001   Unallocated
+002:  000:000   0000000001   0000000187   0000000187   Win95 FAT32 (0x0b)
+
+
+
+================================================
+FILE: tools/util.cpp
+================================================
+#include "tools/util.h"
+#include "tsk/base/tsk_os.h"
+
+#include <cstdio>
+#include <cstdlib>
+
+std::pair<
+  std::unique_ptr<TSK_TCHAR*[], void(*)(TSK_TCHAR**)>,
+  int
+>
+#ifdef TSK_WIN32
+argv_to_tsk_tchar(int argc, char**) {
+  // On Windows, get the wide arguments (mingw doesn't support wmain)
+  std::unique_ptr<TSK_TCHAR*[], void(*)(TSK_TCHAR**)> args{
+    CommandLineToArgvW(GetCommandLineW(), &argc),
+    [](TSK_TCHAR** v) { LocalFree(v); }
+  };
+  
+  if (!args) {
+    std::fprintf(stderr, "Error getting wide arguments\n");
+    std::exit(1);
+  }
+
+  return { std::move(args), argc };
+#else
+argv_to_tsk_tchar(int argc, char** argv) {
+  // Pass argv, argc through when not on Windows
+  return {
+    std::unique_ptr<TSK_TCHAR*[], void(*)(TSK_TCHAR**)>{
+      argv,
+      [](TSK_TCHAR**){}
+    },
+    argc
+  };
+#endif
+}
+
+
+
+================================================
+FILE: tools/util.h
+================================================
+#ifndef _TOOLS_UTIL_H
+#define _TOOLS_UTIL_H
+
+#include <memory>
+#include <utility>
+
+#include "tsk/base/tsk_base_i.h"
+
+std::pair<
+  std::unique_ptr<TSK_TCHAR*[], void(*)(TSK_TCHAR**)>,
+  int
+>
+argv_to_tsk_tchar(int argc, char** argv);
+
+#endif
+
+
+
+================================================
+FILE: tools/autotools/tsk_comparedir.h
+================================================
+#ifndef _TSK_COMPAREDIR_H
+#define _TSK_COMPAREDIR_H
+
+#include <set>
+#include <stdlib.h>
+
+struct ltstr
+{
+  bool operator()(char* s1, char* s2) const
+  {
+    return strcmp(s1, s2) > 0;
+  }
+};
+
+class TskCompareDir : public TskAuto {
+public:
+    uint8_t compareDirs(TSK_INUM_T inum, const TSK_TCHAR * lcl_dir);
+    uint8_t openFs(TSK_OFF_T a_soffset, TSK_FS_TYPE_ENUM fstype, TSK_POOL_TYPE_ENUM pooltype, TSK_DADDR_T pvol_block);
+    virtual uint8_t handleError();
+
+private:
+    std::set<char*, ltstr> m_filesInImg;
+    bool m_missDirFile;
+    const TSK_TCHAR *m_lclDir;
+    TSK_FS_INFO * m_fs_info;
+
+    virtual TSK_RETVAL_ENUM processFile(TSK_FS_FILE * fs_file, const char *path);
+	virtual TSK_FILTER_ENUM filterVol(const TSK_VS_PART_INFO * vs_part);
+    uint8_t processLclDir(const TSK_TCHAR *dir);
+};
+
+#endif
+
+
+
+================================================
+FILE: tools/autotools/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tools/fiwalk/plugins/clamconfig.txt
+================================================
+#
+# Configuration file for fiwalk to run ClamAV on all executables
+#
+
+
+#*.jpeg	dgi	java -classpath ../plugins/plugins.jar jpeg_extract
+#*.jpeg	jvm	../plugins/jpeg_extract.jar jpeg_extract
+#*.swf	dgi	./ficlam.sh
+#*.js	dgi	./ficlam.sh
+#*.php	dgi	./ficlam.sh
+
+## Can put any number of wildcards here to capture as many or as little formats as desired.  *.* captures all.
+*.*	dgi	./ficlam.sh
+#*.exe	dgi	./ficlam.sh
+#*.dll	dgi	./ficlam.sh
+#*.pdf	dgi	./ficlam.sh
+#*.html	dgi	./ficlam.sh
+
+
+
+================================================
+FILE: tools/fiwalk/plugins/ficonfig.txt
+================================================
+#
+# Configuration file for fiwalk
+#
+
+
+#*.jpeg	dgi	java -classpath ../plugins/plugins.jar jpeg_extract
+#*.jpeg	jvm	../plugins/jpeg_extract.jar jpeg_extract
+
+*.jpeg	dgi	../plugins/jpeg_extract
+*.jpg	dgi	../plugins/jpeg_extract
+*.pdf	dgi	java -classpath ../plugins/plugins.jar Libextract_plugin
+*.gif	dgi	java -classpath ../plugins/plugins.jar Libextract_plugin
+*.mp3	dgi	java -classpath ../plugins/plugins.jar Libextract_plugin
+*.doc	dgi	java -classpath ../plugins/plugins.jar word_extract
+*.xls	dgi	java -classpath ../plugins/plugins.jar word_extract
+*.ppt	dgi	java -classpath ../plugins/plugins.jar word_extract
+*.docx	dgi	python ../plugins/docx_extractor.py
+*.xlsx	dgi	python ../plugins/docx_extractor.py
+*.pptx	dgi	python ../plugins/docx_extractor.py
+*.odt	dgi	python ../plugins/odf_extractor.py
+*.ods	dgi	python ../plugins/odf_extractor.py
+*.odp	dgi	python ../plugins/odf_extractor.py
+
+
+
+================================================
+FILE: tools/fiwalk/src/base64.h
+================================================
+/*
+ * Base64 conversion.
+ *
+ * From RFC1521 and draft-ietf-dnssec-secext-03.txt.
+ *
+ * Implementation (C) 1996-1999 by Internet Software Consortium.
+ */
+
+
+
+#ifndef BASE64_H
+#define BASE64_H
+
+#include <sys/types.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+#ifdef NEVER_DEFINED
+}
+#endif
+/* Convert from printable base64 to binary.
+ * Returns number of bytes converted
+ */
+int b64_pton_slg(const char *str,int srclen,unsigned char *target,size_t targsize);
+
+/* Convert from binary to printable base 64.
+ * returns size of printable thing.
+ */
+int b64_ntop(const unsigned char *str,size_t srclength,char *target,size_t targsize);
+
+#ifdef NEVER_DEFINED
+{
+#endif
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+
+
+================================================
+FILE: tools/fiwalk/src/config-simple.txt
+================================================
+*	dgi	./word-count-plugin.sh
+
+
+
+================================================
+FILE: tools/fiwalk/src/ficonfig.txt
+================================================
+#
+# Configuration file for fiwalk
+#
+
+
+#*.jpeg	dgi	java -classpath ../plugins/plugins.jar jpeg_extract
+#*.jpeg	jvm	../plugins/jpeg_extract.jar jpeg_extract
+
+*.jpeg	dgi	../plugins/jpeg_extract
+*.jpg	dgi	../plugins/jpeg_extract
+*.pdf	dgi	java -classpath ../plugins/plugins.jar Libextract_plugin
+*.gif	dgi	java -classpath ../plugins/plugins.jar Libextract_plugin
+*.mp3	dgi	java -classpath ../plugins/plugins.jar Libextract_plugin
+*.doc	dgi	java -classpath ../plugins/plugins.jar word_extract
+*.xls	dgi	java -classpath ../plugins/plugins.jar word_extract
+*.ppt	dgi	java -classpath ../plugins/plugins.jar word_extract
+*.docx	dgi	python ../plugins/docx_extractor.py
+*.xlsx	dgi	python ../plugins/docx_extractor.py
+*.pptx	dgi	python ../plugins/docx_extractor.py
+*.odt	dgi	python ../plugins/odf_extractor.py
+*.ods	dgi	python ../plugins/odf_extractor.py
+*.odp	dgi	python ../plugins/odf_extractor.py
+
+
+
+================================================
+FILE: tools/fiwalk/src/hexbuf.c
+================================================
+/**
+ * hexbuf()
+ * Turns a binary buffer into a hexdecimal string.
+ */
+
+#include "tsk/tsk_config.h"
+#include "hexbuf.h"
+#include <stdio.h>
+
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+const char *hexbuf(char *dst,int dst_len,const unsigned char *bin,int bytes,int flag)
+{
+    int charcount = 0;
+    const char *start = dst;		// remember where the start of the string is
+    const char *fmt = (flag & HEXBUF_UPPERCASE) ? "%02X" : "%02x";
+
+    *dst = 0;				// begin with null termination
+    while(bytes>0 && dst_len > 3){
+//	int add_spaces = 0;
+
+	snprintf(dst, 3, fmt,*bin); // convert the next byte
+	dst += 2;
+	bin += 1;
+	dst_len -= 2;
+	bytes--;
+	charcount++;			// how many characters
+
+//	if(flag & HEXBUF_SPACE2) add_spaces = 1;
+	if((flag & HEXBUF_SPACE4) && charcount%2==0){
+	    *dst++ = ' ';
+	    *dst   = '\000';
+	    dst_len -= 1;
+	}
+    }
+    return start;			// return the start
+}
+
+
+
+================================================
+FILE: tools/fiwalk/src/hexbuf.h
+================================================
+#ifndef HEXBUF_H
+#define HEXBUF_H
+
+#define HEXBUF_UPPERCASE 0x01
+#define HEXBUF_SPACE2    0x02
+#define HEXBUF_SPACE4    0x04
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    const char *hexbuf(char *dst,int dst_len,const unsigned char *bin,int bytes,int flag);
+
+#ifdef __cplusplus
+}
+#endif
+
+
+#endif
+
+
+
+================================================
+FILE: tools/fiwalk/src/plugin.h
+================================================
+#ifndef PLUGIN_H
+#define PLUGIN_H
+
+bool plugin_match(const std::string &fname);
+
+#endif
+
+
+
+================================================
+FILE: tools/fiwalk/src/run.sh
+================================================
+export AFFLIB_TRACEFILE=aftrace.txt
+time ./fiwalk -C 10 /day2/VMs/winxp.aff > aftrace.time
+gprof fiwalk gmon.out > aftrace.gmon.out
+
+
+
+
+
+================================================
+FILE: tools/fiwalk/src/test_fiwalk.sh
+================================================
+#!/bin/sh
+#
+# test program for fiwalk
+
+IMG=/corp/drives/nps/nps-2009-canon2/nps-2009-canon2-gen5.raw
+
+if [ ! -r $IMG ] ; then
+  echo ERROR: $IMG not on this system
+  echo Cannot perform this test.
+  exit 0
+fi
+
+/bin/rm -f gen5.xml
+ficonfig=../plugins/ficonfig.txt
+if [ ! -r $ficonfig ] ; then
+  ficonfig=$srcdir/../plugins/ficonfig.txt
+fi
+if ! ./fiwalk -c $ficonfig  -X gen5.xml $IMG ; then exit 1 ; fi
+if ! xmllint gen5.xml > /dev/null ; then 
+   echo *** BAD XML  in gen5.xml ***
+   exit 1 ; 
+fi
+if ! grep 6c9e27f9911f37488ef0d6e878c68f2a61100b2c gen5.xml >/dev/null ; then echo sha1 extract not working; exit 1 ; fi
+if ! grep 'One-chip color area sensor' gen5.xml >/dev/null ; then echo EXPAT plugin not working ; exit 1; fi
+/bin/rm -f gen5.xml
+
+
+
+
+================================================
+FILE: tools/fiwalk/src/ttd
+================================================
+* Make sure the plugin exists 
+* Make sure the plugin is executable
+* option for not doing file walking
+* use iconv_open() to make sure that the UTF8 is valid.
+
+
+Here is the current XML output:
+ * add a newline after the push
+ * if the value is empty, just have the /> notation
+
+<carver software="fiwalk" version="0.5.6" arch="Darwin"><library name="tsk" version="3.0.1"></library>
+
+
+Give me XML like this:
+<carver software="Photorec" version="6.9-WIP" arch="Linux">
+   <library name="ext2fs" version="1.39" />
+   <library name="ntfs" version="10:0:0" />
+   <library name="ewf" version="20070512" />
+   <library name="jpeg" />
+</carver>
+<user uid="0" />
+<image name="/dev/sda" size="128849018880" sectorsize="512">
+   <source partitiontype="intel" partition="1" start="32256" size="128848986624" />
+</image>
+
+
+Remove this:
+      <libmagic>ERROR: zlib: invalid stored block lengthsempty (gzip compressed data, reserved method, ASCII, has CRC, was &quot;ýNüVþF&amp;D^&amp;T`óRP&quot;)</libmagic>
+
+
+
+================================================
+FILE: tools/fiwalk/src/unicode_escape.h
+================================================
+#ifndef UNICODE_ESCAPE_H
+#define UNICODE_ESCAPE_H
+
+#include <string>
+
+std::string validateOrEscapeUTF8(std::string input);
+
+#endif
+
+
+
+================================================
+FILE: tools/fiwalk/src/word-count-plugin.sh
+================================================
+#!/bin/sh
+chmod +r $1
+echo "Words:" `wc -w $1 | awk '{print $1;}'`
+
+
+
+================================================
+FILE: tools/fstools/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tools/hashtools/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tools/imgtools/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tools/logicalimager/DriveUtil.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+#pragma once
+
+#include <string>
+
+#include "tsk/libtsk.h"
+
+/**
+* Defines the Drive Utilities
+*
+*/
+class DriveUtil {
+public:
+    static bool cwdIsFAT(std::wstring &cwd);
+    static int isDriveLocked(const std::string &driveLetter);
+    static bool hasBitLockerOrLDM(const std::string &systemDriveLetter);
+    static BOOL getPhysicalDrives(std::vector<std::wstring> &phyiscalDrives);
+
+private:
+    static bool driveIsFAT(wchar_t *drive);
+    static long wmi_init(const std::wstring& wmiNamespace, IWbemLocator **ppWbemLocator, IWbemServices **ppWbemServices);
+    static int wmi_close(IWbemLocator **ppWbemLocator, IWbemServices **ppWbemServices);
+    static int checkDriveForBitlocker(const std::string &driveLetter);
+    static int checkDriveForLDM(const std::string &driveLetter);
+};
+
+
+
+================================================
+FILE: tools/logicalimager/LogicalImagerDateRule.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file LogicalImagerDateRule.h
+* Contains the class definitions for the Logicial Imager File Date Rule.
+*/
+
+#pragma once
+
+#include <string>
+#include <set>
+
+#include "tsk/tsk_tools_i.h"
+#include "LogicalImagerRuleBase.h"
+
+/**
+* Implement the logical imager file date rule.
+*
+*/
+class LogicalImagerDateRule : public LogicalImagerRuleBase
+{
+public:
+    LogicalImagerDateRule(time_t min, time_t max, int minDays);
+    LogicalImagerDateRule(int minDays) { m_minDays = minDays; }
+    ~LogicalImagerDateRule();
+
+    bool matches(TSK_FS_FILE *fs_file, const char * /*path*/) const;
+
+private:
+    time_t LogicalImagerDateRule::getLatestTime(TSK_FS_META *meta) const;
+
+    time_t m_min;
+    time_t m_max;
+    int m_minDays;
+};
+
+
+
+================================================
+FILE: tools/logicalimager/LogicalImagerExtensionRule.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file LogicalImagerRuleBase.h
+* Contains the class definitions for the Logicial Imager Extension Rule.
+*/
+
+#pragma once
+
+#include <string>
+#include <set>
+
+#include "tsk/tsk_tools_i.h"
+#include "LogicalImagerRuleBase.h"
+
+/**
+* Implement the logical imager rule.
+*
+*/
+class LogicalImagerExtensionRule : public LogicalImagerRuleBase
+{
+public:
+    LogicalImagerExtensionRule(const std::set<std::string> &extensions);
+    ~LogicalImagerExtensionRule();
+
+    bool matches(TSK_FS_FILE *fs_file, const char * /*path*/) const;
+
+private:
+    std::set<std::string> m_extensions;
+};
+
+
+
+================================================
+FILE: tools/logicalimager/LogicalImagerFilenameRule.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file LogicalImagerFilenameRule.h
+* Contains the class definitions for the Logicial Imager Filename Rule.
+*/
+
+#pragma once
+
+#include <string>
+#include <set>
+
+#include "tsk/tsk_tools_i.h"
+#include "LogicalImagerRuleBase.h"
+
+/**
+* Implement the logical imager filename rule.
+*
+*/
+class LogicalImagerFilenameRule : public LogicalImagerRuleBase
+{
+public:
+    LogicalImagerFilenameRule(const std::set<std::string> &filenames);
+    ~LogicalImagerFilenameRule();
+
+    bool matches(TSK_FS_FILE *fs_file, const char * /*path*/) const;
+
+private:
+    std::set<std::string> m_filenames;
+};
+
+
+
+================================================
+FILE: tools/logicalimager/LogicalImagerPathRule.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file LogicalImagerPathRule.h
+* Contains the class definitions for the Logicial Imager Path Rule.
+*/
+
+#pragma once
+
+#include <string>
+#include <set>
+#include <regex>
+#include <list>
+
+#include "tsk/tsk_tools_i.h"
+#include "LogicalImagerRuleBase.h"
+
+/**
+* Implement the logical imager pathname rule.
+*
+*/
+class LogicalImagerPathRule : public LogicalImagerRuleBase
+{
+public:
+    LogicalImagerPathRule(const std::set<std::string> &extensions);
+    ~LogicalImagerPathRule();
+
+    bool matches(TSK_FS_FILE * /*fs_file*/, const char *path) const;
+
+    static const char *getUserFolder() { return "[USER_FOLDER]"; }
+
+private:
+    bool LogicalImagerPathRule::matchUserFolder(std::string path) const;
+
+    std::set<std::string> m_paths;
+    std::list<std::regex> m_userFolderRegexes;
+};
+
+
+
+================================================
+FILE: tools/logicalimager/LogicalImagerRuleBase.cpp
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+#include <stdexcept>
+
+#include "LogicalImagerRuleBase.h"
+
+LogicalImagerRuleBase::LogicalImagerRuleBase() {
+}
+
+LogicalImagerRuleBase::~LogicalImagerRuleBase() {
+}
+
+/**
+* Validate a path.
+* Path containing the backslash character is invalid.
+*
+* @param path parent path to a file
+* @throws std::logic_error if the path is invalid
+*/
+void LogicalImagerRuleBase::validatePath(const std::string &path) const {
+    if (path.find("\\") != std::string::npos) {
+        throw std::logic_error("ERROR: Path cannot have backslash: " + path);
+    }
+}
+
+
+
+================================================
+FILE: tools/logicalimager/LogicalImagerSizeRule.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file LogicalImagerSizeRule.h
+* Contains the class definitions for the Logicial Imager File Size Rule.
+*/
+
+#pragma once
+
+#include <string>
+#include <set>
+
+#include "tsk/tsk_tools_i.h"
+#include "LogicalImagerRuleBase.h"
+
+/**
+* Implement the logical imager file size rule.
+*
+*/
+class LogicalImagerSizeRule : public LogicalImagerRuleBase
+{
+public:
+    LogicalImagerSizeRule(TSK_OFF_T min, TSK_OFF_T max);
+    ~LogicalImagerSizeRule();
+
+    bool matches(TSK_FS_FILE *fs_file, const char * /*path*/) const;
+
+private:
+    TSK_OFF_T m_min;
+    TSK_OFF_T m_max;
+};
+
+
+
+================================================
+FILE: tools/logicalimager/MatchedRuleInfo.cpp
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file MatchedRuleInfo.cpp
+* Contains C++ code that implement the Matched Rule Info class.
+*/
+
+#include "MatchedRuleInfo.h"
+
+MatchedRuleInfo::MatchedRuleInfo(const std::string &ruleSetName, const std::string &name,
+    const std::string &description, bool shouldSave, bool shouldAlert) :
+    m_ruleSetName(ruleSetName),
+    m_name(name),
+    m_description(description),
+    m_shouldAlert(shouldAlert),
+    m_shouldSave(shouldSave)
+{
+}
+
+
+
+================================================
+FILE: tools/logicalimager/RegHiveType.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file RegHiveType.h
+* Contains the definitions for Registry Hive Type.
+*/
+
+#pragma once
+
+namespace RegHiveType {
+  enum Enum {
+    SYSTEM,
+    SAM,
+    SECURITY,
+    SOFTWARE,
+    NTUSER,
+    USRCLASS,
+    UNKNOWN
+  };
+
+  static char String[][100] = {
+    "SYSTEM",
+    "SAM",
+    "SECURITY",
+    "SOFTWARE",
+    "NTUSER",
+    "USRCLASS",
+    "UNKNOWN"
+  };
+}
+
+
+
+================================================
+FILE: tools/logicalimager/TskFindFiles.h
+================================================
+/*
+** tsk_logical_imager
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2010-2019 Brian Carrier.  All Rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+/**
+* \file TskFindFiles.h
+* Contains the class definitions for TSK find files.
+*/
+
+#pragma once
+
+#include <string>
+
+#include "LogicalImagerRuleSet.h"
+#include "LogicalImagerConfiguration.h"
+
+class TskFindFiles : public TskAuto {
+public:
+    TskFindFiles(const LogicalImagerConfiguration *config, const std::string &driveName);
+    ~TskFindFiles();
+    virtual TSK_FILTER_ENUM filterFs(TSK_FS_INFO * fs_info);
+    virtual TSK_RETVAL_ENUM processFile(TSK_FS_FILE *fs_file, const char *path);
+    virtual uint8_t handleError();
+
+private:
+    const LogicalImagerConfiguration *m_logicialImagerConfiguration;
+    size_t m_fileCounter;
+    int m_totalNumberOfFiles;
+    unsigned short m_percentComplete;
+    const std::string m_driveDisplayName;
+};
+
+
+================================================
+FILE: tools/logicalimager/logical_imager_configs/config-with-bad-syntax.json
+================================================
+{
+    "finalize-image-writer": false,
+    "rule-sets": [
+        {
+            "name": "rule-1",
+            "description": "a description",
+            "extensions": [ "txt", ]
+        },
+        {
+            "name": "rule-2",
+            "extensions": [ "jpg" ],
+        },
+        {
+            "name": "rule-2",
+            "folder-name": [
+                "foo",
+                "extensions: [ "jpg" ]
+        }
+    ]
+}
+
+
+
+================================================
+FILE: tools/logicalimager/logical_imager_configs/invalid-config.json
+================================================
+{
+  "finalize-image-writer": false,
+    "rule-sets": [
+        {
+            "name": "invalid-date-3",
+            "description": "bad date",
+            "date-range": {
+                "min": "today"
+            }
+        },
+        {
+            "name": "invalid-size",
+                "description": "invalid-size",
+                "size-range": {
+                    "min": -10,
+                    "max": -20
+                }
+            },
+        {
+            "name": "rule-with-extensions-and-file-names",
+                "description": "a description",
+                "extensions": [ "txt" ],
+                "file-names": [ "file.txt" ]
+            },
+        {
+            "name": "rule-with-no-description",
+            "extensions": [ "jpg" ]
+        },
+        {
+            "name": "rule-with-unsupported-rule-key",
+                "bad-rule-key": [ "foo" ],
+                "extensions": [ "jpg" ]
+        }
+    ]
+}
+
+
+
+================================================
+FILE: tools/pooltools/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tools/sorter/.perltidyrc
+================================================
+-i=4	# indent of 4
+-pt=2	# paren tightness
+-sbt=2	# square paren tightness
+-bt=2	# curly paren tightness
+-nsfs	# no space after semi in for loop
+
+
+
+================================================
+FILE: tools/srchtools/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tools/timeline/.perltidyrc
+================================================
+-i=4	# indent of 4
+-pt=2	# paren tightness
+-sbt=2	# square paren tightness
+-bt=2	# curly paren tightness
+-nsfs	# no space after semi in for loop
+
+
+
+================================================
+FILE: tools/vstools/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/libtsk.h
+================================================
+#ifndef _TSK_LIBTSK_H
+#define _TSK_LIBTSK_H
+/*
+ * The Sleuth Kit
+ *
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2007-2011 Brian Carrier.  All Rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+
+#include "tsk/base/tsk_base.h"
+#include "tsk/img/tsk_img.h"
+#include "tsk/vs/tsk_vs.h"
+#include "tsk/fs/tsk_fs.h"
+#include "tsk/hashdb/tsk_hashdb.h"
+#include "tsk/auto/tsk_auto.h"
+#include "tsk/pool/tsk_pool.h"
+
+#endif
+
+
+
+================================================
+FILE: tsk/tsk.pc.in
+================================================
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+includedir=@includedir@
+libdir=@libdir@
+
+Name: @PACKAGE_NAME@
+Description: An open source forensic toolkit
+URL: http://www.sleuthkit.org/sleuthkit
+Version: @PACKAGE_VERSION@
+
+Cflags: -I${includedir}
+Libs: -L${libdir} -ltsk
+Libs.private: @PACKAGE_LIBS_PRIVATE@
+Requires: @AX_PACKAGE_REQUIRES@
+Requires.private: @AX_PACKAGE_REQUIRES_PRIVATE@ 
+
+
+
+================================================
+FILE: tsk/tsk_tools_i.h
+================================================
+/*
+ * The Sleuth Kit
+ *
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2007-2011 Brian Carrier.  All Rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+
+#ifndef _TSK_TOOLS_I_H
+#define _TSK_TOOLS_I_H
+
+/* same as tsklib.h except that it includes the base_i.h file
+ * instead of base.h so that we can get the _config defines.
+ * This is to be used by the tools included with TSK (such as fls).
+ */
+#include "tsk/base/tsk_base_i.h"
+#include "tsk/img/tsk_img.h"
+#include "tsk/vs/tsk_vs.h"
+#include "tsk/fs/tsk_fs.h"
+#include "tsk/hashdb/tsk_hashdb.h"
+#include "tsk/auto/tsk_auto.h"
+#include "tsk/pool/tsk_pool.h"
+
+#endif
+
+
+
+================================================
+FILE: tsk/auto/tsk_auto_i.h
+================================================
+/*
+ ** The Sleuth Kit
+ **
+ ** Brian Carrier [carrier <at> sleuthkit [dot] org]
+ ** Copyright (c) 2010-2011 Brian Carrier.  All Rights reserved
+ **
+ ** This software is distributed under the Common Public License 1.0
+ **
+ */
+
+/*
+ * Contains the internal-only methods/etc that TSK code may need, but that
+ * does not get exported.  This includes the external files too.
+ */
+
+
+#ifndef _TSK_AUTO_I_H
+#define _TSK_AUTO_I_H
+
+#ifdef __cplusplus
+
+// Include the other internal TSK header files
+#include "tsk/base/tsk_base_i.h"
+#include "tsk/img/tsk_img_i.h"
+#include "tsk/vs/tsk_vs_i.h"
+#include "tsk/fs/tsk_fs_i.h"
+
+// Include the external file
+#include "tsk_auto.h"
+
+#endif
+
+#endif
+
+
+
+================================================
+FILE: tsk/auto/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/base/tsk_base_i.c
+================================================
+/*
+ * The Sleuth Kit
+ *
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2006-2011 Brian Carrier.  All Rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+
+#include "tsk_base_i.h"
+
+#ifndef HAVE_STRNLEN
+
+#include <string.h>
+
+size_t
+strnlen(const char* s, size_t maxlen) {
+  const char* const z = memchr(s, 0, maxlen);
+  return z ? (size_t) (z - s) : maxlen;
+}
+
+#endif
+
+
+
+================================================
+FILE: tsk/base/tsk_os_cpp.h
+================================================
+#ifndef _TSK_OS_CPP_H
+#define _TSK_OS_CPP_H
+
+#include "tsk_os.h"
+
+#include <string>
+
+#define TSK_TSTRING std::basic_string<TSK_TCHAR>
+
+#endif
+
+
+
+================================================
+FILE: tsk/base/tsk_version.c
+================================================
+/*
+ * The Sleuth Kit
+ *
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2007-2011 Brian Carrier.  All rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+
+/** \file  tsk_version.c
+ * Contains functions to print and obtain the library version.
+ */
+
+#include "tsk_base_i.h"
+
+/**
+ * \ingroup baselib
+ * Print the library name and version to a handle (such as "The Sleuth Kit ver 1.00").
+ * @param hFile Handle to print to
+ */
+void
+tsk_version_print(FILE * hFile)
+{
+    tsk_fprintf(hFile, "The Sleuth Kit ver %s\n", TSK_VERSION_STR);
+    return;
+}
+
+/**
+ * \ingroup baselib
+ * Return the library version as a string.
+ * @returns String version of version (1.00 for example)
+ */
+const char *
+tsk_version_get_str()
+{
+    return TSK_VERSION_STR;
+}
+
+
+
+================================================
+FILE: tsk/base/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/docs/footer.html
+================================================
+<hr/>
+<p><i>Copyright &#169; 2007-2020 Brian Carrier.  (carrier -at- sleuthkit -dot- org)<br/> 
+This work is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.
+</i></p>
+</body>
+</html>
+
+
+
+================================================
+FILE: tsk/docs/pool.dox
+================================================
+/*! \page poolpage Pools
+
+This section is not complete.
+
+Pools can organize non-consecutive blocks into volumes. They were added to TSK as part of the APFS support. 
+
+Pools can exist:
+- At the beginning of a disk image
+- Inside of a single volume.
+- FUTURE: Accross several volumes
+
+A when a pool is detected, it will return several pool volumes.
+
+
+Back to \ref users_guide "Table of Contents"
+*/
+
+
+
+
+================================================
+FILE: tsk/fs/btrfs_csum.cpp
+================================================
+/*
+** The Sleuth Kit
+**
+** Brian Carrier [carrier <at> sleuthkit [dot] org]
+** Copyright (c) 2003-2011 Brian Carrier.  All rights reserved
+**
+** TASK
+** Copyright (c) 2015 Stefan Pöschel.  All rights reserved
+**
+** This software is distributed under the Common Public License 1.0
+*/
+
+/*
+ * Contains the checksum part for Btrfs file system support.
+ */
+
+#include "tsk/base/crc.h"
+
+/**
+ * Returns the CRC32C checksum of a specific amount of data.
+ * @param a_data pointer to data
+ * @param a_len data len
+ * @return calculated checksum
+ */
+extern "C" unsigned long
+btrfs_csum_crc32c(const unsigned char *a_data, const int a_len)
+{
+    cm_t cm;
+    cm.cm_width = 32;
+    cm.cm_poly = 0x1EDC6F41;
+    cm.cm_init = 0xFFFFFFFF;
+    cm.cm_refin = true;
+    cm.cm_refot = true;
+    cm.cm_xorot = 0xFFFFFFFF;
+
+    cm_ini(&cm);
+    cm_blk(&cm, (unsigned char *) a_data, a_len);
+    return cm_crc(&cm);
+}
+
+
+
+================================================
+FILE: tsk/fs/encryptionHelper.h
+================================================
+#ifndef _TSK_ENCRYPTION_H
+#define _TSK_ENCRYPTION_H
+
+#include "tsk/img/tsk_img_i.h"
+#include "tsk_fs_i.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+	int handleVolumeEncryption(TSK_FS_INFO* a_fs_info, const char* a_pass);
+	void tsk_fs_get_encryption_description(TSK_FS_INFO* a_fs_info, char* a_desc, size_t a_descLen);
+
+#ifdef HAVE_LIBMBEDTLS
+	ssize_t read_and_decrypt_bitlocker_blocks(TSK_FS_INFO* a_fs_info, TSK_DADDR_T start, size_t len, void* data);
+#endif
+
+	void freeEncryptionData(TSK_FS_INFO* a_fs_info);
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+
+================================================
+FILE: tsk/fs/hfs_journal.cpp
+================================================
+/*
+ * The Sleuth Kit
+ *
+ *  This software is distributed under the Common Public License 1.0
+ */
+
+/**
+ * \file hfs_journal.c
+ * Contains the internal TSK HFS+ journal code -- not included in code by default.
+ */
+#include "tsk_fs_i.h"
+#include "tsk_hfs.h"
+
+uint8_t
+hfs_jopen(
+  [[maybe_unused]] TSK_FS_INFO * fs,
+  [[maybe_unused]] TSK_INUM_T inum)
+{
+    tsk_fprintf(stderr, "jopen not implemented for HFS yet");
+
+    return 0;
+}
+
+uint8_t
+hfs_jentry_walk(
+  [[maybe_unused]] TSK_FS_INFO * fs,
+  [[maybe_unused]] int flags,
+  [[maybe_unused]] TSK_FS_JENTRY_WALK_CB action,
+  [[maybe_unused]] void *ptr)
+{
+    tsk_fprintf(stderr, "jentry_walk not implemented for HFS yet");
+
+    return 0;
+}
+
+uint8_t
+hfs_jblk_walk(
+  [[maybe_unused]] TSK_FS_INFO * fs,
+  [[maybe_unused]] TSK_DADDR_T start,
+  [[maybe_unused]] TSK_DADDR_T end,
+  [[maybe_unused]] int flags,
+  [[maybe_unused]] TSK_FS_JBLK_WALK_CB action,
+  [[maybe_unused]] void *ptr)
+{
+
+    tsk_fprintf(stderr, "jblk_walk not implemented for HFS yet");
+
+    return 0;
+}
+
+
+
+================================================
+FILE: tsk/fs/lzvn.h
+================================================
+#ifndef LZVN_H
+#define LZVN_H
+
+#include <stddef.h>
+#include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+size_t lzvn_decode_buffer(void* dst,
+                          size_t dst_size,
+                          const void* src,
+                          size_t src_size);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
+
+#endif /* LZVN_H */
+
+
+
+================================================
+FILE: tsk/fs/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/hashdb/tsk_hash_info.h
+================================================
+/*
+* The Sleuth Kit
+*
+* Brian Carrier [carrier <at> sleuthkit [dot] org]
+* Copyright (c) 2003-2013 Brian Carrier.  All rights reserved
+*/
+
+/**
+* \file tsk_hash_info.h
+*/
+
+/**
+* \defgroup hashdblib C Hash Database Functions
+* \defgroup hashdblib_cpp C++ Hash Database Classes
+*/
+
+
+#ifndef _TSK_SQLITE_INDEX_H
+#define _TSK_SQLITE_INDEX_H
+
+#include <string>
+#include <vector>
+
+struct TskHashInfo
+{
+    int64_t id;
+    std::string hashMd5;
+    std::string hashSha1;
+    std::string hashSha2_256;
+    std::vector<std::string> fileNames;
+    std::vector<std::string> comments;
+};
+
+#endif
+
+
+
+================================================
+FILE: tsk/hashdb/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nut
+
+
+
+================================================
+FILE: tsk/img/aff4.h
+================================================
+/*
+ * The Sleuth Kit - Add on for AFF4 image support
+ *
+ * This software is distributed under the Common Public License 1.0
+ *
+ * Based on EWF image support of the Sleuth Kit from
+ * Brian Carrier.
+ */
+
+/*
+ * Header files for AFF4-specific data structures and functions.
+ */
+
+#ifndef _TSK_IMG_AFF4_H
+#define _TSK_IMG_AFF4_H
+
+#if HAVE_CONFIG_H
+#include "tsk/tsk_config.h"
+#endif
+
+#if HAVE_LIBAFF4
+
+#include "tsk_img_i.h"
+
+#include <string>
+
+struct AFF4_Handle;
+struct AFF4_Message;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct {
+  IMG_INFO img_info;
+  AFF4_Handle* handle;
+  tsk_lock_t read_lock;   ///< Lock for the handle
+} IMG_AFF4_INFO;
+
+TSK_IMG_INFO *aff4_open(int, const TSK_TCHAR * const images[], unsigned int a_ssize);
+
+#ifdef __cplusplus
+}
+#endif
+
+std::string get_messages(const AFF4_Message* msg);
+
+#endif
+#endif
+
+
+
+================================================
+FILE: tsk/img/img_open.h
+================================================
+#ifndef _TSK_IMG_IMG_OPEN_H
+#define _TSK_IMG_IMG_OPEN_H
+
+#include "tsk_img_i.h"
+
+#include <memory>
+#include <string>
+
+bool sector_size_ok(unsigned int sector_size);
+
+template <class T>
+bool images_ok(int num_img, const T* const images[]) {
+    if (num_img < 0) {
+        tsk_error_set_errno(TSK_ERR_IMG_ARG);
+        tsk_error_set_errstr("number of images is negative (%d)", num_img);
+        return false;
+    }
+
+    if (num_img == 0 || !images || !images[0]) {
+        tsk_error_set_errno(TSK_ERR_IMG_NOFILE);
+        tsk_error_set_errstr("tsk_img_open");
+        return false;
+    }
+
+    return true;
+}
+
+void img_info_deleter(TSK_IMG_INFO* img_info);
+
+std::unique_ptr<TSK_IMG_INFO, decltype(&img_info_deleter)>
+img_open_by_type(
+    int num_img,
+    const TSK_TCHAR* const images[],
+    TSK_IMG_TYPE_ENUM type,
+    unsigned int a_ssize
+);
+
+const char* type_name(TSK_IMG_TYPE_ENUM t);
+
+#endif
+
+
+
+================================================
+FILE: tsk/img/img_types_i.h
+================================================
+#ifndef IMG_TYPES_H
+#define IMG_TYPES_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdint.h>
+#include <stdio.h>
+#include "tsk/base/tsk_base.h"  // This provides TSK_TCHAR and tsk_fprintf etc.
+#include "tsk/img/tsk_img.h"    // This provides TSK_IMG_TYPE_ENUM
+
+// Parse a UTF-8 string to an image type ID
+TSK_IMG_TYPE_ENUM tsk_img_type_toid_utf8(const char *str);
+
+// Parse a TSK_TCHAR string (platform-dependent char type) to an image type ID
+TSK_IMG_TYPE_ENUM tsk_img_type_toid(const TSK_TCHAR *str);
+
+// Print the list of supported image formats to a file handle
+void tsk_img_type_print(FILE *hFile);
+
+// Get the name of an image format type given its ID
+const char *tsk_img_type_toname(TSK_IMG_TYPE_ENUM type);
+
+// Get the description of an image format type given its ID
+const char *tsk_img_type_todesc(TSK_IMG_TYPE_ENUM type);
+
+// Return a bitmask of supported image types
+TSK_IMG_TYPE_ENUM tsk_img_type_supported(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // IMG_TYPES_H
+
+
+================================================
+FILE: tsk/img/legacy_cache.cpp
+================================================
+#include "legacy_cache.h"
+
+#include <cstring>
+
+LegacyCache::LegacyCache():
+  cache{},
+  cache_off{},
+  cache_age{},
+  cache_len{}
+{
+  tsk_init_lock(&cache_lock);
+}
+
+LegacyCache::~LegacyCache() {
+  tsk_deinit_lock(&cache_lock);
+}
+
+void LegacyCache::lock() {
+  tsk_take_lock(&cache_lock);
+}
+
+void LegacyCache::unlock() {
+  tsk_release_lock(&cache_lock);
+}
+
+void LegacyCache::clear() {
+  // Setting the lengths to zero should invalidate the cache.
+  std::memset(cache_len, 0, sizeof(cache_len));
+}
+
+
+
+================================================
+FILE: tsk/img/legacy_cache.h
+================================================
+#ifndef _LEGACY_CACHE_H
+#define _LEGACY_CACHE_H
+
+#include "tsk/base/tsk_base_i.h"
+
+#define TSK_IMG_INFO_CACHE_NUM  32
+#define TSK_IMG_INFO_CACHE_LEN  65536
+
+struct LegacyCache {
+  tsk_lock_t cache_lock;  ///< Lock for cache and associated values
+  char cache[TSK_IMG_INFO_CACHE_NUM][TSK_IMG_INFO_CACHE_LEN];     ///< read cache (r/w shared - lock)
+  TSK_OFF_T cache_off[TSK_IMG_INFO_CACHE_NUM];    ///< starting byte offset of corresponding cache entry (r/w shared - lock)
+  int cache_age[TSK_IMG_INFO_CACHE_NUM];  ///< "Age" of corresponding cache entry, higher means more recently used (r/w shared - lock)
+  size_t cache_len[TSK_IMG_INFO_CACHE_NUM];       ///< Length of cache entry used (0 if never used) (r/w shared - lock)
+
+  LegacyCache();
+
+  ~LegacyCache();
+
+  void lock();
+
+  void unlock();
+
+  void clear();
+};
+
+#endif
+
+
+
+================================================
+FILE: tsk/img/mult_files.h
+================================================
+#ifndef MULT_FILES_H
+#define MULT_FILES_H
+
+#include "tsk_img_i.h"
+#include "tsk/base/tsk_os_cpp.h"
+
+#include <functional>
+#include <sstream>
+
+#define TSK_TOSTRINGSTREAM std::basic_ostringstream<TSK_TCHAR>
+
+std::function<TSK_TSTRING(size_t, TSK_TOSTRINGSTREAM&)> getSegmentPattern(const TSK_TCHAR* first);
+
+#endif
+
+
+
+================================================
+FILE: tsk/img/pool.hpp
+================================================
+/*
+* The Sleuth Kit
+*
+* Brian Carrier [carrier <at> sleuthkit [dot] org]
+* Copyright (c) 2019 Brian Carrier.  All rights reserved
+*
+* This software is distributed under the Common Public License 1.0
+*/
+
+/*
+* Contains the pool image structure.
+*/
+
+#ifndef _POOL_H
+#define _POOL_H
+
+#include "tsk/pool/tsk_pool.h"
+#include "tsk_img_i.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    typedef struct {
+        IMG_INFO img_info;
+
+        const TSK_POOL_INFO *pool_info;
+        TSK_DADDR_T pvol_block;
+
+        void *impl;
+
+    } IMG_POOL_INFO;
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+
+
+
+================================================
+FILE: tsk/img/qcow.h
+================================================
+/*
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2006-2016 Brian Carrier, Basis Technology.  All rights reserved
+ * Copyright (c) 2005 Brian Carrier.  All rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ *
+ */
+
+/*
+ * Header files for QCOW-specific data structures and functions.
+ */
+
+#ifndef _TSK_IMG_QCOW_H
+#define _TSK_IMG_QCOW_H
+
+#if HAVE_LIBQCOW
+
+#if defined( TSK_WIN32 )
+#define LIBQCOW_HAVE_WIDE_CHARACTER_TYPE 1
+#endif
+
+#include <libqcow.h>
+
+#include "tsk_img_i.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    extern TSK_IMG_INFO *qcow_open(int, const TSK_TCHAR * const images[],
+        unsigned int a_ssize);
+
+    typedef struct {
+        IMG_INFO img_info;
+        libqcow_file_t *handle;
+        tsk_lock_t read_lock;   // Lock for reads since according to documentation libqcow is not fully thread safe yet
+    } IMG_QCOW_INFO;
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+#endif // _TSK_IMG_QCOW_H
+
+
+
+================================================
+FILE: tsk/img/unsupported_types.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Copyright (c) 2021 Basis Technology Corp.  All rights reserved
+** Contact: Brian Carrier [carrier <at> sleuthkit [dot] org]
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+#ifndef _UNSUPPORTED_TYPES_H_
+#define _UNSUPPORTED_TYPES_H_
+
+#include "tsk/base/tsk_base.h"
+#include "tsk/img/tsk_img.h"
+#include "tsk/base/tsk_base_i.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+extern char* detectUnsupportedImageType(TSK_IMG_INFO * img_info);
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+
+================================================
+FILE: tsk/img/vhd.h
+================================================
+/*
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2006-2016 Brian Carrier, Basis Technology.  All rights reserved
+ * Copyright (c) 2005 Brian Carrier.  All rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ *
+ */
+
+/*
+ * Header files for VHD-specific data structures and functions.
+ */
+
+#ifndef _TSK_IMG_VHDI_H
+#define _TSK_IMG_VHDI_H
+
+#if HAVE_LIBVHDI
+
+#if defined( TSK_WIN32 )
+#define LIBVHDI_HAVE_WIDE_CHARACTER_TYPE 1
+#endif
+
+#include <libvhdi.h>
+
+#include "tsk_img_i.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    extern TSK_IMG_INFO *vhdi_open(int, const TSK_TCHAR * const images[],
+        unsigned int a_ssize);
+
+    typedef struct {
+        IMG_INFO img_info;
+        libvhdi_file_t *handle;
+        tsk_lock_t read_lock;   // Lock for reads since according to documentation libvhdi is not fully thread safe yet
+    } IMG_VHDI_INFO;
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+#endif // _TSK_IMG_VHDI_H
+
+
+
+================================================
+FILE: tsk/img/vmdk.h
+================================================
+/*
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2006-2016 Brian Carrier, Basis Technology.  All rights reserved
+ * Copyright (c) 2005 Brian Carrier.  All rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ *
+ */
+
+/*
+ * Header files for VMDK-specific data structures and functions.
+ */
+
+#ifndef _TSK_IMG_VMDK_H
+#define _TSK_IMG_VMDK_H
+
+#if HAVE_LIBVMDK
+
+#if defined( TSK_WIN32 )
+#define LIBVMDK_HAVE_WIDE_CHARACTER_TYPE 1
+#endif
+
+#include <libvmdk.h>
+
+#include "tsk_img_i.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    extern TSK_IMG_INFO *vmdk_open(int, const TSK_TCHAR * const images[],
+        unsigned int a_ssize);
+
+    typedef struct {
+        IMG_INFO img_info;
+        libvmdk_handle_t *handle;
+        tsk_lock_t read_lock;   // Lock for reads since according to documentation libvmdk is not fully thread safe yet
+    } IMG_VMDK_INFO;
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+#endif
+
+
+
+================================================
+FILE: tsk/img/.indent.pro
+================================================
+-kr  -psl -nce  -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/pool/apfs_pool_compat.hpp
+================================================
+/*
+ * The Sleuth Kit
+ *
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2019-2020 Brian Carrier.  All Rights reserved
+ * Copyright (c) 2018-2019 BlackBag Technologies.  All Rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+/** \@file C -> C++ compatability layer */
+#pragma once
+
+#include "pool_compat.hpp"
+#include "tsk_apfs.hpp"
+
+class APFSPoolCompat : public TSKPoolCompat<APFSPool> {
+  void init_volumes();
+
+ public:
+  template <typename... Args>
+  APFSPoolCompat(Args&&... args)
+      : TSKPoolCompat<APFSPool>(TSK_POOL_TYPE_APFS, std::forward<Args>(args)...) {
+    init_volumes();
+  }
+
+  ~APFSPoolCompat();
+
+  uint8_t poolstat(FILE* hFile) const noexcept;
+  TSK_IMG_INFO * getImageInfo(const TSK_POOL_INFO *pool_info, TSK_DADDR_T pvol_block) noexcept;
+};
+
+
+
+================================================
+FILE: tsk/pool/lvm_pool_compat.hpp
+================================================
+/*
+ * The Sleuth Kit - Add on for Linux LVM support
+ *
+ * Copyright (c) 2022 Joachim Metz <joachim.metz@gmail.com>
+ *
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+
+#pragma once
+
+#include "tsk/base/tsk_base_i.h"
+
+#if HAVE_LIBVSLVM
+
+#include "pool_compat.hpp"
+#include "tsk_lvm.hpp"
+
+class LVMPoolCompat : public TSKPoolCompat<LVMPool> {
+  void init_volumes();
+
+ public:
+  template <typename... Args>
+  LVMPoolCompat(Args&&... args)
+      : TSKPoolCompat<LVMPool>(TSK_POOL_TYPE_LVM, std::forward<Args>(args)...) {
+    init_volumes();
+  }
+
+  ~LVMPoolCompat();
+
+  uint8_t poolstat(FILE* hFile) const noexcept;
+  TSK_IMG_INFO * getImageInfo(const TSK_POOL_INFO *pool_info, TSK_DADDR_T pvol_block) noexcept;
+};
+
+#endif /* HAVE_LIBVSLVM */
+
+
+
+
+================================================
+FILE: tsk/pool/tsk_apfs.h
+================================================
+/*
+ * The Sleuth Kit
+ *
+ * Brian Carrier [carrier <at> sleuthkit [dot] org]
+ * Copyright (c) 2018-2019 BlackBag Technologies.  All Rights reserved
+ *
+ * This software is distributed under the Common Public License 1.0
+ */
+#pragma once
+
+#include "tsk_pool.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplus
+
+#define APFS_POOL_NX_BLOCK_LAST_KNOWN_GOOD 0ULL
+#define APFS_POOL_NX_BLOCK_LATEST 0xFFFFFFFFFFFFFFFFULL
+
+typedef uint64_t apfs_block_num;
+
+#ifdef __cplusplus
+}  // extern "C"
+#endif  // __cplusplus
+
+
+
+================================================
+FILE: tsk/pool/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/sorter/images.sort
+================================================
+#
+# images.sort
+# Save Images only
+# config file for Sleuth Kit sorter
+#
+# Category
+# If the keyword is found in the 'file' output, then the data is saved
+# to either the summary file or even copied if the appropriate flags are
+# given
+#
+# category	cat_name	keywords
+#
+#
+# Extension
+# If the keywords are found in the 'file' output, and the file extension
+# is different than then the one on the file, an alert is generated 
+# 'somewhere'
+# ext		ext1,ext2,ext3	keywords
+
+# Images
+category	images		image data
+ext			jpg,jpeg,jpe 	JPEG image data	
+ext			gif			GIF image data
+ext			tif			TIFF image data
+ext			png			PNG image data
+
+category	images		bitmap data
+ext			bmp			PC bitmap data
+
+
+
+
+================================================
+FILE: tsk/util/detect_encryption.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Copyright (c) 2021 Basis Technology Corp.  All rights reserved
+** Contact: Brian Carrier [carrier <at> sleuthkit [dot] org]
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+#ifndef _DETECT_ENCRYPTION_H_
+#define _DETECT_ENCRYPTION_H_
+
+#include "tsk/base/tsk_base.h"
+#include "tsk/img/tsk_img.h"
+#include "tsk/base/tsk_base_i.h"
+#include <math.h>
+
+// Enum for the type of encryption detected
+typedef enum {
+    ENCRYPTION_DETECTED_NONE = 0,
+    ENCRYPTION_DETECTED_SIGNATURE = 1,
+    ENCRYPTION_DETECTED_ENTROPY = 2
+} encryption_detected_type;
+
+// Struct for storing the result of the encryption detection
+typedef struct encryption_detected_result {
+    encryption_detected_type encryptionType;
+    char desc[TSK_ERROR_STRING_MAX_LENGTH];
+} encryption_detected_result;
+
+encryption_detected_result* detectVolumeEncryption(TSK_IMG_INFO * img_info, TSK_DADDR_T offset);
+
+encryption_detected_result* detectDiskEncryption(TSK_IMG_INFO * img_info, TSK_DADDR_T offset);
+
+#endif
+
+
+================================================
+FILE: tsk/util/file_system_utils.h
+================================================
+/*
+** The Sleuth Kit
+**
+** Copyright (c) 2022 Basis Technology Corp.  All rights reserved
+** Contact: Brian Carrier [carrier <at> sleuthkit [dot] org]
+**
+** This software is distributed under the Common Public License 1.0
+**
+*/
+
+#ifndef _FILE_SYSTEM_UTILS_H_
+#define _FILE_SYSTEM_UTILS_H_
+
+#ifdef TSK_WIN32
+extern int is_windows_device_path(const TSK_TCHAR * image_name);
+#endif
+
+extern TSK_OFF_T get_size_of_file_on_disk(const TSK_TCHAR * a_file, uint8_t a_is_winobj);
+
+#endif
+
+
+================================================
+FILE: tsk/util/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/util/Bitlocker/BitlockerUtils.h
+================================================
+/*
+ ** The Sleuth Kit
+ **
+ ** Brian Carrier [carrier <at> sleuthkit [dot] org]
+ ** Copyright (c) 2024 Sleuth Kit Labs, LLC. All Rights reserved
+ ** Copyright (c) 2010-2021 Brian Carrier.  All Rights reserved
+ **
+ ** This software is distributed under the Common Public License 1.0
+ */
+
+#pragma once
+
+#ifdef HAVE_LIBMBEDTLS
+
+#include <string>
+
+using namespace std;
+
+void writeError(string errMes);
+void writeWarning(string errMes);
+void writeDebug(string msg);
+
+string convertUint64ToString(uint64_t val);
+string convertUint32ToString(uint32_t val);
+string convertByteArrayToString(uint8_t* bytes, size_t len);
+string convertGuidToString(uint8_t* bytes);
+
+#endif
+
+
+
+================================================
+FILE: tsk/util/Bitlocker/MetadataValueKey.h
+================================================
+/*
+ ** The Sleuth Kit
+ **
+ ** Brian Carrier [carrier <at> sleuthkit [dot] org]
+ ** Copyright (c) 2024 Sleuth Kit Labs, LLC. All Rights reserved
+ ** Copyright (c) 2010-2021 Brian Carrier.  All Rights reserved
+ **
+ ** This software is distributed under the Common Public License 1.0
+ */
+
+#pragma once
+
+#ifdef HAVE_LIBMBEDTLS
+
+#include "MetadataValue.h"
+
+class MetadataValueKey : public MetadataValue {
+public:
+	MetadataValueKey(BITLOCKER_METADATA_VALUE_TYPE a_valueType, uint8_t* buf, size_t bufLen);
+
+	size_t getKeyLen() {
+		return keyLen;
+	}
+
+	uint8_t* getKeyBytes() {
+		return key;
+	}
+
+	BITLOCKER_ENCRYPTION_TYPE getEncryptionType() {
+		return encryptionType;
+	}
+
+	~MetadataValueKey() {
+		encryptionType = BITLOCKER_ENCRYPTION_TYPE::UNKNOWN;
+		if (key != nullptr) {
+			memset(key, 0, keyLen);
+			free(key);
+			key = nullptr;
+		}
+		keyLen = 0;
+	};
+
+private:
+	BITLOCKER_ENCRYPTION_TYPE encryptionType = BITLOCKER_ENCRYPTION_TYPE::UNKNOWN;
+	size_t keyLen = 0;
+	uint8_t* key = NULL;
+};
+
+#endif
+
+
+================================================
+FILE: tsk/util/Bitlocker/MetadataValueOffsetAndSize.cpp
+================================================
+/*
+ ** The Sleuth Kit
+ **
+ ** Brian Carrier [carrier <at> sleuthkit [dot] org]
+ ** Copyright (c) 2024 Sleuth Kit Labs, LLC. All Rights reserved
+ ** Copyright (c) 2010-2021 Brian Carrier.  All Rights reserved
+ **
+ ** This software is distributed under the Common Public License 1.0
+ */
+
+#ifdef HAVE_LIBMBEDTLS
+
+#include "MetadataValueOffsetAndSize.h"
+
+MetadataValueOffsetAndSize::MetadataValueOffsetAndSize(BITLOCKER_METADATA_VALUE_TYPE valueType, uint8_t* buf, size_t bufLen) : MetadataValue(valueType) {
+    if (bufLen < 16) {
+        registerError("MetadataValueOffsetAndSize::MetadataValueOffsetAndSize(): Buffer for creating MetadataValueOffsetAndSize was too short");
+        return;
+    }
+
+    m_offset = tsk_getu64(TSK_LIT_ENDIAN, &(buf[0]));
+    m_size = tsk_getu64(TSK_LIT_ENDIAN, &(buf[8]));
+}
+
+#endif
+
+
+================================================
+FILE: tsk/util/Bitlocker/MetadataValueOffsetAndSize.h
+================================================
+/*
+ ** The Sleuth Kit
+ **
+ ** Brian Carrier [carrier <at> sleuthkit [dot] org]
+ ** Copyright (c) 2024 Sleuth Kit Labs, LLC. All Rights reserved
+ ** Copyright (c) 2010-2021 Brian Carrier.  All Rights reserved
+ **
+ ** This software is distributed under the Common Public License 1.0
+ */
+
+#pragma once
+#ifdef HAVE_LIBMBEDTLS
+
+#include "MetadataValue.h"
+
+class MetadataValueOffsetAndSize : public MetadataValue {
+public:
+	MetadataValueOffsetAndSize(BITLOCKER_METADATA_VALUE_TYPE valueType, uint8_t* buf, size_t bufLen);
+
+	uint64_t getOffset() {
+		return m_offset;
+	}
+
+	uint64_t getSize() {
+		return m_size;
+	}
+
+	~MetadataValueOffsetAndSize() {};
+
+private:
+	uint64_t m_offset = 0;
+	uint64_t m_size = 0;
+};
+
+#endif
+
+
+================================================
+FILE: tsk/util/Bitlocker/MetadataValueUnicode.cpp
+================================================
+/*
+ ** The Sleuth Kit
+ **
+ ** Brian Carrier [carrier <at> sleuthkit [dot] org]
+ ** Copyright (c) 2024 Sleuth Kit Labs, LLC. All Rights reserved
+ ** Copyright (c) 2010-2021 Brian Carrier.  All Rights reserved
+ **
+ ** This software is distributed under the Common Public License 1.0
+ */
+
+#ifdef HAVE_LIBMBEDTLS
+
+#include "MetadataValueUnicode.h"
+
+#include <iostream>
+using namespace std;
+
+MetadataValueUnicode::MetadataValueUnicode(BITLOCKER_METADATA_VALUE_TYPE a_valueType, uint8_t* buf, size_t bufLen) : MetadataValue(a_valueType) {
+    if (bufLen == 0) {
+        registerError("MetadataValueUnicode::MetadataValueUnicode(): Buffer for creating MetadataValueUnicode was too short");
+        return;
+    }
+
+    if (bufLen % 2 != 0) {
+        registerError("MetadataValueUnicode::MetadataValueUnicode(): Buffer for creating MetadataValueUnicode does not have even length");
+        return;
+    }
+    m_unicodeStringW = wstring(reinterpret_cast<wchar_t*>(buf), bufLen / sizeof(wchar_t));
+}
+
+#endif
+
+
+================================================
+FILE: tsk/util/Bitlocker/MetadataValueUnicode.h
+================================================
+/*
+ ** The Sleuth Kit
+ **
+ ** Brian Carrier [carrier <at> sleuthkit [dot] org]
+ ** Copyright (c) 2024 Sleuth Kit Labs, LLC. All Rights reserved
+ ** Copyright (c) 2010-2021 Brian Carrier.  All Rights reserved
+ **
+ ** This software is distributed under the Common Public License 1.0
+ */
+
+#pragma once
+#ifdef HAVE_LIBMBEDTLS
+
+#include "MetadataValue.h"
+
+class MetadataValueUnicode : public MetadataValue {
+public:
+	MetadataValueUnicode(BITLOCKER_METADATA_VALUE_TYPE valueType, uint8_t* buf, size_t bufLen);
+
+	wstring getUnicodeWString() {
+		return m_unicodeStringW;
+	}
+
+	~MetadataValueUnicode() {};
+
+private:
+	wstring m_unicodeStringW = L"";
+};
+
+#endif
+
+
+================================================
+FILE: tsk/util/Bitlocker/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: tsk/vs/.indent.pro
+================================================
+-kr  -psl -nce -ip2 -nlp -nut
+
+
+
+================================================
+FILE: win32/blkcalc/blkcalc.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\blkcalc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/blkcat/blkcat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\blkcat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/blkls/blkls.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\blkls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/blkstat/blkstat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\blkstat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/callback-cpp-sample/callback-cpp-sample.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\samples\callback-cpp-style.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/callback-sample/callback-sample.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\samples\callback-style.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/ffind/ffind.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\ffind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/fls/fls.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\fls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\util.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+
+================================================
+FILE: win32/fsstat/fsstat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\fsstat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/hfind/hfind.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\hashtools\hfind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/icat/icat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\icat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/ifind/ifind.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\ifind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/ils/ils.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\ils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/img_cat/img_cat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\imgtools\img_cat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/img_stat/img_stat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\imgtools\img_stat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/istat/istat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\istat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/jcat/jcat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\jcat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/jls/jls.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\fstools\jls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/libtsk/packages.config
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="libvhdi" version="20240303.0.0" targetFramework="native" />
+  <package id="skl-libvmdk" version="20240828.0.0" targetFramework="native" />
+  <package id="mbedtls-v143-static" version="3.5.0" targetFramework="native" />
+  <package id="openssl-vc140-vc141-x86_64" version="1.1.5" targetFramework="native" />
+  <package id="openssl-vc142" version="1.1.0" targetFramework="native" />
+  <package id="sleuthkit-libewf" version="20130416.0.0" targetFramework="native" />
+  <package id="zlib_native" version="1.2.11" targetFramework="native" />
+  <package id="zlib_native.redist" version="1.2.11" targetFramework="native" />
+</packages>
+
+
+================================================
+FILE: win32/mmcat/mmcat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\vstools\mmcat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/mmls/mmls.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\vstools\mmls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\util.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+
+================================================
+FILE: win32/mmstat/mmstat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\vstools\mmstat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/posix-cpp-sample/posix-cpp-sample.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\samples\posix-cpp-style.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/posix-sample/posix-sample.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\samples\posix-style.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/pstat/pstat.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\pooltools\pstat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/tsk_comparedir/tsk_compare.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\autotools\tsk_comparedir.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\tools\autotools\tsk_comparedir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/tsk_gettimes/tsk_gettimes.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\autotools\tsk_gettimes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/tsk_loaddb/tsk_loaddb.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\autotools\tsk_loaddb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: win32/tsk_recover/tsk_recover.vcxproj.filters
+================================================
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\autotools\tsk_recover.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\tools\autotools\tsk_recover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
+
+
+================================================
+FILE: .github/ISSUE_TEMPLATE/bug-or-problem-report.md
+================================================
+---
+name: Bug or Problem report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+**Describe the bug or problem**
+Please provide a clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+
+The version of SleuthKit you are using:
+
+Where you got it from: 
+
+How you compiled it:
+
+Steps to reproduce the behavior:
+
+Data source to reproduce the behavior (URL): 
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Operating Environment (please complete the following information):**
+ - OS: 
+ - Version:
+ - Compiler:
+
+**Additional context**
+Add any other context about the problem here.
+
+
+
+================================================
+FILE: .github/ISSUE_TEMPLATE/custom.md
+================================================
+---
+name: Custom issue template
+about: Describe this issue template's purpose here.
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+
+
+
+
+================================================
+FILE: .github/ISSUE_TEMPLATE/feature_request.md
+================================================
+---
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
+
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
+
+**Additional context**
+Add any other context or screenshots about the feature request here.
+
+

@@ -1,0 +1,917 @@
+Directory structure:
+└── six2dez-reconftw/
+    ├── secrets.cfg.example
+    ├── .pre-commit-config.yaml
+    ├── config/
+    │   ├── tls_ports.txt
+    │   └── uncommon_ports_web.txt
+    ├── data/
+    │   └── wordlists/
+    │       ├── headers_inject.txt
+    │       ├── permutations_list_short.txt
+    │       ├── srv_prefixes.txt
+    │       └── ssti_wordlist.txt
+    ├── Docker/
+    │   ├── 01_nodoc
+    │   ├── entrypoint.sh
+    │   ├── github_tokens.txt
+    │   └── notify.conf
+    ├── Terraform/
+    │   ├── outputs.tf
+    │   └── reconFTW.yml
+    ├── tests/
+    │   ├── bench/
+    │   │   └── baseline_metrics.json
+    │   ├── fixtures/
+    │   │   ├── monitor_cycle1/
+    │   │   │   ├── nuclei_output/
+    │   │   │   │   ├── critical.txt
+    │   │   │   │   └── high.txt
+    │   │   │   ├── subdomains/
+    │   │   │   │   └── subdomains.txt
+    │   │   │   └── webs/
+    │   │   │       └── webs_all.txt
+    │   │   ├── monitor_cycle2/
+    │   │   │   ├── nuclei_output/
+    │   │   │   │   ├── critical.txt
+    │   │   │   │   └── high.txt
+    │   │   │   ├── subdomains/
+    │   │   │   │   └── subdomains.txt
+    │   │   │   └── webs/
+    │   │   │       └── webs_all.txt
+    │   │   └── ui/
+    │   │       ├── full_v0.txt
+    │   │       └── subdomains_v0.txt
+    │   ├── helpers/
+    │   │   └── common.bash
+    │   ├── integration/
+    │   │   └── test_shell_syntax.bats
+    │   ├── mocks/
+    │   │   ├── README.md
+    │   │   ├── httpx
+    │   │   ├── sleep
+    │   │   └── subfinder
+    │   └── unit/
+    │       ├── test_ensure_webs_all.bats
+    │       └── test_perf_profile.bats
+    └── .github/
+        ├── CODEOWNERS
+        ├── FUNDING.yml
+        └── ISSUE_TEMPLATE/
+            ├── bug_report.md
+            └── feature_request.md
+
+================================================
+FILE: secrets.cfg.example
+================================================
+# reconFTW Secrets Configuration
+# Copy this file to secrets.cfg and fill in your values.
+# secrets.cfg is gitignored and will be auto-sourced by reconftw.sh.
+#
+# Alternatively, set these as environment variables (takes precedence over this file).
+
+# Shodan API key for passive port scanning
+#SHODAN_API_KEY="your_shodan_api_key_here"
+
+# WhoisXML API key for domain/IP lookups
+#WHOISXML_API="your_whoisxml_api_key_here"
+
+# ProjectDiscovery Cloud Platform API key (required for asnmap ASN enumeration)
+#PDCP_API_KEY="your_projectdiscovery_api_key_here"
+
+# Blind XSS callback server (e.g., interact.sh, xsshunter)
+#XSS_SERVER="your_xss_callback_server"
+
+# SSRF/collaborator callback server (e.g., interactsh, Burp Collaborator)
+#COLLAB_SERVER="your_collaborator_server"
+
+# Slack notifications
+#slack_channel="your_slack_channel_id"
+#slack_auth="xoXX-XXX-XXX-XXX"
+
+# GitHub tokens file (one token per line for rate limit distribution)
+# Place tokens in: $HOME/Tools/.github_tokens
+
+
+
+================================================
+FILE: .pre-commit-config.yaml
+================================================
+# See https://pre-commit.com for more information
+# Install: pip install pre-commit && pre-commit install
+repos:
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.9.0
+    hooks:
+      - id: shellcheck
+        args: ["--severity=error"]
+        files: \.(sh|bash)$
+        exclude: ^tests/mocks/
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.7.0-1
+    hooks:
+      - id: shfmt
+        args: ["-i", "4", "-ci", "-bn"]
+        files: \.(sh|bash)$
+        exclude: ^tests/mocks/
+
+  - repo: local
+    hooks:
+      - id: bats-tests
+        name: Run bats tests
+        entry: bash -c 'bats tests/unit/'
+        language: system
+        pass_filenames: false
+        files: \.(sh|bash|bats)$
+
+
+
+================================================
+FILE: config/tls_ports.txt
+================================================
+21,22,25,80,110,135,143,261,271,324,443,448,465,563,614,631,636,664,684,695,832,853,854,990,993,989,992,994,995,1129,1131,1184,2083,2087,2089,2096,2221,2252,2376,2381,2478,2479,2482,2484,2679,2762,3077,3078,3183,3191,3220,3269,3306,3410,3424,3471,3496,3509,3529,3539,3535,3660,36611,3713,3747,3766,3864,3885,3995,3896,4031,4036,4062,4064,4081,4083,4116,4335,4336,4536,4590,4740,4843,4849,5443,5007,5061,5321,5349,5671,5783,5868,5986,5989,5990,6209,6251,6443,6513,6514,6619,6697,6771,7202,7443,7673,7674,7677,7775,8243,8443,8991,8989,9089,9295,9318,9443,9444,9614,9802,10161,10162,11751,12013,12109,14143,15002,16995,41230,16993,20003
+
+
+
+================================================
+FILE: config/uncommon_ports_web.txt
+================================================
+81,300,591,593,832,981,1010,1311,1099,2082,2095,2096,2480,3000,3001,3002,3003,3128,3333,4243,4567,4711,4712,4993,5000,5104,5108,5280,5281,5601,5800,6543,7000,7001,7396,7474,8000,8001,8008,8014,8042,8060,8069,8080,8081,8083,8088,8090,8091,8095,8118,8123,8172,8181,8222,8243,8280,8281,8333,8337,8443,8500,8834,8880,8888,8983,9000,9001,9043,9060,9080,9090,9091,9092,9200,9443,9502,9800,9981,10000,10250,11371,12443,15672,16080,17778,18091,18092,20720,32000,55440,55672
+
+
+
+================================================
+FILE: data/wordlists/headers_inject.txt
+================================================
+Base-Url
+CF-Connecting_IP
+Client-IP
+Contact
+Forwarded
+From
+Http-Url
+Proxy-Host
+Proxy-Url
+Real-Ip
+Redirect
+Referer
+Referrer
+Request-Uri
+True-Client-IP
+Uri
+Url
+X-Client-IP
+X-Forward-For
+X-Forwarded-By
+X-Forwarded-For-Original
+X-Forwarded-For
+X-Forwarded-Host
+X-Forwarded-Server
+X-Forwarded
+X-Forwarder-For
+X-Host
+X-Http-Destinationurl
+X-Http-Host-Override
+X-Original-Remote-Addr
+X-Original-Url
+X-Originating-IP
+X-Proxy-Url
+X-Real-Ip
+X-Remote-Addr
+X-Rewrite-Url
+X-Wap-Profile
+
+
+================================================
+FILE: data/wordlists/permutations_list_short.txt
+================================================
+1
+2
+3
+4
+5
+6
+7
+8
+9
+a
+admin
+alpha
+api
+api1
+app
+assets
+auth
+aws
+b
+backup
+beta
+blog
+c
+cache
+cdn
+ci
+cloud
+cms
+conf
+corp
+corporate
+crm
+d
+data
+db
+demo
+dev
+dev1
+devops
+dmz
+dns
+docker
+docs
+e
+edge
+email
+erp
+exchange
+external
+extranet
+f
+files
+ftp
+g
+gateway
+git
+gitlab
+gw
+h
+health
+i
+idp
+img
+infra
+internal
+intranet
+j
+jenkins
+jira
+k
+k8s
+l
+lab
+labs
+lan
+lb
+ldap
+legacy
+local
+log
+login
+m
+mail
+manage
+master
+media
+mobile
+monitor
+mx
+mysql
+n
+nas
+new
+ns
+o
+office
+old
+ops
+origin
+outlook
+owa
+p
+panel
+portal
+postgres
+preprod
+preview
+private
+prod
+production
+proxy
+q
+qa
+r
+rdp
+redis
+relay
+remote
+repo
+s
+s3
+sandbox
+secure
+server
+sftp
+shop
+smtp
+sql
+sso
+stage
+staging
+static
+status
+stg
+store
+support
+t
+temp
+test
+test1
+testing
+u
+uat
+upload
+v
+v1
+v2
+video
+vpn
+vps
+w
+web
+webmail
+wiki
+wordpress
+work
+wp
+www
+x
+xml
+y
+z
+
+
+
+================================================
+FILE: data/wordlists/srv_prefixes.txt
+================================================
+_ldap._tcp
+_kerberos._tcp
+_kerberos._udp
+_kpasswd._tcp
+_kpasswd._udp
+_sip._tcp
+_sip._udp
+_sips._tcp
+_xmpp-server._tcp
+_xmpp-client._tcp
+_jabber._tcp
+_h323cs._tcp
+_h323ls._udp
+_imap._tcp
+_imaps._tcp
+_submission._tcp
+_pop3._tcp
+_pop3s._tcp
+_caldav._tcp
+_carddav._tcp
+_autodiscover._tcp
+_stun._udp
+_turn._udp
+_gc._tcp
+_vlmcs._tcp
+_msdcs._tcp
+_ntp._udp
+
+
+
+================================================
+FILE: data/wordlists/ssti_wordlist.txt
+================================================
+ssti{{7*7}}
+ssti[[7*7]]
+ssti{{4+'9'}}
+ssti<%= 7 * 7 %>
+ssti${7*7}
+ssti${{7*7}}
+ssti@(40+9)
+ssti#{7*7}
+ssti#{ 7 * 7 }
+ssti<%=%207%20*%207%20%>
+ssti#{%207%20*%207%20}
+ssti{7*7}
+
+
+================================================
+FILE: Docker/01_nodoc
+================================================
+path-exclude /usr/share/doc/*
+# we need to keep copyright files for legal reasons
+path-include /usr/share/doc/*/copyright
+path-exclude /usr/share/man/*
+path-exclude /usr/share/groff/*
+path-exclude /usr/share/info/*
+# lintian stuff is small, but really unnecessary
+path-exclude /usr/share/lintian/*
+path-exclude /usr/share/linda/*
+
+
+
+================================================
+FILE: Docker/entrypoint.sh
+================================================
+#!/bin/bash
+# Generate Axiom SSH keys at runtime if they don't exist
+if [[ "${INSTALL_AXIOM}" == "true" ]] && [[ ! -f /root/.ssh/axiom_rsa ]]; then
+    mkdir -p /root/.ssh /root/.axiom/configs
+    ssh-keygen -b 4096 -t rsa -f /root/.ssh/axiom_rsa -q -N ""
+    cat /root/.ssh/axiom_rsa.pub > /root/.axiom/configs/authorized_keys
+fi
+
+exec ./reconftw.sh "$@"
+
+
+
+================================================
+FILE: Docker/github_tokens.txt
+================================================
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+================================================
+FILE: Docker/notify.conf
+================================================
+# burp_biid: "123456798"
+# slack_webhook_url: https://a.b.c/slack
+# slack_username: test
+# slack_channel: test
+# slack: true
+# discord_webhook_url: https://discord.com/api/webhooks/XXXX/XXXXX
+# discord_username: whatevername
+# discord_avatar: https://whateverurl.tld/avatar.png
+# discord: true
+# telegram_apikey: "XXXXXX:XXXXXXXXXX"
+# telegram_chat_id: "XXXXXXXX"
+# telegram: true
+# interval: 2
+# http_message: |-
+#   The collaborator server received an {{protocol}} request from {{from}} at {{time}}:
+#   ```
+#   {{request}}
+#   {{response}}
+#   ```
+# dns_message: |-
+#   The collaborator server received a DNS lookup of type {{type}} for the domain name {{domain}} from {{from}} at {{time}}:
+#   ```
+#   {{request}}
+#   ```
+# cli_message: '{{data}}'
+
+
+
+================================================
+FILE: Terraform/outputs.tf
+================================================
+output "public_ip" {
+  description = "Public IP address of the reconFTW instance."
+  value       = aws_instance.reconftw.public_ip
+}
+
+output "ssh_command" {
+  description = "SSH command example (run from Terraform/ directory unless you use an absolute key path)."
+  value       = "ssh ${var.ssh_user}@${aws_instance.reconftw.public_ip} -i ${var.private_key_path}"
+}
+
+
+
+
+================================================
+FILE: Terraform/reconFTW.yml
+================================================
+---
+- hosts: all
+  become: true
+  vars:
+    reconftw_repo: "https://github.com/six2dez/reconftw.git"
+    reconftw_dest: "/opt/reconftw"
+    reconftw_branch_default: "main"
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 86400
+
+    - name: Ensure git is installed (required to clone the repo)
+      ansible.builtin.apt:
+        name: git
+        state: present
+
+    - name: Clone reconFTW
+      ansible.builtin.git:
+        repo: "{{ reconftw_repo }}"
+        dest: "{{ reconftw_dest }}"
+        version: "{{ reconftw_branch | default(reconftw_branch_default) }}"
+        update: yes
+
+    - name: Install reconFTW dependencies and tools
+      ansible.builtin.command: ./install.sh --verbose
+      args:
+        chdir: "{{ reconftw_dest }}"
+
+    - name: Copy reconftw.cfg
+      ansible.builtin.copy:
+        src: files/reconftw.cfg
+        dest: "{{ reconftw_dest }}/reconftw.cfg"
+        owner: root
+        group: root
+        mode: "0644"
+
+
+
+================================================
+FILE: tests/bench/baseline_metrics.json
+================================================
+{
+  "total_duration_sec": 600,
+  "notes": "Synthetic baseline for CI gate; tune with real smoke baseline"
+}
+
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle1/nuclei_output/critical.txt
+================================================
+[Empty file]
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle1/nuclei_output/high.txt
+================================================
+[tpl-high] [http] [high] https://a.example.com
+
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle1/subdomains/subdomains.txt
+================================================
+a.example.com
+b.example.com
+
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle1/webs/webs_all.txt
+================================================
+https://a.example.com
+
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle2/nuclei_output/critical.txt
+================================================
+[tpl-crit] [http] [critical] https://c.example.com
+
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle2/nuclei_output/high.txt
+================================================
+[tpl-high] [http] [high] https://a.example.com
+[tpl-high2] [http] [high] https://c.example.com
+
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle2/subdomains/subdomains.txt
+================================================
+a.example.com
+b.example.com
+c.example.com
+
+
+
+================================================
+FILE: tests/fixtures/monitor_cycle2/webs/webs_all.txt
+================================================
+https://a.example.com
+https://c.example.com
+
+
+
+================================================
+FILE: tests/fixtures/ui/full_v0.txt
+================================================
+
+RESULTS  example.com
+Mode: FULL
+Subdomains: 1
+Web hosts: 0
+Findings: C 0 | H 0 | M 0 | L 0 | I 0
+Duration: 1m 00s
+Output: /tmp/recon
+
+
+
+
+================================================
+FILE: tests/fixtures/ui/subdomains_v0.txt
+================================================
+
+RESULTS  example.com
+Mode: SUBDOMAINS
+Subdomains: 1
+Web hosts: 0
+Findings: C 0 | H 0 | M 0 | L 0 | I 0
+Duration: 1m 00s
+Output: /tmp/recon
+
+
+
+
+================================================
+FILE: tests/helpers/common.bash
+================================================
+#!/usr/bin/env bash
+set -eo pipefail
+
+setup_recon_env() {
+  local project_root
+  project_root="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)"
+  export SCRIPTPATH="$project_root"
+  export tools="${tools:-$HOME/Tools}"
+  export LOGFILE="${LOGFILE:-/dev/null}"
+  export bred='' bblue='' bgreen='' byellow='' yellow='' reset=''
+  export NOTIFICATION=false
+  export AXIOM=false
+  source "$project_root/reconftw.sh" --source-only
+}
+
+
+
+================================================
+FILE: tests/integration/test_shell_syntax.bats
+================================================
+#!/usr/bin/env bats
+
+setup() {
+  local project_root
+  project_root="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)"
+  export SCRIPTPATH="$project_root"
+}
+
+@test "reconftw.sh passes bash syntax check" {
+  run bash -n "$SCRIPTPATH/reconftw.sh"
+  [ "$status" -eq 0 ]
+}
+
+@test "critical modules pass bash syntax check" {
+  run bash -n \
+    "$SCRIPTPATH/lib/common.sh" \
+    "$SCRIPTPATH/modules/core.sh" \
+    "$SCRIPTPATH/modules/modes.sh" \
+    "$SCRIPTPATH/modules/web.sh" \
+    "$SCRIPTPATH/modules/subdomains.sh" \
+    "$SCRIPTPATH/modules/osint.sh" \
+    "$SCRIPTPATH/modules/utils.sh" \
+    "$SCRIPTPATH/modules/axiom.sh" \
+    "$SCRIPTPATH/modules/vulns.sh"
+  [ "$status" -eq 0 ]
+}
+
+
+
+================================================
+FILE: tests/mocks/README.md
+================================================
+# Mock Tools for Testing
+
+This directory contains mock implementations of external tools used by reconFTW.
+These mocks allow testing without making actual network calls.
+
+## Usage
+
+Add this directory to PATH before running tests:
+
+```bash
+export PATH="$(pwd)/tests/mocks:$PATH"
+```
+
+## Available Mocks
+
+- `subfinder` - Returns predefined subdomain list
+- `httpx` - Returns predefined HTTP probe results
+- `nuclei` - Returns empty results (no vulns)
+
+## Creating New Mocks
+
+1. Create an executable script with the tool name
+2. Parse arguments to determine expected output
+3. Return realistic-looking output
+4. Exit with appropriate status code
+
+
+
+================================================
+FILE: tests/mocks/httpx
+================================================
+#!/bin/bash
+# Mock httpx for testing
+
+# Read from stdin or file and output with status
+while IFS= read -r line || [[ -n "$line" ]]; do
+    [[ -z "$line" ]] && continue
+    # Simulate HTTP probing - return https version
+    echo "https://$line [200] [OK]"
+done
+exit 0
+
+
+
+================================================
+FILE: tests/mocks/sleep
+================================================
+#!/usr/bin/env bash
+# test mock to avoid long sleeps in monitor tests
+exit 0
+
+
+
+================================================
+FILE: tests/mocks/subfinder
+================================================
+#!/bin/bash
+# Mock subfinder for testing
+
+# Parse domain from args
+domain=""
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -d) domain="$2"; shift 2 ;;
+        -silent|-all) shift ;;
+        *) shift ;;
+    esac
+done
+
+if [[ -n "$domain" ]]; then
+    echo "www.$domain"
+    echo "api.$domain"
+    echo "mail.$domain"
+    echo "dev.$domain"
+fi
+exit 0
+
+
+
+================================================
+FILE: tests/unit/test_ensure_webs_all.bats
+================================================
+#!/usr/bin/env bats
+
+setup() {
+  local project_root
+  project_root="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)"
+  export SCRIPTPATH="$project_root"
+  export LOGFILE="/dev/null"
+  export bred='' bblue='' bgreen='' byellow='' yellow='' reset=''
+
+  export TEST_DIR="$BATS_TEST_TMPDIR/reconftw_webs_all"
+  mkdir -p "$TEST_DIR"
+  cd "$TEST_DIR"
+
+  source "$project_root/reconftw.sh" --source-only
+}
+
+teardown() {
+  [[ -d "$TEST_DIR" ]] && rm -rf "$TEST_DIR"
+}
+
+@test "ensure_webs_all creates webs/webs_all.txt from webs/webs.txt" {
+  mkdir -p webs
+  printf "https://a.example.com\n" > webs/webs.txt
+  rm -f webs/webs_uncommon_ports.txt
+
+  run ensure_webs_all
+  [ "$status" -eq 0 ]
+  [ -f "webs/webs_all.txt" ]
+  grep -q "https://a.example.com" "webs/webs_all.txt"
+}
+
+
+
+
+================================================
+FILE: tests/unit/test_perf_profile.bats
+================================================
+#!/usr/bin/env bats
+
+setup() {
+  source "$(cd "$(dirname "$BATS_TEST_FILENAME")" && pwd)/../helpers/common.bash"
+  setup_recon_env
+}
+
+@test "apply_performance_profile sets numeric values for low profile" {
+  export PERF_PROFILE="low"
+  unset PARALLEL_MAX_JOBS
+  run apply_performance_profile
+  [ "$status" -eq 0 ]
+  [[ "$PARALLEL_MAX_JOBS" =~ ^[0-9]+$ ]]
+  [[ "$FFUF_THREADS" =~ ^[0-9]+$ ]]
+  [ "$PARALLEL_MAX_JOBS" -ge 1 ]
+}
+
+@test "apply_performance_profile max profile is not lower than low profile ffuf" {
+  export PERF_PROFILE="low"
+  apply_performance_profile >/dev/null
+  low_ffuf="$FFUF_THREADS"
+
+  export PERF_PROFILE="max"
+  run apply_performance_profile
+  [ "$status" -eq 0 ]
+  [ "$FFUF_THREADS" -ge "$low_ffuf" ]
+}
+
+
+
+================================================
+FILE: .github/CODEOWNERS
+================================================
+# CODEOWNERS
+* @six2dez
+
+
+
+================================================
+FILE: .github/FUNDING.yml
+================================================
+github: six2dez
+custom: ["buymeacoffee.com/six2dez","https://www.paypal.com/paypalme/six2dez"]
+
+
+
+================================================
+FILE: .github/ISSUE_TEMPLATE/bug_report.md
+================================================
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: bug
+assignees: ''
+
+---
+
+**Describe the bug**
+A clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+- Architecture: [e.g. x86, x64, ARM ...]
+ - OS: [e.g. Ubuntu, Kali, Arch ...]
+ - Version [e.g. 20.04, Rolling, 8 ...]
+
+**Additional context**
+Add any other context about the problem here.
+
+
+
+================================================
+FILE: .github/ISSUE_TEMPLATE/feature_request.md
+================================================
+---
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: feature
+assignees: ''
+
+---
+
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
+
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
+
+**Additional context**
+Add any other context or screenshots about the feature request here.
+
+
