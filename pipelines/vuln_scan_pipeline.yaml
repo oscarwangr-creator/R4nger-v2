@@ -18,6 +18,14 @@ stages:
   module: sqlmap_exploit
   required: true
   args: {}
+- name: SentinelAI Anomaly-Aware Risk Context
+  module: sentinelai_osint
+  required: false
+  args: {}
+- name: XSStrike Web Injection Validation
+  module: xsstrike_exploit
+  required: false
+  args: {}
 - name: Vulnerability JSON Report
   module: json_reporting
   required: true

@@ -32,6 +32,14 @@ class ToolRegistry:
             ToolInfo("msfconsole", "msfconsole", "exploit", False),
             ToolInfo("hydra", "hydra", "exploit", False),
             ToolInfo("sqlmap", "sqlmap", "exploit", False),
+            ToolInfo("photon", "photon", "recon", False),
+            ToolInfo("reconftw", "reconftw", "recon", False),
+            ToolInfo("sn1per", "sn1per", "recon", False),
+            ToolInfo("axiom-scan", "axiom-scan", "recon", False),
+            ToolInfo("xsstrike", "xsstrike", "exploit", False),
+            ToolInfo("onionscan", "onionscan", "osint", False),
+            ToolInfo("intelowl", "intelowl", "osint", False),
+            ToolInfo("sleuthkit-fls", "fls", "post-exploit", False),
         ]
         for tool in defaults:
             self.register(tool)

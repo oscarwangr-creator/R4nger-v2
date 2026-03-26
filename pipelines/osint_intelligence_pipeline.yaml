@@ -18,6 +18,30 @@ stages:
   module: amass_osint
   required: true
   args: {}
+- name: SpiderFoot Scraped Correlation
+  module: spiderfoot_scraped_osint
+  required: false
+  args: {}
+- name: Recon-ng Scraped Workspace Correlation
+  module: recon_ng_scraped_osint
+  required: false
+  args: {}
+- name: IntelOwl IOC Enrichment
+  module: intelowl_osint
+  required: false
+  args: {}
+- name: OnionScan Dark Web Discovery
+  module: onionscan_osint
+  required: false
+  args: {}
+- name: SentinelAI Anomaly Enrichment
+  module: sentinelai_osint
+  required: false
+  args: {}
+- name: IntelQM Query Triage
+  module: intelqm_osint
+  required: false
+  args: {}
 - name: OSINT JSON Report
   module: json_reporting
   required: true

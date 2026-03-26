@@ -18,6 +18,34 @@ stages:
   module: http_fingerprint_recon
   required: true
   args: {}
+- name: Photon URL Surface Crawl
+  module: photon_recon
+  required: false
+  args: {}
+- name: Amass Scraped Expansion
+  module: amass_scraped_recon
+  required: false
+  args: {}
+- name: ReconFTW Automated Recon
+  module: reconftw_recon
+  required: false
+  args: {}
+- name: ReconFTW Snapshot Replay
+  module: reconftw_snapshot_recon
+  required: false
+  args: {}
+- name: Sn1per Recon Sweep
+  module: sn1per_recon
+  required: false
+  args: {}
+- name: 1N3 Sn1per Variant Sweep
+  module: sn1per_1n3_recon
+  required: false
+  args: {}
+- name: Axiom Distributed Scan Dispatch
+  module: axiom_recon
+  required: false
+  args: {}
 - name: Recon HTML Report
   module: html_reporting
   required: true
