@@ -13,10 +13,27 @@ class ToolExecutor:
 
     def run_tool(self, tool_name: str, payload: Dict[str, Any]) -> Dict[str, Any]:
         tool_cls = self.registry.get_tool(tool_name)
-        if not tool_cls:
-            return {"tool": tool_name, "status": "error", "error": "tool not found"}
-        result = tool_cls().run(payload)
-        return result.__dict__
+        if tool_cls:
+            result = tool_cls().run(payload)
+            return result.__dict__
+
+        external = self.registry.get_external_tool(tool_name)
+        if external:
+            return {
+                "tool": tool_name,
+                "category": external.category,
+                "status": "skipped",
+                "error": "external tool registered in catalog only; runtime wrapper not installed",
+                "input": payload,
+                "output": {},
+                "normalized": {
+                    "entities": [],
+                    "relationships": [],
+                    "notes": [f"{tool_name} available from {external.source}"],
+                },
+            }
+
+        return {"tool": tool_name, "status": "error", "error": "tool not found", "input": payload, "normalized": {}}
 
     def run_many(self, tool_names: List[str], payload: Dict[str, Any], parallel: bool = True) -> List[Dict[str, Any]]:
         if not parallel:

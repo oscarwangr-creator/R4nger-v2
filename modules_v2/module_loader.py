@@ -4,32 +4,27 @@ import importlib
 import pkgutil
 from typing import Iterable
 
-from core_v2.base_tool import BaseTool
-from core_v2.tool_catalog import ExternalToolCatalog
-from core_v2.tool_registry import ToolRegistry
+from modules_v2.base_module import BaseModule
+from modules_v2.module_registry import ModuleRegistry
 
 
-class ToolLoader:
-    def __init__(self, registry: ToolRegistry):
+class ModuleLoader:
+    def __init__(self, registry: ModuleRegistry):
         self.registry = registry
 
-    def autodiscover(self, packages: Iterable[str] = ("tools_v2",)) -> int:
+    def autodiscover(self, packages: Iterable[str] = ("modules_v2",)) -> int:
         registered = 0
         for package_name in packages:
             package = importlib.import_module(package_name)
+            if not hasattr(package, "__path__"):
+                continue
             for module_info in pkgutil.walk_packages(package.__path__, prefix=f"{package_name}."):
                 try:
                     module = importlib.import_module(module_info.name)
                 except Exception:
                     continue
                 for item in module.__dict__.values():
-                    if isinstance(item, type) and issubclass(item, BaseTool) and item is not BaseTool:
+                    if isinstance(item, type) and issubclass(item, BaseModule) and item is not BaseModule:
                         self.registry.register(item)
                         registered += 1
         return registered
-
-    def load_external_catalog(self, source_file: str = "r4ng3r-V2-main/cleaned_tools_list.txt", limit: int = 750) -> int:
-        specs = ExternalToolCatalog(source_file).load(limit=limit)
-        for spec in specs:
-            self.registry.register_external(spec)
-        return len(specs)
