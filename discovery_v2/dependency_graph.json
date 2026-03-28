@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-03-28T09:58:10.524963",
+  "nodes": [
+    {
+      "id": "exposed_service_discovery",
+      "stage_labels": [
+        "G"
+      ]
+    },
+    {
+      "id": "leak_corpus_search",
+      "stage_labels": [
+        "I"
+      ]
+    },
+    {
+      "id": "paste_monitor",
+      "stage_labels": [
+        "I"
+      ]
+    },
+    {
+      "id": "credential_strength",
+      "stage_labels": [
+        "H"
+      ]
+    },
+    {
+      "id": "password_reuse_detector",
+      "stage_labels": [
+        "H"
+      ]
+    },
+    {
+      "id": "tor_index_lookup",
+      "stage_labels": [
+        "D"
+      ]
+    },
+    {
+      "id": "pdf_text_extract",
+      "stage_labels": [
+        "C"
+      ]
+    },
+    {
+      "id": "dns_resolver",
+      "stage_labels": [
+        "F"
+      ]
+    },
+    {
+      "id": "domain_whois",
+      "stage_labels": [
+        "F"
+      ]
+    },
+    {
+      "id": "email_breach_check",
+      "stage_labels": [
+        "E"
+      ]
+    },
+    {
+      "id": "email_validate",
+      "stage_labels": [
+        "E"
+      ]
+    },
+    {
+      "id": "ip_geolocation",
+      "stage_labels": [
+        "J"
+      ]
+    },
+    {
+      "id": "satellite_context",
+      "stage_labels": [
+        "J"
+      ]
+    },
+    {
+      "id": "full_contact_lookup",
+      "stage_labels": [
+        "A",
+        "K"
+      ]
+    },
+    {
+      "id": "national_id_enrich",
+      "stage_labels": [
+        "A",
+        "K"
+      ]
+    },
+    {
+      "id": "image_exif_extract",
+      "stage_labels": [
+        "C"
+      ]
+    },
+    {
+      "id": "port_scan",
+      "stage_labels": [
+        "G"
+      ]
+    },
+    {
+      "id": "subdomain_enum",
+      "stage_labels": [
+        "G"
+      ]
+    },
+    {
+      "id": "document_metadata_extract",
+      "stage_labels": [
+        "C"
+      ]
+    },
+    {
+      "id": "phone_carrier_lookup",
+      "stage_labels": [
+        "L"
+      ]
+    },
+    {
+      "id": "phone_reputation_check",
+      "stage_labels": [
+        "L"
+      ]
+    },
+    {
+      "id": "reddit_profile",
+      "stage_labels": [
+        "C"
+      ]
+    },
+    {
+      "id": "twitter_mentions",
+      "stage_labels": [
+        "C"
+      ]
+    },
+    {
+      "id": "cve_lookup",
+      "stage_labels": [
+        "D"
+      ]
+    },
+    {
+      "id": "github_username_intel",
+      "stage_labels": [
+        "B"
+      ]
+    },
+    {
+      "id": "username_search",
+      "stage_labels": [
+        "B"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "ip_geolocation",
+      "to": "satellite_context",
+      "type": "data_handoff"
+    }
+  ]
+}

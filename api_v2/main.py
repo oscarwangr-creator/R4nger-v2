@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 from typing import Any, Dict, List
 
@@ -12,6 +12,7 @@ from core_v2.tool_executor import ToolExecutor
 from core_v2.tool_loader import ToolLoader
 from core_v2.tool_registry import ToolRegistry
 from distributed_v2.tasks import run_pipeline_task
+from discovery_v2.introspection import DiscoveryService
 from graph_v2.neo4j_client import GraphClient
 from workflows_v2.engine import WorkflowEngine
 
@@ -25,6 +26,7 @@ pipeline_engine = PipelineEngineV2(executor)
 workflow_engine = WorkflowEngine(pipeline_engine)
 correlator = CorrelationEngine()
 risk_scorer = RiskScorer()
+discovery_service = DiscoveryService()
 
 
 class PipelineRunRequest(BaseModel):
@@ -81,3 +83,27 @@ def query_graph(req: GraphQueryRequest) -> List[Dict[str, Any]]:
 @app.post("/agents/heartbeat")
 def agent_heartbeat(payload: Dict[str, Any]) -> Dict[str, Any]:
     return {"status": "received", "agent": payload.get("agent_id"), "agent_status": payload.get("status", "unknown")}
+
+
+def _require_discovery_role(x_role: str | None) -> None:
+    allowed = {"admin", "analyst"}
+    if x_role not in allowed:
+        raise HTTPException(status_code=403, detail="insufficient role for discovery endpoints")
+
+
+@app.get("/discovery/tools")
+def list_discovery_tools(x_role: str | None = Header(default=None, alias="X-Role")) -> Dict[str, Any]:
+    _require_discovery_role(x_role)
+    return discovery_service.load_store()
+
+
+@app.post("/discovery/regen")
+def regenerate_discovery(x_role: str | None = Header(default=None, alias="X-Role")) -> Dict[str, Any]:
+    _require_discovery_role(x_role)
+    return discovery_service.regenerate()
+
+
+@app.get("/discovery/recommend/{use_case}")
+def recommend_discovery(use_case: str, x_role: str | None = Header(default=None, alias="X-Role")) -> Dict[str, Any]:
+    _require_discovery_role(x_role)
+    return discovery_service.recommend(use_case)
