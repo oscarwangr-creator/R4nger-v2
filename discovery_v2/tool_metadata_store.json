@@ -1,0 +1,1041 @@
+{
+  "generated_at": "2026-03-28T09:58:10.520917",
+  "tool_count": 26,
+  "tools": [
+    {
+      "name": "exposed_service_discovery",
+      "class_name": "ExposedServiceDiscoveryTool",
+      "module": "tools_v2.attack_surface.exposed_service_tool",
+      "category": "attack_surface",
+      "purpose": "Exposed Service Discovery capability for attack_surface intelligence workflows.",
+      "pipeline_stage_labels": [
+        "G"
+      ],
+      "pipeline_stage_names": [
+        "collection",
+        "enrichment"
+      ],
+      "input_types": [
+        "domain",
+        "ip"
+      ],
+      "output_types": [
+        "service_exposure"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "exposed_service_discovery_result",
+        "relationships",
+        "service_exposure"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/attack_surface/exposed_service_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "leak_corpus_search",
+      "class_name": "LeakCorpusSearchTool",
+      "module": "tools_v2.breach.leak_corpus_tool",
+      "category": "breach",
+      "purpose": "Leak Corpus Search capability for breach intelligence workflows.",
+      "pipeline_stage_labels": [
+        "I"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "email",
+        "username"
+      ],
+      "output_types": [
+        "leak_record"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "leak_corpus_search_result",
+        "leak_record",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/breach/leak_corpus_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "paste_monitor",
+      "class_name": "PasteMonitorTool",
+      "module": "tools_v2.breach.paste_monitor_tool",
+      "category": "breach",
+      "purpose": "Paste Monitor capability for breach intelligence workflows.",
+      "pipeline_stage_labels": [
+        "I"
+      ],
+      "pipeline_stage_names": [
+        "collection"
+      ],
+      "input_types": [
+        "email",
+        "username"
+      ],
+      "output_types": [
+        "paste_hit"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "paste_hit",
+        "paste_monitor_result",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/breach/paste_monitor_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "credential_strength",
+      "class_name": "CredentialStrengthTool",
+      "module": "tools_v2.credential.credential_strength_tool",
+      "category": "credential",
+      "purpose": "Credential Strength capability for credential intelligence workflows.",
+      "pipeline_stage_labels": [
+        "H"
+      ],
+      "pipeline_stage_names": [
+        "collection"
+      ],
+      "input_types": [
+        "credential"
+      ],
+      "output_types": [
+        "strength"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "credential_strength_result",
+        "entities",
+        "relationships",
+        "strength"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/credential/credential_strength_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "password_reuse_detector",
+      "class_name": "PasswordReuseDetectorTool",
+      "module": "tools_v2.credential.password_reuse_tool",
+      "category": "credential",
+      "purpose": "Password Reuse Detector capability for credential intelligence workflows.",
+      "pipeline_stage_labels": [
+        "H"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "credential"
+      ],
+      "output_types": [
+        "reuse_signal"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "password_reuse_detector_result",
+        "relationships",
+        "reuse_signal"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/credential/password_reuse_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "tor_index_lookup",
+      "class_name": "TorIndexLookupTool",
+      "module": "tools_v2.darkweb.tor_index_tool",
+      "category": "darkweb",
+      "purpose": "Tor Index Lookup capability for darkweb intelligence workflows.",
+      "pipeline_stage_labels": [
+        "D"
+      ],
+      "pipeline_stage_names": [
+        "collection",
+        "enrichment"
+      ],
+      "input_types": [
+        "email",
+        "domain"
+      ],
+      "output_types": [
+        "darkweb_hit"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "darkweb_hit",
+        "entities",
+        "relationships",
+        "tor_index_lookup_result"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/darkweb/tor_index_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "pdf_text_extract",
+      "class_name": "PdfTextExtractTool",
+      "module": "tools_v2.document.pdf_text_tool",
+      "category": "document",
+      "purpose": "Pdf Text Extract capability for document intelligence workflows.",
+      "pipeline_stage_labels": [
+        "C"
+      ],
+      "pipeline_stage_names": [
+        "collection"
+      ],
+      "input_types": [
+        "document"
+      ],
+      "output_types": [
+        "text"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "pdf_text_extract_result",
+        "relationships",
+        "text"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/document/pdf_text_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "dns_resolver",
+      "class_name": "DnsResolverTool",
+      "module": "tools_v2.domain.dns_resolver_tool",
+      "category": "domain",
+      "purpose": "Dns Resolver capability for domain intelligence workflows.",
+      "pipeline_stage_labels": [
+        "F"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "domain"
+      ],
+      "output_types": [
+        "dns_record"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "dns_record",
+        "dns_resolver_result",
+        "entities",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/domain/dns_resolver_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "domain_whois",
+      "class_name": "DomainWhoisTool",
+      "module": "tools_v2.domain.whois_tool",
+      "category": "domain",
+      "purpose": "Domain Whois capability for domain intelligence workflows.",
+      "pipeline_stage_labels": [
+        "F"
+      ],
+      "pipeline_stage_names": [
+        "enrichment",
+        "collection"
+      ],
+      "input_types": [
+        "domain"
+      ],
+      "output_types": [
+        "whois_record"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "domain_whois_result",
+        "entities",
+        "relationships",
+        "whois_record"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/domain/whois_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "email_breach_check",
+      "class_name": "EmailBreachCheckTool",
+      "module": "tools_v2.email.email_breach_tool",
+      "category": "email",
+      "purpose": "Email Breach Check capability for email intelligence workflows.",
+      "pipeline_stage_labels": [
+        "E"
+      ],
+      "pipeline_stage_names": [
+        "collection",
+        "enrichment"
+      ],
+      "input_types": [
+        "email"
+      ],
+      "output_types": [
+        "breach_hit"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "breach_hit",
+        "email_breach_check_result",
+        "entities",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/email/email_breach_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "email_validate",
+      "class_name": "EmailValidateTool",
+      "module": "tools_v2.email.email_validator_tool",
+      "category": "email",
+      "purpose": "Email Validate capability for email intelligence workflows.",
+      "pipeline_stage_labels": [
+        "E"
+      ],
+      "pipeline_stage_names": [
+        "collection"
+      ],
+      "input_types": [
+        "email"
+      ],
+      "output_types": [
+        "email_validation"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "email_validate_result",
+        "email_validation",
+        "entities",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/email/email_validator_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "ip_geolocation",
+      "class_name": "IpGeolocationTool",
+      "module": "tools_v2.geoint.ip_geolocation_tool",
+      "category": "geoint",
+      "purpose": "Ip Geolocation capability for geoint intelligence workflows.",
+      "pipeline_stage_labels": [
+        "J"
+      ],
+      "pipeline_stage_names": [
+        "enrichment",
+        "collection"
+      ],
+      "input_types": [
+        "ip"
+      ],
+      "output_types": [
+        "location"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "ip_geolocation_result",
+        "location",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [
+        "satellite_context"
+      ],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/geoint/ip_geolocation_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "satellite_context",
+      "class_name": "SatelliteContextTool",
+      "module": "tools_v2.geoint.satellite_context_tool",
+      "category": "geoint",
+      "purpose": "Satellite Context capability for geoint intelligence workflows.",
+      "pipeline_stage_labels": [
+        "J"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "location"
+      ],
+      "output_types": [
+        "imagery_context"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "imagery_context",
+        "relationships",
+        "satellite_context_result"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/geoint/satellite_context_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "full_contact_lookup",
+      "class_name": "FullContactLookupTool",
+      "module": "tools_v2.identity.full_contact_tool",
+      "category": "identity",
+      "purpose": "Full Contact Lookup capability for identity intelligence workflows.",
+      "pipeline_stage_labels": [
+        "A",
+        "K"
+      ],
+      "pipeline_stage_names": [
+        "enrichment",
+        "collection"
+      ],
+      "input_types": [
+        "identity"
+      ],
+      "output_types": [
+        "entity_profile"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "entity_profile",
+        "full_contact_lookup_result",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/identity/full_contact_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "national_id_enrich",
+      "class_name": "NationalIdEnrichTool",
+      "module": "tools_v2.identity.national_id_tool",
+      "category": "identity",
+      "purpose": "National Id Enrich capability for identity intelligence workflows.",
+      "pipeline_stage_labels": [
+        "A",
+        "K"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "identity"
+      ],
+      "output_types": [
+        "identity_record"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "identity_record",
+        "national_id_enrich_result",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/identity/national_id_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "image_exif_extract",
+      "class_name": "ImageExifExtractTool",
+      "module": "tools_v2.image.image_exif_tool",
+      "category": "image",
+      "purpose": "Image Exif Extract capability for image intelligence workflows.",
+      "pipeline_stage_labels": [
+        "C"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "image"
+      ],
+      "output_types": [
+        "exif"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "exif",
+        "image_exif_extract_result",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/image/image_exif_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "port_scan",
+      "class_name": "PortScanTool",
+      "module": "tools_v2.infrastructure.port_scan_tool",
+      "category": "infrastructure",
+      "purpose": "Port Scan capability for infrastructure intelligence workflows.",
+      "pipeline_stage_labels": [
+        "G"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "ip",
+        "domain"
+      ],
+      "output_types": [
+        "open_port"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "open_port",
+        "port_scan_result",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/infrastructure/port_scan_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "subdomain_enum",
+      "class_name": "SubdomainEnumTool",
+      "module": "tools_v2.infrastructure.subdomain_enum_tool",
+      "category": "infrastructure",
+      "purpose": "Subdomain Enum capability for infrastructure intelligence workflows.",
+      "pipeline_stage_labels": [
+        "G"
+      ],
+      "pipeline_stage_names": [
+        "collection",
+        "enrichment"
+      ],
+      "input_types": [
+        "domain"
+      ],
+      "output_types": [
+        "subdomain"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "relationships",
+        "subdomain",
+        "subdomain_enum_result"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/infrastructure/subdomain_enum_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "document_metadata_extract",
+      "class_name": "DocumentMetadataExtractTool",
+      "module": "tools_v2.metadata.document_metadata_tool",
+      "category": "metadata",
+      "purpose": "Document Metadata Extract capability for metadata intelligence workflows.",
+      "pipeline_stage_labels": [
+        "C"
+      ],
+      "pipeline_stage_names": [
+        "collection",
+        "enrichment"
+      ],
+      "input_types": [
+        "document"
+      ],
+      "output_types": [
+        "metadata"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "document_metadata_extract_result",
+        "entities",
+        "metadata",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/metadata/document_metadata_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "phone_carrier_lookup",
+      "class_name": "PhoneCarrierLookupTool",
+      "module": "tools_v2.phone.phone_carrier_tool",
+      "category": "phone",
+      "purpose": "Phone Carrier Lookup capability for phone intelligence workflows.",
+      "pipeline_stage_labels": [
+        "L"
+      ],
+      "pipeline_stage_names": [
+        "collection"
+      ],
+      "input_types": [
+        "phone"
+      ],
+      "output_types": [
+        "carrier_record"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "carrier_record",
+        "entities",
+        "phone_carrier_lookup_result",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/phone/phone_carrier_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "phone_reputation_check",
+      "class_name": "PhoneReputationCheckTool",
+      "module": "tools_v2.phone.phone_reputation_tool",
+      "category": "phone",
+      "purpose": "Phone Reputation Check capability for phone intelligence workflows.",
+      "pipeline_stage_labels": [
+        "L"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "phone"
+      ],
+      "output_types": [
+        "reputation"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "phone_reputation_check_result",
+        "relationships",
+        "reputation"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/phone/phone_reputation_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "reddit_profile",
+      "class_name": "RedditProfileTool",
+      "module": "tools_v2.socmint.reddit_profile_tool",
+      "category": "socmint",
+      "purpose": "Reddit Profile capability for socmint intelligence workflows.",
+      "pipeline_stage_labels": [
+        "C"
+      ],
+      "pipeline_stage_names": [
+        "enrichment"
+      ],
+      "input_types": [
+        "username"
+      ],
+      "output_types": [
+        "reddit_profile"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "reddit_profile",
+        "reddit_profile_result",
+        "relationships"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/socmint/reddit_profile_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "twitter_mentions",
+      "class_name": "TwitterMentionsTool",
+      "module": "tools_v2.socmint.twitter_mentions_tool",
+      "category": "socmint",
+      "purpose": "Twitter Mentions capability for socmint intelligence workflows.",
+      "pipeline_stage_labels": [
+        "C"
+      ],
+      "pipeline_stage_names": [
+        "enrichment",
+        "collection"
+      ],
+      "input_types": [
+        "username"
+      ],
+      "output_types": [
+        "mention"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "mention",
+        "relationships",
+        "twitter_mentions_result"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/socmint/twitter_mentions_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "cve_lookup",
+      "class_name": "CveLookupTool",
+      "module": "tools_v2.threatintel.cve_lookup_tool",
+      "category": "threatintel",
+      "purpose": "Cve Lookup capability for threatintel intelligence workflows.",
+      "pipeline_stage_labels": [
+        "D"
+      ],
+      "pipeline_stage_names": [
+        "enrichment",
+        "collection"
+      ],
+      "input_types": [
+        "cve",
+        "product"
+      ],
+      "output_types": [
+        "vulnerability"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "cve_lookup_result",
+        "entities",
+        "relationships",
+        "vulnerability"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/threatintel/cve_lookup_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "github_username_intel",
+      "class_name": "GithubUsernameIntelTool",
+      "module": "tools_v2.username.github_username_tool",
+      "category": "username",
+      "purpose": "Github Username Intel capability for username intelligence workflows.",
+      "pipeline_stage_labels": [
+        "B"
+      ],
+      "pipeline_stage_names": [
+        "collection",
+        "enrichment"
+      ],
+      "input_types": [
+        "username"
+      ],
+      "output_types": [
+        "repo_activity"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "github_username_intel_result",
+        "relationships",
+        "repo_activity"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/username/github_username_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    },
+    {
+      "name": "username_search",
+      "class_name": "UsernameSearchTool",
+      "module": "tools_v2.username.username_search_tool",
+      "category": "username",
+      "purpose": "Username Search capability for username intelligence workflows.",
+      "pipeline_stage_labels": [
+        "B"
+      ],
+      "pipeline_stage_names": [
+        "collection"
+      ],
+      "input_types": [
+        "username"
+      ],
+      "output_types": [
+        "social_profile"
+      ],
+      "consumes_variables": [],
+      "produces_variables": [
+        "entities",
+        "relationships",
+        "social_profile",
+        "username_search_result"
+      ],
+      "output_schema": {
+        "entities": "list",
+        "relationships": "list"
+      },
+      "references_dataclasses": [],
+      "dependencies": [],
+      "conflicts": [],
+      "source_file": "/workspace/R4nger-v2/tools_v2/username/username_search_tool.py",
+      "warnings": [
+        "Missing class docstring; purpose inferred from class name/category.",
+        "ScrapedProfile dataclass reference not found for this tool.",
+        "SearchResult dataclass reference not found for this tool."
+      ]
+    }
+  ]
+}
