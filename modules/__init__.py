@@ -7,6 +7,7 @@ from modules.exploit.metasploit_module import MetasploitModule
 from modules.exploit.nuclei_exploitation_module import NucleiExploitationModule
 from modules.exploit.sqlmap_module import SqlmapModule
 from modules.exploit.xss_probe_module import XssProbeModule
+from modules.github_tool_modules import build_github_tool_modules
 from modules.osint.amass_module import AmassModule
 from modules.osint.github_dork_module import GitHubDorkModule
 from modules.osint.recon_ng_module import ReconNgModule
@@ -37,7 +38,9 @@ def build_module_registry() -> dict:
         PrivilegeEscalationModule(), PersistenceModule(), LateralMovementModule(), CredentialDumpModule(),
         HtmlReportModule(), JsonReportModule(), PdfReportModule(),
     ]
-    return {m.metadata.name: m for m in modules}
+    registry = {m.metadata.name: m for m in modules}
+    registry.update(build_github_tool_modules())
+    return registry
 
 
 def build_discovered_module_registry() -> dict:

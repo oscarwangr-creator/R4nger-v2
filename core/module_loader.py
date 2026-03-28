@@ -36,7 +36,11 @@ class ModuleLoader:
                     continue
                 if cls.__module__ != module.__name__:
                     continue
-                instance = cls()
+                try:
+                    instance = cls()
+                except TypeError:
+                    # Skip helper classes that require constructor arguments.
+                    continue
                 discovered[instance.metadata.name] = instance
 
         return discovered
