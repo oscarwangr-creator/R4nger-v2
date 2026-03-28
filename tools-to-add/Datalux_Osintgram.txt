@@ -1,0 +1,3 @@
+Repository cloned to /tmp/git-repo-parser-ZLuxdf/osintgram
+RepoScript transcript has been saved to files.txt
+Token count (cl100k_base): 37479

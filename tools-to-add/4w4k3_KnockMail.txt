@@ -1,0 +1,236 @@
+[DIR_START] Screens
+[DIR_END] Screens
+
+[FILE_START] inputfile.txt
+meta: lang=txt size=62
+example@gmail.com
+example@protonmail.com
+example@hotmail.com
+
+[FILE_END] inputfile.txt
+
+[FILE_START] knock.py
+meta: lang=py size=2449
+#!/usr/bin/python
+# -*- coding: iso-8859-15 -*-
+# Copyright 2017 Knock Mail.
+# Written by: * Alisson Moretto - 4w4k3
+# https://github.com/4w4k3/KnockMail
+# Licensed under the BSD-3-Clause
+from os import system
+from sys import stdout, exit
+from validate_email import validate_email
+results = []
+system('clear')
+BLUE, RED, WHITE, YELLOW, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;32m', '\033[0m'
+def search():
+    inputfil = raw_input("Type the path of file containing a list of emails: ")
+    with open(inputfil) as inputfile:
+        for line in inputfile:
+            results.append(line.strip())
+    count = 0
+    for i in results:
+        is_valid = validate_email(i,verify=True)
+        count += 1
+        if str(is_valid).upper() == "TRUE":
+	    stdout.write(GREEN + "[*] FOUND - [" + i + "] "+ BLUE + "{line " + str(count) + "}\n" + END)
+        else:
+            stdout.write(RED + "[!] NOTFD - [" + i + "]" + BLUE + " {line " + str(count) + "}\n" + END)
+
+def single():
+    ema = raw_input("Type the email to search: ")
+    is_valid = validate_email(ema,verify=True)
+    if str(is_valid).upper() == "TRUE":
+        stdout.write(GREEN + "[*] FOUND - [" + ema + "]\n" + END)
+    else:
+	stdout.write(RED + "[!] NOTFD - [" + ema + "]\n" + END)
+
+stdout.write(WHITE + '''
+By: @4w4k3
+https://github.com/4w4k3
+[-                                              -]''' + RED + '''
+
+                                                   
+ _|    _|                                _|        
+ _|  _|    _|_|_|      _|_|      _|_|_|  _|  _|    
+ _|_|      _|    _|  _|    _|  _|        _|_|      
+ _|  _|    _|    _|  _|    _|  _|        _|  _|    
+ _|    _|  _|    _|    _|_|      _|_|_|  _|    _|  
+                                               mail''' + END + '''
+            [ ]''' + RED + ' Knock Knock Mail ' + END + '''[ ]
+				 	v1.0   
+[-                                              -]
+''')
+print '''
+-Usage- Select an option:
+
+  {0}[{1}1{0}]{1}     Perform a search of emails from specified file.
+  {0}[{1}2{0}]{1}     Single search for specified email.
+  {0}[{1}U{0}]{1}     Update.
+  {0}[{1}E{0}]{1}     Exit.
+'''.format(RED, END)
+while True:
+    try:
+        ask = raw_input("KKM > ").format(RED, END)
+    	if ask.upper() == "1":
+            search()
+	if ask.upper() == "2":
+            single()
+        if ask.upper() == "E":
+            exit(0) 
+    except:
+        print "\nThank you for use Knock Mail."
+        exit(0)
+[FILE_END] knock.py
+
+[FILE_START] LICENSE
+meta: size=1515
+BSD 3-Clause License
+
+Copyright (c) 2017, Alisson Moretto
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+[FILE_END] LICENSE
+
+[FILE_START] README.md
+meta: lang=md size=1500
+# KnockMail
+Copyright 2017 KnockMail
+
+Written by: * **Alisson Moretto** - [4w4k3](https://github.com/4w4k3)
+
+Twitter: @4w4k3Official
+
+![Main](https://github.com/4w4k3/KnockMail/blob/master/Screens/snap.png)
+### Cloning:
+```
+git clone https://github.com/4w4k3/KnockMail.git
+```
+
+### Running:
+```
+cd KnockMail
+```
+
+```
+sudo su
+```
+
+```
+pip install -r requeriments.txt
+```
+
+```
+python knock.py
+```
+
+If you have another version of Python:
+
+```
+python2.7 knock.py
+```
+### Screen
+![SearchFile](https://github.com/4w4k3/KnockMail/blob/master/Screens/snap02.png)
+
+## DISCLAIMER: 
+
+"DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+Taken from [LICENSE](LICENSE).
+
+### Tested on:
+
++ Kali Linux - SANA
++ Kali Linux - ROLLING
++ Ubuntu 14.04-16.04 LTS
++ Debian 8.5
++ Linux Mint 18.1
+
+### Contribute:
+Send me more features if you want it :D
+
+**I need your Help to become it to better.**
+
+### Contact:
+**4w4k3@protonmail.com**
+
+## License:
+
+This project is licensed under the BSD-3-Clause - see the [LICENSE](LICENSE) file for details.
+[FILE_END] README.md
+
+[FILE_START] requeriments.txt
+meta: lang=txt size=22
+validate_email
+pyDNS
+
+[FILE_END] requeriments.txt
+
+[FILE_START] updater.py
+meta: lang=py size=878
+#!/usr/bin/python
+# -*- coding: iso-8859-15 -*-
+# Copyright 2017 Knock Mail.
+# Written by: * Alisson Moretto - 4w4k3
+# https://github.com/4w4k3/KnockMail
+# Licensed under the BSD-3-Clause
+import subprocess
+import urllib2
+
+
+def update_client_version(version):
+    with open("version.txt", "r") as vnum:
+        if vnum.read() != version:
+            return True
+        else:
+            return False
+
+
+def main():
+    version = urllib2.urlopen("https://raw.githubusercontent.com/4w4k3/KnockMail/master/version.txt").read()
+    if update_client_version(version) is True:
+        subprocess.call(["git", "pull", "origin", "master"])
+        return "[*] Updated to latest version: v{}..".format(version)
+    else:
+        return "[*] You are already up to date with git origin master."
+
+
+if __name__ == '__main__':
+    print("[*] Checking version information..")
+    print(main())
+[FILE_END] updater.py
+
+[FILE_START] version.txt
+meta: lang=txt size=4
+1.0
+[FILE_END] version.txt
+
