@@ -1,0 +1,304 @@
+name: github_recon_expansion_pipeline
+version: 3.0.0
+description: Category-focused GitHub expansion pipeline for recon tooling.
+stages:
+- name: A-AI Recon Bridge
+  module: github_a_ai_recon
+  required: false
+  args: {}
+- name: Amass Recon Bridge
+  module: github_amass_recon
+  required: false
+  args: {}
+- name: Bug-Bounty-Toolz Recon Bridge
+  module: github_bug_bounty_toolz_recon
+  required: false
+  args: {}
+- name: CLIP Recon Bridge
+  module: github_clip_recon
+  required: false
+  args: {}
+- name: Cognitive-Samples-IntelligentKiosk Recon Bridge
+  module: github_cognitive_samples_intelligentkiosk_recon
+  required: false
+  args: {}
+- name: FastPhotoStyle Recon Bridge
+  module: github_fastphotostyle_recon
+  required: false
+  args: {}
+- name: Hash-Buster Recon Bridge
+  module: github_hash_buster_recon
+  required: false
+  args: {}
+- name: Nettacker Recon Bridge
+  module: github_nettacker_recon
+  required: false
+  args: {}
+- name: OneForAll Recon Bridge
+  module: github_oneforall_recon
+  required: false
+  args: {}
+- name: Osmedeus Recon Bridge
+  module: github_osmedeus_recon
+  required: false
+  args: {}
+- name: PayloadsAllTheThings Recon Bridge
+  module: github_payloadsallthethings_recon
+  required: false
+  args: {}
+- name: PentestGPT Recon Bridge
+  module: github_pentestgpt_recon
+  required: false
+  args: {}
+- name: PhoneNumberKit Recon Bridge
+  module: github_phonenumberkit_recon
+  required: false
+  args: {}
+- name: Photon Recon Bridge
+  module: github_photon_recon
+  required: false
+  args: {}
+- name: Pwdb-Public Recon Bridge
+  module: github_pwdb_public_recon
+  required: false
+  args: {}
+- name: RuView Recon Bridge
+  module: github_ruview_recon
+  required: false
+  args: {}
+- name: Scrapling Recon Bridge
+  module: github_scrapling_recon
+  required: false
+  args: {}
+- name: SecLists Recon Bridge
+  module: github_seclists_recon
+  required: false
+  args: {}
+- name: SentinelAI Recon Bridge
+  module: github_sentinelai_recon
+  required: false
+  args: {}
+- name: Sn1per Recon Bridge
+  module: github_sn1per_recon
+  required: false
+  args: {}
+- name: SubOver Recon Bridge
+  module: github_subover_recon
+  required: false
+  args: {}
+- name: Sublist3r Recon Bridge
+  module: github_sublist3r_recon
+  required: false
+  args: {}
+- name: TLS-Scanner Recon Bridge
+  module: github_tls_scanner_recon
+  required: false
+  args: {}
+- name: VHostScan Recon Bridge
+  module: github_vhostscan_recon
+  required: false
+  args: {}
+- name: arcgis-python-api Recon Bridge
+  module: github_arcgis_python_api_recon
+  required: false
+  args: {}
+- name: auto-archiver Recon Bridge
+  module: github_auto_archiver_recon
+  required: false
+  args: {}
+- name: axiom Recon Bridge
+  module: github_axiom_recon
+  required: false
+  args: {}
+- name: bbot Recon Bridge
+  module: github_bbot_recon
+  required: false
+  args: {}
+- name: binwalk Recon Bridge
+  module: github_binwalk_recon
+  required: false
+  args: {}
+- name: device-activity-tracker Recon Bridge
+  module: github_device_activity_tracker_recon
+  required: false
+  args: {}
+- name: dnsrecon Recon Bridge
+  module: github_dnsrecon_recon
+  required: false
+  args: {}
+- name: domain_hunter_pro Recon Bridge
+  module: github_domain_hunter_pro_recon
+  required: false
+  args: {}
+- name: dora Recon Bridge
+  module: github_dora_recon
+  required: false
+  args: {}
+- name: dpulse Recon Bridge
+  module: github_dpulse_recon
+  required: false
+  args: {}
+- name: exiftool Recon Bridge
+  module: github_exiftool_recon
+  required: false
+  args: {}
+- name: face_recognition Recon Bridge
+  module: github_face_recognition_recon
+  required: false
+  args: {}
+- name: faceswap Recon Bridge
+  module: github_faceswap_recon
+  required: false
+  args: {}
+- name: frigate Recon Bridge
+  module: github_frigate_recon
+  required: false
+  args: {}
+- name: git-secrets Recon Bridge
+  module: github_git_secrets_recon
+  required: false
+  args: {}
+- name: github-scraper Recon Bridge
+  module: github_github_scraper_recon
+  required: false
+  args: {}
+- name: h8mail Recon Bridge
+  module: github_h8mail_recon
+  required: false
+  args: {}
+- name: hackingtool Recon Bridge
+  module: github_hackingtool_recon
+  required: false
+  args: {}
+- name: hashcat Recon Bridge
+  module: github_hashcat_recon
+  required: false
+  args: {}
+- name: horn3t Recon Bridge
+  module: github_horn3t_recon
+  required: false
+  args: {}
+- name: ignorant Recon Bridge
+  module: github_ignorant_recon
+  required: false
+  args: {}
+- name: jaeles Recon Bridge
+  module: github_jaeles_recon
+  required: false
+  args: {}
+- name: john Recon Bridge
+  module: github_john_recon
+  required: false
+  args: {}
+- name: katoolin Recon Bridge
+  module: github_katoolin_recon
+  required: false
+  args: {}
+- name: mapbox-gl-js Recon Bridge
+  module: github_mapbox_gl_js_recon
+  required: false
+  args: {}
+- name: masvs Recon Bridge
+  module: github_masvs_recon
+  required: false
+  args: {}
+- name: mentalist Recon Bridge
+  module: github_mentalist_recon
+  required: false
+  args: {}
+- name: mitmproxy Recon Bridge
+  module: github_mitmproxy_recon
+  required: false
+  args: {}
+- name: nuclei Recon Bridge
+  module: github_nuclei_recon
+  required: false
+  args: {}
+- name: onionscan Recon Bridge
+  module: github_onionscan_recon
+  required: false
+  args: {}
+- name: openfang Recon Bridge
+  module: github_openfang_recon
+  required: false
+  args: {}
+- name: pentest-agent Recon Bridge
+  module: github_pentest_agent_recon
+  required: false
+  args: {}
+- name: pentesting-framework Recon Bridge
+  module: github_pentesting_framework_recon
+  required: false
+  args: {}
+- name: pydictor Recon Bridge
+  module: github_pydictor_recon
+  required: false
+  args: {}
+- name: recon-ng Recon Bridge
+  module: github_recon_ng_recon
+  required: false
+  args: {}
+- name: reconftw Recon Bridge
+  module: github_reconftw_recon
+  required: false
+  args: {}
+- name: rengine Recon Bridge
+  module: github_rengine_recon
+  required: false
+  args: {}
+- name: rengine-ng Recon Bridge
+  module: github_rengine_ng_recon
+  required: false
+  args: {}
+- name: rofi Recon Bridge
+  module: github_rofi_recon
+  required: false
+  args: {}
+- name: scaife-viewer Recon Bridge
+  module: github_scaife_viewer_recon
+  required: false
+  args: {}
+- name: scan4all Recon Bridge
+  module: github_scan4all_recon
+  required: false
+  args: {}
+- name: scrapy Recon Bridge
+  module: github_scrapy_recon
+  required: false
+  args: {}
+- name: seeker Recon Bridge
+  module: github_seeker_recon
+  required: false
+  args: {}
+- name: shannon Recon Bridge
+  module: github_shannon_recon
+  required: false
+  args: {}
+- name: spiderfoot Recon Bridge
+  module: github_spiderfoot_recon
+  required: false
+  args: {}
+- name: subfinder Recon Bridge
+  module: github_subfinder_recon
+  required: false
+  args: {}
+- name: timemachine Recon Bridge
+  module: github_timemachine_recon
+  required: false
+  args: {}
+- name: trape Recon Bridge
+  module: github_trape_recon
+  required: false
+  args: {}
+- name: tweep Recon Bridge
+  module: github_tweep_recon
+  required: false
+  args: {}
+- name: user-scanner Recon Bridge
+  module: github_user_scanner_recon
+  required: false
+  args: {}
+- name: Recon Expansion Report
+  module: json_reporting
+  required: true
+  args: {}

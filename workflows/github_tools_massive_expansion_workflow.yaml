@@ -1,0 +1,29 @@
+name: github_tools_massive_expansion_workflow
+description: Workflow that executes category-specific and aggregate GitHub tool expansion
+  pipelines.
+steps:
+- name: github_osint_expansion
+  pipeline: github_osint_expansion_pipeline
+  required: false
+  parallel: true
+  max_workers: 8
+- name: github_recon_expansion
+  pipeline: github_recon_expansion_pipeline
+  required: false
+  parallel: true
+  max_workers: 8
+- name: github_exploit_expansion
+  pipeline: github_exploit_expansion_pipeline
+  required: false
+  parallel: true
+  max_workers: 8
+- name: github_post_expansion
+  pipeline: github_post_expansion_pipeline
+  required: false
+  parallel: true
+  max_workers: 8
+- name: github_full_expansion
+  pipeline: github_tools_expansion_pipeline
+  required: true
+  parallel: true
+  max_workers: 12

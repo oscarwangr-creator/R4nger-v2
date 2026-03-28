@@ -1,0 +1,52 @@
+name: github_post_expansion_pipeline
+version: 3.0.0
+description: Category-focused GitHub expansion pipeline for post tooling.
+stages:
+- name: Keylogger-Surveillance-System Post Bridge
+  module: github_keylogger_surveillance_system_post
+  required: false
+  args: {}
+- name: LaZagne Post Bridge
+  module: github_lazagne_post
+  required: false
+  args: {}
+- name: Responder Post Bridge
+  module: github_responder_post
+  required: false
+  args: {}
+- name: autopsy Post Bridge
+  module: github_autopsy_post
+  required: false
+  args: {}
+- name: mimikatz Post Bridge
+  module: github_mimikatz_post
+  required: false
+  args: {}
+- name: sleuthkit Post Bridge
+  module: github_sleuthkit_post
+  required: false
+  args: {}
+- name: tcpdump Post Bridge
+  module: github_tcpdump_post
+  required: false
+  args: {}
+- name: usbpcap Post Bridge
+  module: github_usbpcap_post
+  required: false
+  args: {}
+- name: velociraptor Post Bridge
+  module: github_velociraptor_post
+  required: false
+  args: {}
+- name: wireshark Post Bridge
+  module: github_wireshark_post
+  required: false
+  args: {}
+- name: zeek Post Bridge
+  module: github_zeek_post
+  required: false
+  args: {}
+- name: Post Expansion Report
+  module: json_reporting
+  required: true
+  args: {}

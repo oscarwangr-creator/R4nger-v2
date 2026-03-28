@@ -16,3 +16,6 @@ steps:
   - name: post_exploitation
     pipeline: post_exploit_pipeline
     required: false
+  - name: github_expansion
+    pipeline: github_tools_expansion_pipeline
+    required: false

@@ -1,0 +1,68 @@
+name: github_osint_expansion_pipeline
+version: 3.0.0
+description: Category-focused GitHub expansion pipeline for osint tooling.
+stages:
+- name: Fast-Google-Dorks-Scan Osint Bridge
+  module: github_fast_google_dorks_scan_osint
+  required: false
+  args: {}
+- name: GHunt Osint Bridge
+  module: github_ghunt_osint
+  required: false
+  args: {}
+- name: Infoga Osint Bridge
+  module: github_infoga_osint
+  required: false
+  args: {}
+- name: Osintgram Osint Bridge
+  module: github_osintgram_osint
+  required: false
+  args: {}
+- name: Profil3r Osint Bridge
+  module: github_profil3r_osint
+  required: false
+  args: {}
+- name: SocialFish Osint Bridge
+  module: github_socialfish_osint
+  required: false
+  args: {}
+- name: WhatsMyName Osint Bridge
+  module: github_whatsmyname_osint
+  required: false
+  args: {}
+- name: holehe Osint Bridge
+  module: github_holehe_osint
+  required: false
+  args: {}
+- name: instagram-location-search Osint Bridge
+  module: github_instagram_location_search_osint
+  required: false
+  args: {}
+- name: instaloader Osint Bridge
+  module: github_instaloader_osint
+  required: false
+  args: {}
+- name: phoneinfoga Osint Bridge
+  module: github_phoneinfoga_osint
+  required: false
+  args: {}
+- name: sherlock Osint Bridge
+  module: github_sherlock_osint
+  required: false
+  args: {}
+- name: social-analyzer Osint Bridge
+  module: github_social_analyzer_osint
+  required: false
+  args: {}
+- name: theHarvester Osint Bridge
+  module: github_theharvester_osint
+  required: false
+  args: {}
+- name: twint Osint Bridge
+  module: github_twint_osint
+  required: false
+  args: {}
+- name: Osint Expansion Report
+  module: json_reporting
+  required: true
+  args: {}

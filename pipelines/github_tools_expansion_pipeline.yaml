@@ -1,0 +1,465 @@
+name: github_tools_expansion_pipeline
+version: 3.0.0
+description: Massive expansion pipeline that integrates every repository under tools/github
+  into framework orchestration.
+stages:
+- name: A-AI Expansion Bridge
+  module: github_a_ai_recon
+  required: false
+  args: {}
+- name: Amass Expansion Bridge
+  module: github_amass_recon
+  required: false
+  args: {}
+- name: Bug-Bounty-Toolz Expansion Bridge
+  module: github_bug_bounty_toolz_recon
+  required: false
+  args: {}
+- name: CLIP Expansion Bridge
+  module: github_clip_recon
+  required: false
+  args: {}
+- name: Cognitive-Samples-IntelligentKiosk Expansion Bridge
+  module: github_cognitive_samples_intelligentkiosk_recon
+  required: false
+  args: {}
+- name: Empire Expansion Bridge
+  module: github_empire_exploit
+  required: false
+  args: {}
+- name: Fast-Google-Dorks-Scan Expansion Bridge
+  module: github_fast_google_dorks_scan_osint
+  required: false
+  args: {}
+- name: FastPhotoStyle Expansion Bridge
+  module: github_fastphotostyle_recon
+  required: false
+  args: {}
+- name: FiercePhish Expansion Bridge
+  module: github_fiercephish_exploit
+  required: false
+  args: {}
+- name: GHunt Expansion Bridge
+  module: github_ghunt_osint
+  required: false
+  args: {}
+- name: Hash-Buster Expansion Bridge
+  module: github_hash_buster_recon
+  required: false
+  args: {}
+- name: Infoga Expansion Bridge
+  module: github_infoga_osint
+  required: false
+  args: {}
+- name: Keylogger-Surveillance-System Expansion Bridge
+  module: github_keylogger_surveillance_system_post
+  required: false
+  args: {}
+- name: LaZagne Expansion Bridge
+  module: github_lazagne_post
+  required: false
+  args: {}
+- name: Nettacker Expansion Bridge
+  module: github_nettacker_recon
+  required: false
+  args: {}
+- name: NoSQLMap Expansion Bridge
+  module: github_nosqlmap_exploit
+  required: false
+  args: {}
+- name: OneForAll Expansion Bridge
+  module: github_oneforall_recon
+  required: false
+  args: {}
+- name: Osintgram Expansion Bridge
+  module: github_osintgram_osint
+  required: false
+  args: {}
+- name: Osmedeus Expansion Bridge
+  module: github_osmedeus_recon
+  required: false
+  args: {}
+- name: PayloadsAllTheThings Expansion Bridge
+  module: github_payloadsallthethings_recon
+  required: false
+  args: {}
+- name: PentestGPT Expansion Bridge
+  module: github_pentestgpt_recon
+  required: false
+  args: {}
+- name: PhoneNumberKit Expansion Bridge
+  module: github_phonenumberkit_recon
+  required: false
+  args: {}
+- name: Photon Expansion Bridge
+  module: github_photon_recon
+  required: false
+  args: {}
+- name: Profil3r Expansion Bridge
+  module: github_profil3r_osint
+  required: false
+  args: {}
+- name: Pwdb-Public Expansion Bridge
+  module: github_pwdb_public_recon
+  required: false
+  args: {}
+- name: Responder Expansion Bridge
+  module: github_responder_post
+  required: false
+  args: {}
+- name: RuView Expansion Bridge
+  module: github_ruview_recon
+  required: false
+  args: {}
+- name: Scrapling Expansion Bridge
+  module: github_scrapling_recon
+  required: false
+  args: {}
+- name: SecLists Expansion Bridge
+  module: github_seclists_recon
+  required: false
+  args: {}
+- name: SentinelAI Expansion Bridge
+  module: github_sentinelai_recon
+  required: false
+  args: {}
+- name: Sn1per Expansion Bridge
+  module: github_sn1per_recon
+  required: false
+  args: {}
+- name: SocialFish Expansion Bridge
+  module: github_socialfish_osint
+  required: false
+  args: {}
+- name: SubOver Expansion Bridge
+  module: github_subover_recon
+  required: false
+  args: {}
+- name: Sublist3r Expansion Bridge
+  module: github_sublist3r_recon
+  required: false
+  args: {}
+- name: TLS-Scanner Expansion Bridge
+  module: github_tls_scanner_recon
+  required: false
+  args: {}
+- name: VHostScan Expansion Bridge
+  module: github_vhostscan_recon
+  required: false
+  args: {}
+- name: WhatsMyName Expansion Bridge
+  module: github_whatsmyname_osint
+  required: false
+  args: {}
+- name: XSStrike Expansion Bridge
+  module: github_xsstrike_exploit
+  required: false
+  args: {}
+- name: aircrack-ng Expansion Bridge
+  module: github_aircrack_ng_exploit
+  required: false
+  args: {}
+- name: arcgis-python-api Expansion Bridge
+  module: github_arcgis_python_api_recon
+  required: false
+  args: {}
+- name: auto-archiver Expansion Bridge
+  module: github_auto_archiver_recon
+  required: false
+  args: {}
+- name: autopsy Expansion Bridge
+  module: github_autopsy_post
+  required: false
+  args: {}
+- name: axiom Expansion Bridge
+  module: github_axiom_recon
+  required: false
+  args: {}
+- name: bbot Expansion Bridge
+  module: github_bbot_recon
+  required: false
+  args: {}
+- name: bettercap Expansion Bridge
+  module: github_bettercap_exploit
+  required: false
+  args: {}
+- name: binwalk Expansion Bridge
+  module: github_binwalk_recon
+  required: false
+  args: {}
+- name: device-activity-tracker Expansion Bridge
+  module: github_device_activity_tracker_recon
+  required: false
+  args: {}
+- name: dnsrecon Expansion Bridge
+  module: github_dnsrecon_recon
+  required: false
+  args: {}
+- name: domain_hunter_pro Expansion Bridge
+  module: github_domain_hunter_pro_recon
+  required: false
+  args: {}
+- name: dora Expansion Bridge
+  module: github_dora_recon
+  required: false
+  args: {}
+- name: dpulse Expansion Bridge
+  module: github_dpulse_recon
+  required: false
+  args: {}
+- name: exiftool Expansion Bridge
+  module: github_exiftool_recon
+  required: false
+  args: {}
+- name: face_recognition Expansion Bridge
+  module: github_face_recognition_recon
+  required: false
+  args: {}
+- name: faceswap Expansion Bridge
+  module: github_faceswap_recon
+  required: false
+  args: {}
+- name: frigate Expansion Bridge
+  module: github_frigate_recon
+  required: false
+  args: {}
+- name: git-secrets Expansion Bridge
+  module: github_git_secrets_recon
+  required: false
+  args: {}
+- name: github-scraper Expansion Bridge
+  module: github_github_scraper_recon
+  required: false
+  args: {}
+- name: gophish Expansion Bridge
+  module: github_gophish_exploit
+  required: false
+  args: {}
+- name: h8mail Expansion Bridge
+  module: github_h8mail_recon
+  required: false
+  args: {}
+- name: hackingtool Expansion Bridge
+  module: github_hackingtool_recon
+  required: false
+  args: {}
+- name: hashcat Expansion Bridge
+  module: github_hashcat_recon
+  required: false
+  args: {}
+- name: holehe Expansion Bridge
+  module: github_holehe_osint
+  required: false
+  args: {}
+- name: horn3t Expansion Bridge
+  module: github_horn3t_recon
+  required: false
+  args: {}
+- name: ignorant Expansion Bridge
+  module: github_ignorant_recon
+  required: false
+  args: {}
+- name: instagram-location-search Expansion Bridge
+  module: github_instagram_location_search_osint
+  required: false
+  args: {}
+- name: instaloader Expansion Bridge
+  module: github_instaloader_osint
+  required: false
+  args: {}
+- name: jaeles Expansion Bridge
+  module: github_jaeles_recon
+  required: false
+  args: {}
+- name: john Expansion Bridge
+  module: github_john_recon
+  required: false
+  args: {}
+- name: katoolin Expansion Bridge
+  module: github_katoolin_recon
+  required: false
+  args: {}
+- name: mapbox-gl-js Expansion Bridge
+  module: github_mapbox_gl_js_recon
+  required: false
+  args: {}
+- name: masvs Expansion Bridge
+  module: github_masvs_recon
+  required: false
+  args: {}
+- name: mentalist Expansion Bridge
+  module: github_mentalist_recon
+  required: false
+  args: {}
+- name: metasploit-framework Expansion Bridge
+  module: github_metasploit_framework_exploit
+  required: false
+  args: {}
+- name: metasploit-payloads Expansion Bridge
+  module: github_metasploit_payloads_exploit
+  required: false
+  args: {}
+- name: mimikatz Expansion Bridge
+  module: github_mimikatz_post
+  required: false
+  args: {}
+- name: mitmproxy Expansion Bridge
+  module: github_mitmproxy_recon
+  required: false
+  args: {}
+- name: nipe Expansion Bridge
+  module: github_nipe_exploit
+  required: false
+  args: {}
+- name: nuclei Expansion Bridge
+  module: github_nuclei_recon
+  required: false
+  args: {}
+- name: onionscan Expansion Bridge
+  module: github_onionscan_recon
+  required: false
+  args: {}
+- name: openfang Expansion Bridge
+  module: github_openfang_recon
+  required: false
+  args: {}
+- name: pentest-agent Expansion Bridge
+  module: github_pentest_agent_recon
+  required: false
+  args: {}
+- name: pentesting-framework Expansion Bridge
+  module: github_pentesting_framework_recon
+  required: false
+  args: {}
+- name: phoneinfoga Expansion Bridge
+  module: github_phoneinfoga_osint
+  required: false
+  args: {}
+- name: pydictor Expansion Bridge
+  module: github_pydictor_recon
+  required: false
+  args: {}
+- name: recon-ng Expansion Bridge
+  module: github_recon_ng_recon
+  required: false
+  args: {}
+- name: reconftw Expansion Bridge
+  module: github_reconftw_recon
+  required: false
+  args: {}
+- name: rengine Expansion Bridge
+  module: github_rengine_recon
+  required: false
+  args: {}
+- name: rengine-ng Expansion Bridge
+  module: github_rengine_ng_recon
+  required: false
+  args: {}
+- name: rofi Expansion Bridge
+  module: github_rofi_recon
+  required: false
+  args: {}
+- name: scaife-viewer Expansion Bridge
+  module: github_scaife_viewer_recon
+  required: false
+  args: {}
+- name: scan4all Expansion Bridge
+  module: github_scan4all_recon
+  required: false
+  args: {}
+- name: scrapy Expansion Bridge
+  module: github_scrapy_recon
+  required: false
+  args: {}
+- name: seeker Expansion Bridge
+  module: github_seeker_recon
+  required: false
+  args: {}
+- name: shannon Expansion Bridge
+  module: github_shannon_recon
+  required: false
+  args: {}
+- name: sherlock Expansion Bridge
+  module: github_sherlock_osint
+  required: false
+  args: {}
+- name: sleuthkit Expansion Bridge
+  module: github_sleuthkit_post
+  required: false
+  args: {}
+- name: social-analyzer Expansion Bridge
+  module: github_social_analyzer_osint
+  required: false
+  args: {}
+- name: spiderfoot Expansion Bridge
+  module: github_spiderfoot_recon
+  required: false
+  args: {}
+- name: sqlmap Expansion Bridge
+  module: github_sqlmap_exploit
+  required: false
+  args: {}
+- name: subfinder Expansion Bridge
+  module: github_subfinder_recon
+  required: false
+  args: {}
+- name: tcpdump Expansion Bridge
+  module: github_tcpdump_post
+  required: false
+  args: {}
+- name: thc-hydra Expansion Bridge
+  module: github_thc_hydra_exploit
+  required: false
+  args: {}
+- name: theHarvester Expansion Bridge
+  module: github_theharvester_osint
+  required: false
+  args: {}
+- name: timemachine Expansion Bridge
+  module: github_timemachine_recon
+  required: false
+  args: {}
+- name: trape Expansion Bridge
+  module: github_trape_recon
+  required: false
+  args: {}
+- name: tweep Expansion Bridge
+  module: github_tweep_recon
+  required: false
+  args: {}
+- name: twint Expansion Bridge
+  module: github_twint_osint
+  required: false
+  args: {}
+- name: usbpcap Expansion Bridge
+  module: github_usbpcap_post
+  required: false
+  args: {}
+- name: user-scanner Expansion Bridge
+  module: github_user_scanner_recon
+  required: false
+  args: {}
+- name: velociraptor Expansion Bridge
+  module: github_velociraptor_post
+  required: false
+  args: {}
+- name: wifiphisher Expansion Bridge
+  module: github_wifiphisher_exploit
+  required: false
+  args: {}
+- name: wireshark Expansion Bridge
+  module: github_wireshark_post
+  required: false
+  args: {}
+- name: zaproxy Expansion Bridge
+  module: github_zaproxy_exploit
+  required: false
+  args: {}
+- name: zeek Expansion Bridge
+  module: github_zeek_post
+  required: false
+  args: {}
+- name: Expansion Coverage JSON Report
+  module: json_reporting
+  required: true
+  args: {}

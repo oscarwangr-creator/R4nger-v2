@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from shutil import which
 from typing import Dict, List
 
@@ -43,6 +44,20 @@ class ToolRegistry:
         ]
         for tool in defaults:
             self.register(tool)
+
+        github_root = Path("tools/github")
+        if github_root.exists():
+            for repo_dir in sorted(path for path in github_root.iterdir() if path.is_dir()):
+                slug = "".join(ch.lower() if ch.isalnum() else "-" for ch in repo_dir.name).strip("-")
+                binary = slug.split("-")[0] if slug else repo_dir.name.lower()
+                self.register(
+                    ToolInfo(
+                        name=f"github:{repo_dir.name}",
+                        binary=binary,
+                        category="github-expansion",
+                        required=False,
+                    )
+                )
 
     def status(self) -> List[dict]:
         return [
